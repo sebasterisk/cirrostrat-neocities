@@ -1,0 +1,20 @@
+{
+  "who": "cirrostrat",
+  "what": "tributes",
+  "where": "/tributes/index.html",
+  "when": "27 mar 2024",
+  
+  "items": {
+    // TEMPLATE!
+    /*
+    "template": {
+      "trueTitle": "",
+      "caption": "",
+      "thumbnail": "/",
+      "link": "/",
+      "date": "1 jan 23"
+    }
+    */
+    
+  }
+}
