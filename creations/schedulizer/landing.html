@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>your schedulizer</title>
+</head>
+<body>
+    <span id="things"></span>
+    <script>
+        const here = window.location.href
+        const thisurl = new URL(here)
+        const params = thisurl.searchParams
+        const data = params.get("data")
+        const complete = JSON.parse(data)
+    </script>
+</body>
+</html>
