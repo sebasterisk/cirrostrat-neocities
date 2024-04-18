@@ -6,13 +6,75 @@
     <title>your schedulizer</title>
 </head>
 <body>
-    <span id="things"></span>
+    <h1>schedulizer</h1>
+    <hr>
+    <span id="errors"></span>
+    <span id="timenow"></span>
+    
     <script>
-        const here = window.location.href
-        const thisurl = new URL(here)
-        const params = thisurl.searchParams
-        const data = params.get("data")
-        const complete = JSON.parse(data)
+        const timenow = document.getElementById("timenow")
+        setInterval(function(){
+            timenow.innerHTML = new Date().toLocaleTimeString()
+        })
+    </script>
+
+    <select name="type" id="type">
+        <option value="" selected disabled hidden>select schedule type</option>
+        <option value="default">default</option>
+        <!--
+        <option value="wed">wed</option>
+        <option value="mass">mass</option>
+        <option value="forum">forum</option>
+        <option value="earlydis">early dismissal</option>
+        <option value="latestart">delayed start</option>
+        <option value="anchor">anchor</option>
+        -->
+    </select>
+
+    <select name="day" id="day" hidden>
+    </select>
+
+    <br>
+    <span id="selected"></span>
+
+    <script>
+        if (window.location.search == "") {
+            console.error("no data in searchparams!")
+            const errtext = document.getElementById("errors")
+            errtext.innerHTML = "No data. Head to <a href='/creations/schedulizer/index.html'>home page</a> for setup.<br>"
+        }
+
+        const here = window.location.href,
+              thisurl = new URL(here),
+              params = thisurl.searchParams,
+              data = params.get("data"),
+              complete = JSON.parse(data)
+
+        const type = document.getElementById("type")
+        const day = document.getElementById("day")
+        const selected = document.getElementById("selected")
+
+        let fetchres
+
+        function getjson(){
+            fetch('/creations/schedulizer/schedule.json')
+                .then((response) => response.json())
+                .then((json) => {fetchres = json})
+        }
+
+        function update(){
+            let val = type.value
+            let keys = Object.keys( fetchres[val].attr.sets )
+            console.log(keys)
+
+            for(i in keys){
+                day.add(new Option(keys[i], keys[i]))
+            }
+            day.removeAttribute("hidden")
+        }
+        getjson()
+        type.onchange = update
+        
     </script>
 </body>
 </html>
