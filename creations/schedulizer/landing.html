@@ -37,41 +37,90 @@
     <br>
     <span id="selected"></span>
 
+    <table id="datatable">
+        <tr class="row">
+            <td class="period">period</td>
+            <td class="time">time</td>
+        </tr>
+    </table>
+
     <script>
         if (window.location.search == "") {
             console.error("no data in searchparams!")
             const errtext = document.getElementById("errors")
             errtext.innerHTML = "No data. Head to <a href='/creations/schedulizer/index.html'>home page</a> for setup.<br>"
         }
-
+        //
         const here = window.location.href,
               thisurl = new URL(here),
               params = thisurl.searchParams,
               data = params.get("data"),
               complete = JSON.parse(data)
-
+        
+        let fetchres
+        let newcomplete = {}
+        //    
         const type = document.getElementById("type")
         const day = document.getElementById("day")
         const selected = document.getElementById("selected")
+        //
 
-        let fetchres
+        function filtercomplete(){
+            let complete_keys = Object.keys(complete)
+            let periods_fkeys = complete_keys.filter(v => v.startsWith("periodtx"))
+            let ctype_fkeys = complete_keys.filter(v => v.startsWith("humsci"))
+            
+            for(i in periods_fkeys){
+                const current_i = periods_fkeys[i]
+                const current_v = complete[current_i]
+                const corresp_ctype_i = ctype_fkeys[i]
+                const corresp_ctype_v = complete[corresp_ctype_i]
+                
+                newcomplete[current_i] = {
+                    "name": current_v,
+                    "type": corresp_ctype_v
+                }
+            }
+        }
 
         function getjson(){
+            // gets json file 
             fetch('/creations/schedulizer/schedule.json')
                 .then((response) => response.json())
                 .then((json) => {fetchres = json})
         }
 
         function update(){
-            let val = type.value
-            let keys = Object.keys( fetchres[val].attr.sets )
-            console.log(keys)
+            // handles dropdown menus
+            day.innerHTML = ""
+            let typeval = type.value
+            let dayval
+
+            let keys = Object.keys( fetchres[typeval].attr.sets )
 
             for(i in keys){
                 day.add(new Option(keys[i], keys[i]))
             }
             day.removeAttribute("hidden")
+            
+            dayval = day.value
         }
+
+        function map(map_type, map_day){
+            const map_look = fetchres[map_type] // schedule type
+            const map_set = map_look.attr.sets[map_day]  // period selectors
+            let map_totable = {} 
+            // 1. trim newcomplete to only the ones selected in map_set
+            // 2. convert time values to date values
+            // 3. map to table
+            // 4. get current period: iterate through each period timestamp and compare
+
+            for(i in map_set){
+                const faux_i = map_set[i] - 1
+            }
+        }
+
+        filtercomplete()
         getjson()
         type.onchange = update
         
