@@ -1,0 +1,24 @@
+body, h1, select, option{
+    font-family: Tahoma, sans-serif;
+}
+
+h1 {
+    line-height: 0%;
+}
+table, td {
+    border: 1px solid;
+    min-width: 100px;
+}
+
+table {
+    margin: 5px 0;
+}
+
+.border {
+    border: 1px solid;
+}
+
+.form {
+    padding: 5px;
+    width: fit-content;
+}

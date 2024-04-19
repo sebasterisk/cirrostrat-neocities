@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>schedulizer</title>
+    <link rel="stylesheet" href="/creations/schedulizer/style.css">
 </head>
 <body>
     <h1>schedulizer</h1>
@@ -13,43 +14,45 @@
         <br>
         <span id="formerror"></span>
         <br>
-        <form id="inputform">
-            <label for="pd1">Period 1 </label><input type="text" class="formInput" id="pd1" name="periodtx1" required>
-            <label for="hum1">H</label><input type="radio" name="humsci1" id="hum1" value="humanities" required>
-            <label for="sci1">S</label><input type="radio" name="humsci1" id="sci1" value="stem" required>
-            <br>
-            <label for="pd2">Period 2 </label><input type="text" class="formInput" id="pd2" name="periodtx2" required>
-            <label for="hum2">H</label><input type="radio" name="humsci2" id="hum2" value="humanities" required>
-            <label for="sci2">S</label><input type="radio" name="humsci2" id="sci2" value="stem" required>
-            <br>
-            <label for="pd3">Period 3 </label><input type="text" class="formInput" id="pd3" name="periodtx3" required>
-            <label for="hum3">H</label><input type="radio" name="humsci3" id="hum3" value="humanities" required>
-            <label for="sci3">S</label><input type="radio" name="humsci3" id="sci3" value="stem" required>
-            <br>
-            <label for="pd4">Period 4 </label><input type="text" class="formInput" id="pd4" name="periodtx4" required>
-            <label for="hum4">H</label><input type="radio" name="humsci4" id="hum4" value="humanities" required>
-            <label for="sci4">S</label><input type="radio" name="humsci4" id="sci4" value="stem" required>
-            <br>
-            <label for="pd5">Period 5 </label><input type="text" class="formInput" id="pd5" name="periodtx5" required>
-            <label for="hum5">H</label><input type="radio" name="humsci5" id="hum5" value="humanities" required>
-            <label for="sci5">S</label><input type="radio" name="humsci5" id="sci5" value="stem" required>
-            <br>
-            <label for="pd6">Period 6 </label><input type="text" class="formInput" id="pd6" name="periodtx6" required>
-            <label for="hum6">H</label><input type="radio" name="humsci6" id="hum6" value="humanities" required>
-            <label for="sci6">S</label><input type="radio" name="humsci6" id="sci6" value="stem" required>
-            <br>
-            <label for="pd7">Period 7 </label><input type="text" class="formInput" id="pd7" name="periodtx7" required>
-            <label for="hum7">H</label><input type="radio" name="humsci7" id="hum7" value="humanities" required>
-            <label for="sci7">S</label><input type="radio" name="humsci7" id="sci7" value="stem" required>
-            <br>
-            <label for="pd8">Period 8 </label><input type="text" class="formInput" id="pd8" name="periodtx8" required>
-            <label for="hum8">H</label><input type="radio" name="humsci8" id="hum8" value="humanities" required>
-            <label for="sci8">S</label><input type="radio" name="humsci8" id="sci8" value="stem" required>
-            
-            <br>
-            <input type="submit">
-        </form>
-        
+         
+        <div class="border form">
+            <form id="inputform">
+                <label for="pd1">Period 1 </label><input type="text" class="formInput" id="pd1" name="periodtx1" required>
+                <label for="hum1">H</label><input type="radio" name="humsci1" id="hum1" value="humanities" required>
+                <label for="sci1">S</label><input type="radio" name="humsci1" id="sci1" value="stem" required>
+                <br>
+                <label for="pd2">Period 2 </label><input type="text" class="formInput" id="pd2" name="periodtx2" required>
+                <label for="hum2">H</label><input type="radio" name="humsci2" id="hum2" value="humanities" required>
+                <label for="sci2">S</label><input type="radio" name="humsci2" id="sci2" value="stem" required>
+                <br>
+                <label for="pd3">Period 3 </label><input type="text" class="formInput" id="pd3" name="periodtx3" required>
+                <label for="hum3">H</label><input type="radio" name="humsci3" id="hum3" value="humanities" required>
+                <label for="sci3">S</label><input type="radio" name="humsci3" id="sci3" value="stem" required>
+                <br>
+                <label for="pd4">Period 4 </label><input type="text" class="formInput" id="pd4" name="periodtx4" required>
+                <label for="hum4">H</label><input type="radio" name="humsci4" id="hum4" value="humanities" required>
+                <label for="sci4">S</label><input type="radio" name="humsci4" id="sci4" value="stem" required>
+                <br>
+                <label for="pd5">Period 5 </label><input type="text" class="formInput" id="pd5" name="periodtx5" required>
+                <label for="hum5">H</label><input type="radio" name="humsci5" id="hum5" value="humanities" required>
+                <label for="sci5">S</label><input type="radio" name="humsci5" id="sci5" value="stem" required>
+                <br>
+                <label for="pd6">Period 6 </label><input type="text" class="formInput" id="pd6" name="periodtx6" required>
+                <label for="hum6">H</label><input type="radio" name="humsci6" id="hum6" value="humanities" required>
+                <label for="sci6">S</label><input type="radio" name="humsci6" id="sci6" value="stem" required>
+                <br>
+                <label for="pd7">Period 7 </label><input type="text" class="formInput" id="pd7" name="periodtx7" required>
+                <label for="hum7">H</label><input type="radio" name="humsci7" id="hum7" value="humanities" required>
+                <label for="sci7">S</label><input type="radio" name="humsci7" id="sci7" value="stem" required>
+                <br>
+                <label for="pd8">Period 8 </label><input type="text" class="formInput" id="pd8" name="periodtx8" required>
+                <label for="hum8">H</label><input type="radio" name="humsci8" id="hum8" value="humanities" required>
+                <label for="sci8">S</label><input type="radio" name="humsci8" id="sci8" value="stem" required>
+                
+                <br>
+                <input type="submit">
+            </form>
+        </div>
     </div>
 
     <script>

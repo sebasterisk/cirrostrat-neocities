@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>your schedulizer</title>
+    <link rel="stylesheet" href="/creations/schedulizer/style.css">
 </head>
 <body>
     <h1>schedulizer</h1>
@@ -63,6 +64,7 @@
         const type = document.getElementById("type")
         const day = document.getElementById("day")
         const selected = document.getElementById("selected")
+        const finaltable = document.getElementById("datatable")
         //
 
         function filtercomplete(){
@@ -82,47 +84,75 @@
                 }
             }
         }
-
         function getjson(){
             // gets json file 
             fetch('/creations/schedulizer/schedule.json')
                 .then((response) => response.json())
                 .then((json) => {fetchres = json})
         }
-
-        function update(){
-            // handles dropdown menus
+        function reset_days() {
             day.innerHTML = ""
-            let typeval = type.value
-            let dayval
-
-            let keys = Object.keys( fetchres[typeval].attr.sets )
+            let keys = Object.keys( fetchres[type.value].attr.sets )
 
             for(i in keys){
                 day.add(new Option(keys[i], keys[i]))
             }
             day.removeAttribute("hidden")
-            
-            dayval = day.value
         }
+        function update(){
+            // handles dropdown menus
+            let typeval = type.value
+            let dayval = day.value
 
+            map(typeval, dayval)
+        }
         function map(map_type, map_day){
-            const map_look = fetchres[map_type] // schedule type
+            const map_look = fetchres[map_type] // schedule type (json file)
             const map_set = map_look.attr.sets[map_day]  // period selectors
-            let map_totable = {} 
-            // 1. trim newcomplete to only the ones selected in map_set
-            // 2. convert time values to date values
-            // 3. map to table
-            // 4. get current period: iterate through each period timestamp and compare
-
+            const map_shifts = map_look.attr.hsdiff
+            let map_totable = [] 
+            let finalstring = ""
+            // period selection iteration
+            console.clear()
             for(i in map_set){
-                const faux_i = map_set[i] - 1
-            }
-        }
+                const current = Number(i) + 1
+                const v = map_set[i]
+                const selectedperiod = newcomplete["periodtx"+v]
+                const shift = map_shifts.includes(current)
+                let starttime
 
+                if (shift){
+                    starttime = map_look.times[String(current)][selectedperiod.type]
+                } else {
+                    starttime = map_look.times[String(current)]
+                }
+
+                console.log(selectedperiod, starttime)
+                map_totable[current-1] = { 
+                    "name": selectedperiod.name,
+                    "time": new Date("1970-01-01T"+starttime+":00")
+                }
+            }
+            console.log(map_totable)
+
+            for (i in map_totable){
+                let nowstring =  "<tr>"
+                    nowstring +=   "<td>" + map_totable[i].name + "</td>"
+                    nowstring +=   "<td>" + map_totable[i].time.toLocaleTimeString("en-US",{"timeStyle":"short"}) + "</td>"
+                    nowstring += "</tr>"
+                
+                finalstring += nowstring
+            }
+            finaltable.innerHTML = finalstring
+        }
+        
         filtercomplete()
         getjson()
-        type.onchange = update
+        type.onchange = function(){
+            reset_days()
+            update()
+        }
+        day.onchange = update
         
     </script>
 </body>
