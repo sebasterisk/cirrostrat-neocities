@@ -22,8 +22,8 @@
     <select name="type" id="type">
         <option value="" selected disabled hidden>select schedule type</option>
         <option value="default">default</option>
-        <!--
         <option value="wed">wed</option>
+        <!--
         <option value="mass">mass</option>
         <option value="forum">forum</option>
         <option value="earlydis">early dismissal</option>
@@ -45,6 +45,13 @@
         </tr>
     </table>
 
+    <div>
+        <p id="allnext">next: 
+            <span id="nextup">PERIOD</span> in 
+            <span id="mins">MINUTES</span>
+        </p>
+    </div>
+
     <script>
         if (window.location.search == "") {
             console.error("no data in searchparams!")
@@ -60,11 +67,15 @@
         
         let fetchres
         let newcomplete = {}
+        let map_totable = []
+
+        let count
         //    
         const type = document.getElementById("type")
         const day = document.getElementById("day")
         const selected = document.getElementById("selected")
         const finaltable = document.getElementById("datatable")
+        const allnext = document.getElementById("allnext")
         //
 
         function filtercomplete(){
@@ -110,7 +121,7 @@
             const map_look = fetchres[map_type] // schedule type (json file)
             const map_set = map_look.attr.sets[map_day]  // period selectors
             const map_shifts = map_look.attr.hsdiff
-            let map_totable = [] 
+            map_totable = [] 
             let finalstring = ""
             // period selection iteration
             console.clear()
@@ -144,6 +155,43 @@
                 finalstring += nowstring
             }
             finaltable.innerHTML = finalstring
+
+            startcount()
+        }
+        function startcount(){
+            if (count){
+                clearInterval(count)
+            }
+            count = setInterval(() => {
+                const timenow = new Date()
+                let next, next_time
+                for (i in map_totable){
+                    const v = map_totable[i]
+                    const v_today = new Date().setHours(v.time.getHours(), v.time.getMinutes(), v.time.getSeconds())
+                    
+                    if (v_today > timenow){
+                        console.log(v, "is next")
+                        next = v
+                        next_time = v_today
+                        break
+                    } else {
+                        continue
+                    }
+                }
+
+                if (!next){
+                    console.log("end of day")
+                    allnext.innerHTML = "end of day"
+                } else {
+                    const diff = next_time - timenow
+                    const diff_sec = (diff / 1000)
+                    const diff_min = Math.floor(diff_sec / 60)
+                    const diff_secleft = ("0" + Math.round(diff_sec % 60)).slice(-2)
+                    const diff_string = `${diff_min}:${diff_secleft}`
+
+                    allnext.innerHTML = `next up: ${next.name} in ${diff_string}`
+                }
+            },1000)
         }
         
         filtercomplete()
