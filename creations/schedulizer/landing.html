@@ -11,197 +11,44 @@
     <hr>
     <span id="errors"></span>
     <span id="timenow"></span>
-    
+
     <script>
         const timenow = document.getElementById("timenow")
         setInterval(function(){
             timenow.innerHTML = new Date().toLocaleTimeString()
         })
     </script>
-
-    <select name="type" id="type">
-        <option value="" selected disabled hidden>select schedule type</option>
-        <option value="default">default</option>
-        <option value="wed">wed</option>
-        <!--
-        <option value="mass">mass</option>
-        <option value="forum">forum</option>
-        <option value="earlydis">early dismissal</option>
-        <option value="latestart">delayed start</option>
-        <option value="anchor">anchor</option>
-        -->
-    </select>
-
-    <select name="day" id="day" hidden>
-    </select>
-
-    <br>
-    <span id="selected"></span>
-
-    <table id="datatable">
-        <tr class="row">
-            <td class="period">period</td>
-            <td class="time">time</td>
-        </tr>
-    </table>
-
-    <div>
-        <p id="allnext">next: 
-            <span id="nextup">PERIOD</span> in 
-            <span id="mins">MINUTES</span>
+    
+    <div id="status">
+        <p id="allnext">
+        </p>
+    </div>
+    <div id="datatable_new">
+        <p id="message">
+            select a schedule type...
         </p>
     </div>
 
-    <script>
-        if (window.location.search == "") {
-            console.error("no data in searchparams!")
-            const errtext = document.getElementById("errors")
-            errtext.innerHTML = "No data. Head to <a href='/creations/schedulizer/index.html'>home page</a> for setup.<br>"
-        }
-        //
-        const here = window.location.href,
-              thisurl = new URL(here),
-              params = thisurl.searchParams,
-              data = params.get("data"),
-              complete = JSON.parse(data)
-        
-        let fetchres
-        let newcomplete = {}
-        let map_totable = []
+    <div id="options">
+        schedule options:
+        <select name="type" id="type">
+            <option value="" selected disabled hidden>select schedule type</option>
+            <option value="default">default</option>
+            <option value="wed">wed</option>
+            <!--
+            <option value="mass">mass</option>
+            <option value="forum">forum</option>
+            <option value="earlydis">early dismissal</option>
+            <option value="latestart">delayed start</option>
+            <option value="anchor">anchor</option>
+            -->
+        </select>
 
-        let count
-        //    
-        const type = document.getElementById("type")
-        const day = document.getElementById("day")
-        const selected = document.getElementById("selected")
-        const finaltable = document.getElementById("datatable")
-        const allnext = document.getElementById("allnext")
-        //
-
-        function filtercomplete(){
-            let complete_keys = Object.keys(complete)
-            let periods_fkeys = complete_keys.filter(v => v.startsWith("periodtx"))
-            let ctype_fkeys = complete_keys.filter(v => v.startsWith("humsci"))
-            
-            for(i in periods_fkeys){
-                const current_i = periods_fkeys[i]
-                const current_v = complete[current_i]
-                const corresp_ctype_i = ctype_fkeys[i]
-                const corresp_ctype_v = complete[corresp_ctype_i]
-                
-                newcomplete[current_i] = {
-                    "name": current_v,
-                    "type": corresp_ctype_v
-                }
-            }
-        }
-        function getjson(){
-            // gets json file 
-            fetch('/creations/schedulizer/schedule.json')
-                .then((response) => response.json())
-                .then((json) => {fetchres = json})
-        }
-        function reset_days() {
-            day.innerHTML = ""
-            let keys = Object.keys( fetchres[type.value].attr.sets )
-
-            for(i in keys){
-                day.add(new Option(keys[i], keys[i]))
-            }
-            day.removeAttribute("hidden")
-        }
-        function update(){
-            // handles dropdown menus
-            let typeval = type.value
-            let dayval = day.value
-
-            map(typeval, dayval)
-        }
-        function map(map_type, map_day){
-            const map_look = fetchres[map_type] // schedule type (json file)
-            const map_set = map_look.attr.sets[map_day]  // period selectors
-            const map_shifts = map_look.attr.hsdiff
-            map_totable = [] 
-            let finalstring = ""
-            // period selection iteration
-            console.clear()
-            for(i in map_set){
-                const current = Number(i) + 1
-                const v = map_set[i]
-                const selectedperiod = newcomplete["periodtx"+v]
-                const shift = map_shifts.includes(current)
-                let starttime
-
-                if (shift){
-                    starttime = map_look.times[String(current)][selectedperiod.type]
-                } else {
-                    starttime = map_look.times[String(current)]
-                }
-
-                console.log(selectedperiod, starttime)
-                map_totable[current-1] = { 
-                    "name": selectedperiod.name,
-                    "time": new Date("1970-01-01T"+starttime+":00")
-                }
-            }
-            console.log(map_totable)
-
-            for (i in map_totable){
-                let nowstring =  "<tr>"
-                    nowstring +=   "<td>" + map_totable[i].name + "</td>"
-                    nowstring +=   "<td>" + map_totable[i].time.toLocaleTimeString("en-US",{"timeStyle":"short"}) + "</td>"
-                    nowstring += "</tr>"
-                
-                finalstring += nowstring
-            }
-            finaltable.innerHTML = finalstring
-
-            startcount()
-        }
-        function startcount(){
-            if (count){
-                clearInterval(count)
-            }
-            count = setInterval(() => {
-                const timenow = new Date()
-                let next, next_time
-                for (i in map_totable){
-                    const v = map_totable[i]
-                    const v_today = new Date().setHours(v.time.getHours(), v.time.getMinutes(), v.time.getSeconds())
-                    
-                    if (v_today > timenow){
-                        console.log(v, "is next")
-                        next = v
-                        next_time = v_today
-                        break
-                    } else {
-                        continue
-                    }
-                }
-
-                if (!next){
-                    console.log("end of day")
-                    allnext.innerHTML = "end of day"
-                } else {
-                    const diff = next_time - timenow
-                    const diff_sec = (diff / 1000)
-                    const diff_min = Math.floor(diff_sec / 60)
-                    const diff_secleft = ("0" + Math.round(diff_sec % 60)).slice(-2)
-                    const diff_string = `${diff_min}:${diff_secleft}`
-
-                    allnext.innerHTML = `next up: ${next.name} in ${diff_string}`
-                }
-            },1000)
-        }
-        
-        filtercomplete()
-        getjson()
-        type.onchange = function(){
-            reset_days()
-            update()
-        }
-        day.onchange = update
-        
+        <select name="day" id="day" hidden>
+        </select>
+    </div>
+    
+    <script src="/creations/schedulizer/script.js">
     </script>
 </body>
 </html>
