@@ -170,7 +170,7 @@ function startcount(){
             if (i>0) { // checks if there is preceding period
                 prev_v = map_totable[i-1]
                 prev_v_today = new Date().setHours(prev_v.time.getHours(), prev_v.time.getMinutes(), prev_v.time.getSeconds())
-                prev_v_endtime = prev_v_today + (prev_v.len*60000)
+                prev_v_endtime = prev_v_today + (prev_v.len * 60000)
             }
 
             if (v_today > timenow){ 
@@ -181,7 +181,7 @@ function startcount(){
                 if (prev_v){ // TODO: consider length of each period
                     now = prev_v
                     now_time = prev_v_today
-                    now_endtime = new Date(prev_v_endtime).toLocaleTimeString("en-US", {timeStyle: "short"})
+                    now_endtime = new Date(prev_v_endtime)
                 }
                 break
             } else {
@@ -205,10 +205,10 @@ function startcount(){
             const diff_secleft = ("0" + Math.round(diff_sec % 60)).slice(-2)
             const diff_string = `${diff_min}:${diff_secleft}`
 
-            if (now || timenow < now_endtime){ // checks if period is active -> displays in code
-                towrite += `now: ${now.name} (ends at: ${now_endtime}) <br>`
+            if ((now) && (timenow > now_endtime)){
+                towrite += `betwixt periods<br>`
             } else if (now){
-                towrite += `straddling periods<br>`
+                towrite += `now: ${now.name} (ends at: ${now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})}) <br>`
             } else { // if not, show this
                 towrite += `starting soon... <br>`
             }
