@@ -103,11 +103,8 @@ function map(map_type, map_day){
             starttime = map_look.times[String(current)]
         }
 
-        starttime_px = Number(pixelperminute(start, end) * timediff_mins(start, starttime))
-        len_px = Number(pixelperminute(start, end) * map_look.attr.len)
-
-        console.log(pixelperminute(start, end), timediff_mins(start, starttime), pixelperminute(start, end)*500)        
-        console.log(selectedperiod, starttime)
+        starttime_px = Number(ppm * timediff_mins(start, starttime))
+        len_px = Number(ppm * pd_len)
         map_totable[current-1] = { 
             "name": selectedperiod.name,
             "time": new Date("1970-01-01T"+starttime+":00"),
@@ -115,8 +112,23 @@ function map(map_type, map_day){
             "table_len": len_px
         }        
     }
-    console.log(map_totable)
+
+    if (Object.hasOwn(map_look.attr, "fixed")){
+        let fixed = map_look.attr.fixed
+        for (i in fixed){
+            map_totable.push({ 
+                "name": fixed[i].name,
+                "time": new Date("1970-01-01T"+fixed[i].time+":00"),
+                "table_offset": Number(ppm * timediff_mins(start, fixed[i].time)),
+                "table_len": Number(ppm * fixed[i].len),
+                "fixed": true
+            })      
+        }
+    } 
     
+    map_totable.sort((a,b) => a.time - b.time)
+    console.log(map_totable)
+
     finaltable_new.innerHTML = ""
     for (i in map_totable){
         // new table iteration (fancier with divs)
@@ -128,9 +140,13 @@ function map(map_type, map_day){
         if (map_totable[i].name == "free"){
             nowbox.style.visibility = "hidden"
         }
+        if (map_totable[i].fixed){
+            nowbox.style.backgroundColor = "black"
+            nowbox.style.color = "yellow"
+            nowbox.style.border = "2px dashed yellow"
+            nowbox.style.fontWeight = "bold"
+        }
         finaltable_new.appendChild(nowbox)
-
-        console.log(map_totable[i].table_offset)
     }
     startcount()
 }
@@ -157,7 +173,6 @@ function startcount(){
             if (v_today > timenow){ 
                 // checks if current period checked is after current time
                 // if so, that is our next period, and preceding period is now
-                console.log(v, "is next")
                 next = v
                 next_time = v_today
                 if (prev_v){ // TODO: consider length of each period
@@ -172,7 +187,6 @@ function startcount(){
 
         // calculate times to end, next
         if (!next){
-            console.log("end of day")
             towrite = "end of day"
         } else {
             const diff = next_time - timenow
