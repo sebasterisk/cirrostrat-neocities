@@ -108,6 +108,7 @@ function map(map_type, map_day){
         map_totable[current-1] = { 
             "name": selectedperiod.name,
             "time": new Date("1970-01-01T"+starttime+":00"),
+            "len": pd_len,
             "table_offset": starttime_px,
             "table_len": len_px
         }        
@@ -119,6 +120,7 @@ function map(map_type, map_day){
             map_totable.push({ 
                 "name": fixed[i].name,
                 "time": new Date("1970-01-01T"+fixed[i].time+":00"),
+                "len": fixed[i].len,
                 "table_offset": Number(ppm * timediff_mins(start, fixed[i].time)),
                 "table_len": Number(ppm * fixed[i].len),
                 "fixed": true
@@ -156,18 +158,19 @@ function startcount(){
     }
     count = setInterval(() => {
         const timenow = new Date()
-        let next, next_time, now, now_time
+        let next, next_time, now, now_time, now_endtime
         let towrite = ""
 
         // calculate which period we're on
         for (i in map_totable){
             const v = map_totable[i]
             const v_today = new Date().setHours(v.time.getHours(), v.time.getMinutes(), v.time.getSeconds())
-            let prev_v, prev_v_today
+            let prev_v, prev_v_today, prev_v_endtime
 
-            if (i>1) { // checks if there is preceding period
+            if (i>0) { // checks if there is preceding period
                 prev_v = map_totable[i-1]
                 prev_v_today = new Date().setHours(prev_v.time.getHours(), prev_v.time.getMinutes(), prev_v.time.getSeconds())
+                prev_v_endtime = prev_v_today + (prev_v.len*60000)
             }
 
             if (v_today > timenow){ 
@@ -178,6 +181,7 @@ function startcount(){
                 if (prev_v){ // TODO: consider length of each period
                     now = prev_v
                     now_time = prev_v_today
+                    now_endtime = new Date(prev_v_endtime).toLocaleTimeString("en-US", {timeStyle: "short"})
                 }
                 break
             } else {
@@ -187,7 +191,13 @@ function startcount(){
 
         // calculate times to end, next
         if (!next){
-            towrite = "end of day"
+            if (now || timenow < now_endtime){ // checks if period is active -> displays in code
+                towrite += `now: ${now.name} (ends at: ${now_endtime}) <br>`
+            } else if (now){
+                towrite += `straddling periods<br>`
+            }
+
+            towrite += "next up: end of day"
         } else {
             const diff = next_time - timenow
             const diff_sec = (diff / 1000)
@@ -195,8 +205,10 @@ function startcount(){
             const diff_secleft = ("0" + Math.round(diff_sec % 60)).slice(-2)
             const diff_string = `${diff_min}:${diff_secleft}`
 
-            if (now){ // checks if period is active -> displays in code
-                towrite += `now: ${now.name} <br>`
+            if (now || timenow < now_endtime){ // checks if period is active -> displays in code
+                towrite += `now: ${now.name} (ends at: ${now_endtime}) <br>`
+            } else if (now){
+                towrite += `straddling periods<br>`
             } else { // if not, show this
                 towrite += `starting soon... <br>`
             }
