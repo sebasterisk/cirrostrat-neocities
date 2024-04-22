@@ -36,7 +36,6 @@ function pixelperminute(rangestart, rangeend){
     const day_len = 500/(((end_time - start_time) / 1000)/60)
     return day_len
 }
-
 function filtercomplete(){
     let complete_keys = Object.keys(complete)
     let periods_fkeys = complete_keys.filter(v => v.startsWith("periodtx"))
@@ -178,12 +177,23 @@ function startcount(){
                 // if so, that is our next period, and preceding period is now
                 next = v
                 next_time = v_today
-                if (prev_v){ // TODO: consider length of each period
+
+                if (prev_v){ 
                     now = prev_v
                     now_time = prev_v_today
                     now_endtime = new Date(prev_v_endtime)
+                    console.log(now,now_time,now_endtime)
                 }
+
                 break
+            } else if (i == map_totable.length - 1) {
+                if (prev_v){ 
+                    now = v
+                    now_time = v_today
+                    now_endtime = new Date(v_today + (v.len * 60000))
+                    console.log(now,now_time,now_endtime)
+                }
+                continue
             } else {
                 continue
             }
@@ -191,13 +201,11 @@ function startcount(){
 
         // calculate times to end, next
         if (!next){
-            if (now || timenow < now_endtime){ // checks if period is active -> displays in code
-                towrite += `now: ${now.name} (ends at: ${now_endtime}) <br>`
-            } else if (now){
-                towrite += `straddling periods<br>`
+            if ((now) && !(timenow > now_endtime)){
+                towrite += `now: ${now.name} (ends at: ${now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})}) <br>next up: `
             }
 
-            towrite += "next up: end of day"
+            towrite += "end of day"
         } else {
             const diff = next_time - timenow
             const diff_sec = (diff / 1000)

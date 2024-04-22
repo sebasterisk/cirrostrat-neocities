@@ -12,10 +12,12 @@
     </header>
     <hr>
     <span id="errors"></span>
-    <span id="timenow"></span>
+    <span id="timenow"></span> <span id="date"></span>
 
     <script>
         const timenow = document.getElementById("timenow")
+        const date = document.getElementById("date")
+
         setInterval(function(){
             timenow.innerHTML = new Date().toLocaleTimeString()
         })
