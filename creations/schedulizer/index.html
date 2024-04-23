@@ -68,7 +68,7 @@
             let things = Object.fromEntries(formData)
             let string = JSON.stringify(things)
 
-            const headto = new URL(window.location.origin + "/creations/schedulizer/landing.html")
+            const headto = new URL(window.location.origin + "/creations/schedulizer/landing")
             headto.searchParams.set("data", string)
             window.location.href = headto.toString()
         })
