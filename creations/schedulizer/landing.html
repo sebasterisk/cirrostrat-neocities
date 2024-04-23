@@ -12,24 +12,32 @@
     </header>
     <hr>
     <span id="errors"></span>
-    <span id="timenow"></span> <span id="date"></span>
 
-    <script>
-        const timenow = document.getElementById("timenow")
-        const date = document.getElementById("date")
+    <div id="tracker">
+        <div id="clock">
+            <span id="timenow"></span><br>
+            <span id="date"></span>
+        </div>
 
-        setInterval(function(){
-            timenow.innerHTML = new Date().toLocaleTimeString()
-        })
-    </script>
-    
-    <div id="status">
-        <p id="allnext">
-        </p>
+        <script>
+            const timenow = document.getElementById("timenow")
+            const date = document.getElementById("date")
+
+            setInterval(function(){
+                timenow.innerHTML = new Date().toLocaleTimeString()
+                date.innerHTML = new Date().toLocaleDateString("en-US", {"dateStyle":"full"})
+            })
+        </script>
+        
+        <div id="status">
+            <p id="allnext">
+            </p>
+        </div>
     </div>
+
     <div id="datatable_new">
         <p id="message">
-            select a schedule type...
+            &darr; select a schedule type... &darr;
         </p>
     </div>
 
@@ -56,7 +64,7 @@
     </script>
 
     <footer><hr>
-        bookmark this link to save it! - header is original art. - part of the cirrostrat neocities website.
+        bookmark this link to save it! - part of the cirrostrat neocities website. <br> <a href="./index.html">edit schedule</a> - <a href="/index.html">go home</a>
     </footer>
 </body>
 </html>
