@@ -15,6 +15,7 @@ let newcomplete = {}
 let map_totable = []
 
 let count
+let timeline
 //    
 const type = document.getElementById("type")
 const day = document.getElementById("day")
@@ -134,7 +135,7 @@ function map(map_type, map_day){
     for (i in map_totable){
         // new table iteration (fancier with divs)
         let nowbox = document.createElement('div')
-        nowbox.innerHTML = `${map_totable[i].time.toLocaleTimeString("en-US",{"timeStyle":"short"})}<br>${map_totable[i].name}`
+        nowbox.innerHTML = `<span class="starttime">${map_totable[i].time.toLocaleTimeString("en-US",{"timeStyle":"short"})}</span><br><span class="cname">${map_totable[i].name}</span>`
         nowbox.classList.add("scheduleelement")
         nowbox.style.top = map_totable[i].table_offset + "px"
         nowbox.style.height = map_totable[i].table_len + "px"
@@ -149,7 +150,13 @@ function map(map_type, map_day){
         }
         finaltable_new.appendChild(nowbox)
     }
+
+    let hr = document.createElement("hr")
+    hr.id = "timeline"
+    finaltable_new.appendChild(hr)
+
     startcount()
+    timelinetick(start, end)
 }
 function startcount(){
     if (count){
@@ -225,6 +232,19 @@ function startcount(){
 
         allnext.innerHTML = towrite
     },1000)
+}
+function timelinetick(startbound, endbound){
+    if (timeline){
+        timeline.clearInterval()
+    }
+    
+    timeline = setInterval(() => {
+        const hr = document.getElementById("timeline")
+        const ppm = pixelperminute(startbound, endbound)
+        const now = new Date().toLocaleTimeString("en-US",{"timeStyle":"short", "hourCycle":"h24"})
+        console.log(now)
+        hr.style.top = ppm * timediff_mins(startbound, now) + "px"
+    }, 100)
 }
 
 filtercomplete()

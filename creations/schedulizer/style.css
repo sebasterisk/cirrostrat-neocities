@@ -127,7 +127,7 @@ table {
     width: calc(100% - 8px);
     position: absolute;
     box-sizing: border-box;
-    padding: 2px;
+    padding: 4px;
 }
 #timenow {
     font-size: 30pt;
@@ -155,13 +155,25 @@ table {
     top: 250px;
     color: #000b1d2e;
 }
-#scheduleline {
-    width: inherit;
+
+#timeline {
+    width: calc(100% + 6px);
     z-index: 100;
-    max-width: inherit;
     position: absolute;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     border: 1px solid red;
+}
+
+.starttime {
+    font-size: 10pt;
+    line-height: 10pt;
+}
+.cname {
+    font-stretch: condensed;
+    font-size: 15pt;
+    line-height: 15pt;
 }
 
 input[type=text]{
