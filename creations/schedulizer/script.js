@@ -189,7 +189,6 @@ function startcount(){
                     now = prev_v
                     now_time = prev_v_today
                     now_endtime = new Date(prev_v_endtime)
-                    console.log(now,now_time,now_endtime)
                 }
 
                 break
@@ -198,7 +197,6 @@ function startcount(){
                     now = v
                     now_time = v_today
                     now_endtime = new Date(v_today + (v.len * 60000))
-                    console.log(now,now_time,now_endtime)
                 }
                 continue
             } else {
@@ -209,7 +207,13 @@ function startcount(){
         // calculate times to end, next
         if (!next){
             if ((now) && !(timenow > now_endtime)){
-                towrite += `now: ${now.name} (ends at: ${now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})}) <br>next up: `
+                const nowdiff = now_endtime - timenow
+                const nowdiff_sec = (nowdiff / 1000)
+                const nowdiff_min = Math.floor(nowdiff_sec / 60)
+                const nowdiff_secleft = ("0" + Math.round(nowdiff_sec % 60)).slice(-2)
+                const nowdiff_string = `${nowdiff_min}:${nowdiff_secleft}`
+
+                towrite += `now: ${now.name} &mdash; ends at: ${now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})} &mdash; ${nowdiff_string} from now<br>next up: `
             }
 
             towrite += "end of day"
@@ -219,31 +223,44 @@ function startcount(){
             const diff_min = Math.floor(diff_sec / 60)
             const diff_secleft = ("0" + Math.round(diff_sec % 60)).slice(-2)
             const diff_string = `${diff_min}:${diff_secleft}`
-
+            
             if ((now) && (timenow > now_endtime)){
                 towrite += `betwixt periods<br>`
+                towrite += `next up: ${next.name} in ${diff_string}`
             } else if (now){
-                towrite += `now: ${now.name} (ends at: ${now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})}) <br>`
+                const nowdiff = now_endtime - timenow
+                const nowdiff_sec = (nowdiff / 1000)
+                const nowdiff_min = Math.floor(nowdiff_sec / 60)
+                const nowdiff_secleft = ("0" + Math.round(nowdiff_sec % 60)).slice(-2)
+                const nowdiff_string = `${nowdiff_min}:${nowdiff_secleft}`
+
+                const betweentime = Math.floor((next_time - now_endtime)/60000)
+                towrite += `now: ${now.name} &mdash; ends at: ${now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})} &mdash; ${nowdiff_string} from now<br>`
+                towrite += `next up: ${next.name} at ${new Date(next_time).toLocaleTimeString("en-US", {"timeStyle":"short"})} &mdash; ${betweentime} mins after`
             } else { // if not, show this
                 towrite += `starting soon... <br>`
             }
-            towrite += `next up: ${next.name} in ${diff_string}`
         }
 
         allnext.innerHTML = towrite
-    },1000)
+    },100)
 }
 function timelinetick(startbound, endbound){
     if (timeline){
-        timeline.clearInterval()
+        clearInterval(timeline)
     }
     
     timeline = setInterval(() => {
         const hr = document.getElementById("timeline")
         const ppm = pixelperminute(startbound, endbound)
         const now = new Date().toLocaleTimeString("en-US",{"timeStyle":"short", "hourCycle":"h24"})
-        console.log(now)
-        hr.style.top = ppm * timediff_mins(startbound, now) + "px"
+        const set = ppm * timediff_mins(startbound, now)
+        if (set <= 0 || set >= 500){
+            hr.style.visibility = "hidden"
+        } else {
+            hr.style.visibility = "visible"
+        }
+        hr.style.top = set + "px"
     }, 100)
 }
 

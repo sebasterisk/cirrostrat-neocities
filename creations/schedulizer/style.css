@@ -120,6 +120,7 @@ table {
     background-color: lightcyan;
     padding: 4px;
     border: 1px solid black;
+    flex: 1;
 }
 
 .scheduleelement {
@@ -164,6 +165,15 @@ table {
     padding: 0;
     box-sizing: border-box;
     border: 1px solid red;
+}
+
+#content {
+    display: flex;
+}
+
+#calendar {
+    width: 0;
+    visibility: hidden;
 }
 
 .starttime {
