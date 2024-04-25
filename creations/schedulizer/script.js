@@ -239,6 +239,7 @@ function startcount(){
                 towrite += `next up: ${next.name} at ${new Date(next_time).toLocaleTimeString("en-US", {"timeStyle":"short"})} &mdash; ${betweentime} mins after`
             } else { // if not, show this
                 towrite += `starting soon... <br>`
+                towrite += `next up: ${next.name} in ${diff_string}`
             }
         }
 
