@@ -43,10 +43,61 @@
         </div>
 
         <div id="calendar">
-            example content
+            <div class="calcontain" id="ficontain">
+                <p class="small">
+                    You can upload a calendar in the .ics format to schedulizer, and we will save it on your browser for the next times you open schedulizer. If you want to pull a calendar from onCampus, look at this tutorial.
+                </p>
+                <hr>
+                <div class="fauxbutton">
+                    <label for="calinput">Upload</label> <span class="small">max size 512kb</span>
+                </div>
+                <input type="file" name="calinput" id="calinput">
+            </div>
+            <div id="calcontent">
+
+            </div>
         </div>
     </div>
-    
+    <script type="module">
+        import ICAL from "https://unpkg.com/ical.js"
+
+        const fiContain = document.getElementById("ficontain")
+        const fileInput = document.getElementById("calinput")
+        const savebtn = document.getElementById("calsave")
+        const content = document.querySelector("#calcontent")
+
+        let final
+        let parsed
+
+        function parse(icaldata){
+            parsed = ICAL.parse(icaldata)
+            console.log(parsed)
+        }
+
+        function feventson(day){
+        }
+
+        function previewFile() {
+            const [file] = calinput.files
+            const reader = new FileReader()
+
+            reader.addEventListener(
+                "load",
+                () => {
+                    fiContain.style.visibility = "hidden"
+                    final = reader.result
+                    parse(final)
+                },
+                false,
+            );
+
+            if (file) {
+                reader.readAsText(file);
+            }
+        }
+
+        fileInput.onchange = previewFile
+    </script>
     <div id="options">
         schedule options:
         <select name="type" id="type">
@@ -65,8 +116,33 @@
         <select name="day" id="day" hidden>
         </select>
     </div>
-
+    <button id="calendarbutton">Test</button>
     <script src="/creations/schedulizer/script.js">
+    </script>
+
+    <script>
+        const cal = document.getElementById("calendar")
+        const button = document.getElementById("calendarbutton")
+        let open = false
+
+        button.onclick = () => {
+            if (!open) {
+                open = true
+                cal.style.width = "33%"
+                setTimeout(() => {    
+                    if(open){
+                        cal.style.visibility = "visible"
+                        cal.style.textWrap = "wrap"
+                    }
+                }, 500);
+            } else {
+                open = false
+                cal.style.width = "0"
+                cal.style.visibility = "hidden"
+                cal.style.textWrap = "nowrap"
+            }
+
+        }
     </script>
 
     <footer><hr>
