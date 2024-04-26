@@ -266,7 +266,7 @@ input[type=file]{
 
 #calendarbutton{
     font-family: Gotham, Tahoma, Verdana, sans-serif;
-    display: none; /*inline-block*/
+    display: inline-block;
     background-color: aliceblue;
     position: relative;
     border: 0;
