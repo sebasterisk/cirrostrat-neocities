@@ -45,7 +45,7 @@
         <div id="calendar">
             <div class="calcontain" id="ficontain">
                 <p class="small">
-                    You can upload a calendar in the .ics format to schedulizer, and we will save it on your browser for the next times you open schedulizer. If you want to pull a calendar from onCampus, look at this tutorial.
+                    open a .ics calendar file (testing)
                 </p>
                 <hr>
                 <div class="fauxbutton">
@@ -60,7 +60,7 @@
     </div>
     <script type="module">
         import ICAL from "https://unpkg.com/ical.js"
-
+        
         const fiContain = document.getElementById("ficontain")
         const fileInput = document.getElementById("calinput")
         const savebtn = document.getElementById("calsave")
@@ -71,10 +71,34 @@
 
         function parse(icaldata){
             parsed = ICAL.parse(icaldata)
-            console.log(parsed)
+            //console.log(parsed)
+            feventson()
         }
 
-        function feventson(day){
+        function feventson(){
+            if (!parsed){
+                console.error("no jcal to parse")
+                return
+            }
+            let parser = new ICAL.ComponentParser()
+            let towrite = ""
+
+            parser.onevent = (event) => {
+                
+                const s = event.startDate.toJSDate()
+                const e = event.endDate.toJSDate()
+                const now = new Date()
+                if ((now > s) && (now < e)){
+                    console.log(event.summary)
+                    towrite += `${event.summary}<br><hr>`
+                }
+            }
+
+            parser.oncomplete = () => {
+                content.innerHTML = towrite
+                towrite = ""
+            }
+            parser.process(parsed)
         }
 
         function previewFile() {
@@ -85,6 +109,7 @@
                 "load",
                 () => {
                     fiContain.style.visibility = "hidden"
+                    fiContain.hidden = true
                     final = reader.result
                     parse(final)
                 },
@@ -98,6 +123,7 @@
 
         fileInput.onchange = previewFile
     </script>
+
     <div id="options">
         schedule options:
         <select name="type" id="type">
@@ -116,11 +142,12 @@
         <select name="day" id="day" hidden>
         </select>
     </div>
-    <button id="calendarbutton">Test</button>
+    <button id="calendarbutton">test</button>
     <script src="/creations/schedulizer/script.js">
     </script>
 
     <script>
+        // for calendar sidebar open/close
         const cal = document.getElementById("calendar")
         const button = document.getElementById("calendarbutton")
         let open = false
@@ -129,12 +156,13 @@
             if (!open) {
                 open = true
                 cal.style.width = "33%"
-                setTimeout(() => {    
+
+                cal.ontransitionend = () => {
                     if(open){
                         cal.style.visibility = "visible"
                         cal.style.textWrap = "wrap"
                     }
-                }, 500);
+                }
             } else {
                 open = false
                 cal.style.width = "0"
