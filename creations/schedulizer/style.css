@@ -63,12 +63,11 @@ h1 {
 }
 
 #options{
-    color: azure;
-    text-shadow: 2px 2px black;
+    color: rgb(255, 255, 255);
     background-color: cadetblue;
-    padding: 2px 0.25em; 
-    border: 2px inset darkgray;
+    padding: 4px 0.25em; 
     width: fit-content;
+    display: inline-block;
 }
 
 #status{
@@ -119,7 +118,6 @@ table {
     height: 500px;
     background-color: lightcyan;
     padding: 4px;
-    border: 1px solid black;
     flex: 1;
 }
 
@@ -169,6 +167,7 @@ table {
 
 #content {
     display: flex;
+    border: 1px solid;
 }
 
 #calendar {
@@ -185,19 +184,37 @@ table {
     .calcontain{
         margin: 2px;
         padding: 2px;
-        border: 1px solid;
     }
 
     #calinput{
         display: none;
     }
-
+    #calcontent{
+        margin: 2px;
+        padding: 2px;
+    }
+    hr{
+        margin: 2px;
+    }
     label{
         display: inline-block;
+        position: relative;
+        top:0;
+        left:0;
         background-color: aliceblue;
         padding: 2px;
-        border: 2px outset gray;
-        font-size: 10pt;
+        box-shadow: 2px 2px;
+        font-size: 9pt;
+        transition: 
+            box-shadow 0.25s linear,
+            top 0.25s linear,
+            left 0.25s linear;
+    }
+    label:hover{
+        box-shadow: 0 0;
+        background-color: rgb(206, 223, 244);
+        top: 2px;
+        left: 2px;
     }
 }
 
@@ -245,6 +262,30 @@ input[type=submit]:hover{
 
 input[type=file]{
     font-family: Gotham, Tahoma, Verdana, sans-serif;
+}
+
+#calendarbutton{
+    font-family: Gotham, Tahoma, Verdana, sans-serif;
+    display: none; /*inline-block*/
+    background-color: aliceblue;
+    position: relative;
+    border: 0;
+    top: 0;
+    left: 0;
+    padding: 3px;
+    margin: 0;
+    box-shadow: 2px 2px;
+    font-size: 10pt;
+    transition: 
+        box-shadow 0.25s linear,
+        top 0.25s linear,
+        left 0.25s linear;
+}
+#calendarbutton:hover{
+    box-shadow: 0 0;
+    background-color: rgb(206, 223, 244);
+    top: 2px;
+    left: 2px;
 }
 
 footer{
