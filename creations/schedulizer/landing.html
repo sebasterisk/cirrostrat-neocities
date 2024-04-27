@@ -45,16 +45,25 @@
         <div id="calendar">
             <div class="calcontain" id="ficontain">
                 <p class="small">
-                    open a .ics calendar file (testing)
+                    You can open a .ics calendar for viewing on 
+                    schedulizer. This is currently an experimental 
+                    feature. Uploading a new calendar will refresh the page.
                 </p>
                 <hr>
                 <div class="fauxbutton">
                     <label for="calinput">Upload</label> <span class="small">max size 512kb</span>
                 </div>
-                <input type="file" name="calinput" id="calinput">
+                <input type="file" name="calinput" id="calinput" accept=".ics,.ical,text/calendar">
             </div>
             <div id="calcontent">
 
+            </div>
+
+            <div class="caldivs" id="calbuttons">
+                <button class="button" id="prevdate">&larr;</button>
+                <button class="button" id="resettoday">today</button>
+                <button class="button" id="nextdate">&rarr;</button>
+                <button class="button" id="replace">replace calendar</button>
             </div>
         </div>
     </div>
@@ -65,32 +74,42 @@
         const fileInput = document.getElementById("calinput")
         const savebtn = document.getElementById("calsave")
         const content = document.querySelector("#calcontent")
+        const prev = document.getElementById("prevdate")
+        const today = document.getElementById("resettoday")
+        const next = document.getElementById("nextdate")
+        const replace = document.getElementById("replace")
+        const calbuttons = document.getElementById("calbuttons")
 
         let final
         let parsed
+        let viewDate = new Date(new Date().setHours(0,0,0,0))
 
         function parse(icaldata){
             parsed = ICAL.parse(icaldata)
             //console.log(parsed)
-            feventson()
+            feventson(viewDate)
         }
 
-        function feventson(){
+        function feventson(now){
             if (!parsed){
                 console.error("no jcal to parse")
                 return
             }
+
             let parser = new ICAL.ComponentParser()
-            let towrite = ""
+            let towrite = new Date(now).toLocaleDateString() + "<br><hr>"
 
             parser.onevent = (event) => {
-                
                 const s = event.startDate.toJSDate()
                 const e = event.endDate.toJSDate()
-                const now = new Date()
-                if ((now > s) && (now < e)){
-                    console.log(event.summary)
-                    towrite += `${event.summary}<br><hr>`
+                if ((now >= s) && (now < e)){
+                    towrite += `${event.summary}<br><span class="small">`
+                    if((e-s)<=(86400000)){
+                        towrite += `${s.toLocaleDateString()}<br>`
+                    } else {
+                        towrite += `${s.toLocaleDateString()} - ${e.toLocaleDateString()}<br>`
+                    }
+                    towrite += "</span><hr>"
                 }
             }
 
@@ -99,6 +118,16 @@
                 towrite = ""
             }
             parser.process(parsed)
+        }
+
+        if(window.localStorage.getItem("calendar")){
+            final = window.localStorage.getItem("calendar")
+            fiContain.style.visibility = "hidden"
+            fiContain.hidden = true
+            parse(final)
+        } else {
+            calbuttons.hidden = true
+            content.hidden = true
         }
 
         function previewFile() {
@@ -110,18 +139,43 @@
                 () => {
                     fiContain.style.visibility = "hidden"
                     fiContain.hidden = true
+                    calbuttons.hidden = false
+                    content.hidden = false
                     final = reader.result
+                    window.localStorage.setItem("calendar", final)
                     parse(final)
+                    location.reload()
                 },
                 false,
             );
 
-            if (file) {
+            if (file && file.size <= 512000) {
                 reader.readAsText(file);
             }
         }
 
         fileInput.onchange = previewFile
+
+        replace.onclick = () => {
+            fiContain.hidden = false
+            fiContain.style.visibility = "visible"
+            calbuttons.hidden = true
+            content.hidden = true
+        }
+
+        prev.onclick = () => {
+            viewDate = new Date(viewDate).getTime() - 86400000
+            feventson(new Date(viewDate))
+        }
+        next.onclick = () => {
+            viewDate = new Date(viewDate).getTime() + 86400000
+            feventson(new Date(viewDate))
+        }
+        today.onclick = () => {
+            viewDate = new Date().setHours(0,0,0,0)
+            feventson(new Date(viewDate))
+        }
+
     </script>
 
     <div id="options">
@@ -142,7 +196,7 @@
         <select name="day" id="day" hidden>
         </select>
     </div>
-    <button id="calendarbutton">test</button>
+    <button id="calendarbutton">open calendar</button>
     <script src="/creations/schedulizer/script.js">
     </script>
 
