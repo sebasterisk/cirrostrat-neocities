@@ -173,6 +173,8 @@ table {
 #calendar {
     width: 0;
     visibility: hidden;
+    display: flex;
+    flex-direction: column;
     transition: width 0.5s linear;
 
     height: 1;
@@ -189,9 +191,15 @@ table {
     #calinput{
         display: none;
     }
-    #calcontent{
+    #calcontent, .caldivs{
         margin: 2px;
         padding: 2px;
+    }
+    #calbuttons {
+        *{
+            margin-top: 4px;
+            line-height: 10pt;
+        }
     }
     hr{
         margin: 2px;
@@ -264,7 +272,7 @@ input[type=file]{
     font-family: Gotham, Tahoma, Verdana, sans-serif;
 }
 
-#calendarbutton{
+#calendarbutton, .button{
     font-family: Gotham, Tahoma, Verdana, sans-serif;
     display: inline-block;
     background-color: aliceblue;
@@ -281,7 +289,7 @@ input[type=file]{
         top 0.25s linear,
         left 0.25s linear;
 }
-#calendarbutton:hover{
+#calendarbutton:hover, .button:hover{
     box-shadow: 0 0;
     background-color: rgb(206, 223, 244);
     top: 2px;
