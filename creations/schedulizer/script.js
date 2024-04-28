@@ -143,10 +143,7 @@ function map(map_type, map_day){
             nowbox.style.visibility = "hidden"
         }
         if (map_totable[i].fixed){
-            nowbox.style.backgroundColor = "black"
-            nowbox.style.color = "yellow"
-            nowbox.style.border = "2px dashed yellow"
-            nowbox.style.fontWeight = "bold"
+            nowbox.classList.add("specialpd")
         }
         finaltable_new.appendChild(nowbox)
     }
