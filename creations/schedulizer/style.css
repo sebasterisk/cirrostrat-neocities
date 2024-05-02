@@ -178,6 +178,47 @@ table {
     text-wrap: nowrap;
 }
 
+#flags{
+    width: 0;
+    height: 1;
+    visibility: hidden;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    opacity: 0;
+    background-color:lightsteelblue;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: width 0.5s linear;
+    
+    .flagcontain{
+        margin: 2px;
+        padding: 2px;
+    }
+
+    #flaglist{
+        .flagelement{
+            border: 1px solid white;
+            padding: 2px;
+            box-sizing: border-box;
+        }
+    }
+    #flagapply{
+        position: absolute;
+        bottom: 0;
+        *{
+            margin-top: 4px;
+            line-height: 10pt;
+        }
+    }
+    input[type=text], input[type=time]{
+        width: calc(100% - 8px);
+    }
+    input[type=button]{
+        margin-top: 4px;
+    }
+}
+
 #datatable_new {
     display: block;
     position: relative;

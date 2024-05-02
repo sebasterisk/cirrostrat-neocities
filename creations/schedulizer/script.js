@@ -3,20 +3,22 @@ if (window.location.search == "") {
     const errtext = document.getElementById("errors")
     errtext.innerHTML = "No data. Head to <a href='/creations/schedulizer/index.html'>home page</a> for setup.<br>"
 }
-//
+// url params
 const here = window.location.href,
       thisurl = new URL(here),
       params = thisurl.searchParams,
       data = params.get("data"),
       complete = JSON.parse(data)
 
+// 
 let fetchres
 let newcomplete = {}
 let map_totable = []
 
 let count
 let timeline
-//    
+
+// document constants 
 const type = document.getElementById("type")
 const day = document.getElementById("day")
 const selected = document.getElementById("selected")
@@ -30,6 +32,16 @@ const leanhead = document.getElementById("leanhead")
 const leanmain = document.getElementById("leanmainmarquee")
 const leanend = document.getElementById("leanend")
 //
+
+// flag data
+const timeinput = document.getElementById("flagtime")
+const textinput = document.getElementById("flagtitle")
+const addbtn = document.getElementById("flagadd")
+const flaglist = document.getElementById("flaglist")
+
+let flags = {}
+
+// functions!
 function timediff_mins(s,e){
     const start_time = new Date("1970-01-01T"+s+":00")
     const end_time = new Date("1970-01-01T"+e+":00")
@@ -314,6 +326,15 @@ function timelinetick(startbound, endbound){
         hr.style.top = set + "px"
     }, 100)
 }
+function getflags(){
+    // get flags from localstorage, assign to var "flags"
+    if (window.localStorage.getItem("flags")){
+        
+    }
+}
+function deleteflag(flag){
+
+}
 
 filtercomplete()
 getjson()
@@ -322,3 +343,22 @@ type.onchange = function(){
     update()
 }
 day.onchange = update
+
+addbtn.onclick = () => {
+    const timeval = timeinput.value
+    const textval = textinput.value
+
+    if((timeval != "") && (textval != "")){
+        console.log("flag add")
+        const newdiv = document.createElement("div")
+        let string = ""
+        string += textval + "<br>"
+        string += "<p class='small'>" + timeval + "</p>"
+        newdiv.innerHTML = string
+        newdiv.classList.add("flagelement")
+        flaglist.appendChild(newdiv)
+
+        timeinput.value = ""
+        textinput.value = ""
+    }
+}
