@@ -36,6 +36,27 @@
     </div>
 
     <div id="content">
+        <div id="flags">   
+            <div class="flagcontain">
+                Add a Flag
+                <input type="time" name="flagtime" id="flagtime">
+                <input type="text" name="flagtitle" id="flagtitle" placeholder="flag title" maxlength="16">
+                <input type="button" value="add flag" class="button" id="flagadd">
+                <hr>
+            </div>
+            <div class="flagcontain">
+                Current Flags
+                <div id="flaglist">
+                    
+                </div>
+                
+            </div>
+            <div class="flagcontain" id="flagapply">
+                <button class="button" value="apply">save & apply changes</button>
+            </div>
+        </div>
+
+
         <div id="datatable_new">
             <p id="message">
                 &darr; select a schedule type... &darr;
@@ -50,6 +71,9 @@
                     schedulizer. This is currently an experimental 
                     feature. Uploading a new calendar will refresh the page,
                     and will delete the old one if present.
+                    <br><br>
+                    If you're seeing this but you've already uploaded a calendar,
+                    try refreshing the page.
                 </p>
                 <hr>
                 <div class="fauxbutton">
@@ -76,11 +100,11 @@
         <select name="type" id="type">
             <option value="" selected disabled hidden>select schedule type</option>
             <option value="default">default</option>
-            <option value="wed">wednesday</option>
+            <option value="wed">wednesday (9am)</option>
             <option value="forum">forum (50 min event)</option>
             <option value="mass">mass (80 min event)</option>
             <option value="earlydis">early dismissal</option>
-            <option value="latestart">delayed start</option>
+            <option value="latestart">delayed start (10am)</option>
             <option value="anchor">anchor</option>
             <!--
             -->
@@ -89,7 +113,8 @@
         <select name="day" id="day" hidden>
         </select>
     </div>
-    <button id="calendarbutton">open calendar</button>
+    <button id="calendarbutton" class="button">open calendar</button>
+    <button id="flagbutton" class="button">open flags</button>
     <script src="/creations/schedulizer/script.js">
     </script>
 
@@ -118,7 +143,31 @@
                 cal.style.visibility = "hidden"
                 cal.style.textWrap = "nowrap"
             }
+        }
 
+        const flag = document.getElementById("flags")
+        const fbutton = document.getElementById("flagbutton")
+        let fopen = false
+
+        fbutton.onclick = () => {
+            if (!fopen) {
+                fopen = true
+                flag.style.width = "20%"
+
+                flag.ontransitionend = () => {
+                    if(fopen){
+                        flag.style.visibility = "visible"
+                        flag.style.opacity = "1"
+                        flag.style.textWrap = "wrap"
+                    }
+                }
+            } else {
+                fopen = false
+                flag.style.width = "0"
+                flag.style.opacity = "0"
+                flag.style.visibility = "hidden"
+                flag.style.textWrap = "nowrap"
+            }
         }
     </script>
 
