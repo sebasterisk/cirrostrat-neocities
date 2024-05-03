@@ -98,6 +98,7 @@ h1 {
         #leantime{
             width: 4em;
             background-color: rgb(144, 176, 199);
+            text-align: center;
         }
         #leanhead{
             font-style: italic;
