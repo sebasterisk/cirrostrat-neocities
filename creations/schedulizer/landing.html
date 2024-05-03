@@ -10,6 +10,21 @@
     <header>
         <h1>schedulizer!</h1>
     </header>
+    <div id="leanbanner">
+        <div id="leancontent">
+            <div class="leanelement" id="leantime">
+                12:34:56 AM
+            </div>
+            <div class="leanelement" id="leanhead">
+                <i></i>
+            </div>
+            <div class="leanelement" id="leanmain">
+                <marquee id="leanmainmarquee">select a schedule type...</marquee>
+            </div>
+            <div class="leanelement" id="leanend">
+            </div>
+        </div>
+    </div>
     <hr>
     <span id="errors"></span>
 
@@ -21,10 +36,12 @@
 
         <script>
             const timenow = document.getElementById("timenow")
+            const bannertimenow = document.getElementById("leantime")
             const date = document.getElementById("date")
 
             setInterval(function(){
                 timenow.innerHTML = new Date().toLocaleTimeString()
+                bannertimenow.innerHTML = new Date().toLocaleTimeString()
                 date.innerHTML = new Date().toLocaleDateString("en-US", {"dateStyle":"full"})
             })
         </script>
@@ -43,34 +60,109 @@
         </div>
 
         <div id="calendar">
-            example content
+            <div class="calcontain" id="ficontain">
+                <b>upload a calendar</b>
+                <p class="small">
+                    You can open a .ics calendar for viewing on 
+                    schedulizer. This is currently an experimental 
+                    feature. Uploading a new calendar will refresh the page,
+                    and will delete the old one if present.
+                </p>
+                <hr>
+                <div class="fauxbutton">
+                    <label for="calinput" class="button">Upload</label> <span class="small">max size 512kb</span>
+                </div>
+                <input type="file" name="calinput" id="calinput" accept=".ics,.ical,text/calendar">
+            </div>
+            <div id="calcontent">
+
+            </div>
+
+            <div class="caldivs" id="calbuttons">
+                <button class="button" id="prevdate">&larr;</button>
+                <button class="button" id="resettoday">today</button>
+                <button class="button" id="nextdate">&rarr;</button>
+                <button class="button" id="replace">replace calendar</button>
+            </div>
         </div>
     </div>
-    
+    <script type="module" src="./calendar.js"></script>
+
     <div id="options">
         schedule options:
         <select name="type" id="type">
             <option value="" selected disabled hidden>select schedule type</option>
             <option value="default">default</option>
-            <option value="wed">wed</option>
-            <option value="forum">forum</option>
-            <!--
-            <option value="mass">mass</option>
+            <option value="wed">wednesday</option>
+            <option value="forum">forum (50 min event)</option>
+            <option value="mass">mass (80 min event)</option>
             <option value="earlydis">early dismissal</option>
             <option value="latestart">delayed start</option>
             <option value="anchor">anchor</option>
+            <!--
             -->
         </select>
 
         <select name="day" id="day" hidden>
         </select>
     </div>
+    <button id="calendarbutton">open calendar</button>
+    <button id="leanbutton" class="button">banner mode</button>
 
     <script src="/creations/schedulizer/script.js">
     </script>
 
+    <script>
+        // for calendar sidebar open/close
+        const cal = document.getElementById("calendar")
+        const calbutton = document.getElementById("calendarbutton")
+        let calopen = false
+
+        const lean = document.getElementById("leanbanner")
+        const leanbutton = document.getElementById("leanbutton")
+        let leanopen = false
+
+        calbutton.onclick = () => {
+            if (!calopen) {
+                calopen = true
+                cal.style.width = "33%"
+
+                cal.ontransitionend = () => {
+                    if(calopen){
+                        cal.style.visibility = "visible"
+                        cal.style.opacity = "1"
+                        cal.style.textWrap = "wrap"
+                    }
+                }
+            } else {
+                calopen = false
+                cal.style.width = "0"
+                cal.style.opacity = "0"
+                cal.style.visibility = "hidden"
+                cal.style.textWrap = "nowrap"
+            }
+        }
+
+        leanbutton.onclick = () => {
+            if (!leanopen) {
+                leanopen = true
+                lean.style.visibility = "visible"
+                lean.style.opacity = "1"
+                lean.style.textWrap = "wrap"
+                document.documentElement.requestFullscreen()
+            } else {
+                leanopen = false
+                lean.style.opacity = "0"
+                lean.style.visibility = "hidden"
+                lean.style.textWrap = "nowrap"
+                document.exitFullscreen()
+            }
+        }
+
+    </script>
+
     <footer><hr>
-        bookmark this link to save it! - part of the cirrostrat neocities website. <br> <a href="./index.html">edit schedule</a> - <a href="/index.html">go home</a>
+        bookmark this link to save it! - part of the cirrostrat neocities website. <br> last updated: 29 apr 2024 / <a href="./index.html">edit schedule</a> - <a href="/index.html">go home</a>
     </footer>
 </body>
 </html>

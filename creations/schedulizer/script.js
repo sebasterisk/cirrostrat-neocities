@@ -24,6 +24,12 @@ const finaltable = document.getElementById("datatable")
 const allnext = document.getElementById("allnext")
 const finaltable_new = document.getElementById("datatable_new")
 //
+// lean mode banner elements
+const leantime = document.getElementById("leantime")
+const leanhead = document.getElementById("leanhead")
+const leanmain = document.getElementById("leanmainmarquee")
+const leanend = document.getElementById("leanend")
+//
 function timediff_mins(s,e){
     const start_time = new Date("1970-01-01T"+s+":00")
     const end_time = new Date("1970-01-01T"+e+":00")
@@ -143,10 +149,7 @@ function map(map_type, map_day){
             nowbox.style.visibility = "hidden"
         }
         if (map_totable[i].fixed){
-            nowbox.style.backgroundColor = "black"
-            nowbox.style.color = "yellow"
-            nowbox.style.border = "2px dashed yellow"
-            nowbox.style.fontWeight = "bold"
+            nowbox.classList.add("specialpd")
         }
         finaltable_new.appendChild(nowbox)
     }
@@ -162,6 +165,7 @@ function startcount(){
     if (count){
         clearInterval(count)
     }
+    let tick = 0
     count = setInterval(() => {
         const timenow = new Date()
         let next, next_time, now, now_time, now_endtime
@@ -214,6 +218,15 @@ function startcount(){
                 const nowdiff_string = `${nowdiff_min}:${nowdiff_secleft}`
 
                 towrite += `now: ${now.name} &mdash; ends at: ${now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})} &mdash; ${nowdiff_string} from now<br>next up: `
+                if (tick <= 50){
+                    bannerwrite("now", now.name, "in "+  nowdiff_string  )
+                } else if (tick <= 100){
+                    bannerwrite("now", now.name, "at "+  now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})  )
+                } else {
+                    bannerwrite("next", "end of day", "")
+                }
+            } else {
+                bannerwrite("next", "end of day", "")
             }
 
             towrite += "end of day"
@@ -227,6 +240,14 @@ function startcount(){
             if ((now) && (timenow > now_endtime)){
                 towrite += `betwixt periods<br>`
                 towrite += `next up: ${next.name} in ${diff_string}`
+
+                if (tick <= 100){
+                    bannerwrite("now", "betwixt periods", "" )
+                } else if (tick <= 150) {
+                    bannerwrite("next", next.name, "in "+ diff_string)
+                } else {
+                    bannerwrite("next", next.name, "at "+ new Date(next_time).toLocaleTimeString("en-US", {"timeStyle":"short"}))
+                }
             } else if (now){
                 const nowdiff = now_endtime - timenow
                 const nowdiff_sec = (nowdiff / 1000)
@@ -237,14 +258,44 @@ function startcount(){
                 const betweentime = Math.floor((next_time - now_endtime)/60000)
                 towrite += `now: ${now.name} &mdash; ends at: ${now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})} &mdash; ${nowdiff_string} from now<br>`
                 towrite += `next up: ${next.name} at ${new Date(next_time).toLocaleTimeString("en-US", {"timeStyle":"short"})} &mdash; ${betweentime} mins after`
+            
+                if (tick <= 50){
+                    bannerwrite("now", now.name, "ends in "+  nowdiff_string  )
+                } else if (tick <= 100){
+                    bannerwrite("now", now.name, "ends "+ new Date(now_endtime).toLocaleTimeString("en-US", {"timeStyle":"short"}) )
+                } else if (tick <= 150) {
+                    bannerwrite("next", next.name, "in "+ diff_string)
+                } else {
+                    bannerwrite("next", next.name, "at "+ new Date(next_time).toLocaleTimeString("en-US", {"timeStyle":"short"}))
+                }
             } else { // if not, show this
                 towrite += `starting soon... <br>`
+                towrite += `next up: ${next.name} in ${diff_string}`
+
+                if (tick <= 100){
+                    bannerwrite("now", "starting soon...", "" )
+                } else if (tick <= 150) {
+                    bannerwrite("next", next.name, "in "+ diff_string)
+                } else {
+                    bannerwrite("next", next.name, "at "+ new Date(next_time).toLocaleTimeString("en-US", {"timeStyle":"short"}))
+                }
             }
         }
 
+        tick++
+        if (tick > 200){
+            tick = 0
+        }
         allnext.innerHTML = towrite
     },100)
 }
+
+function bannerwrite(head, main, end){
+    leanhead.innerHTML = head
+    leanmain.innerHTML = main
+    leanend.innerHTML = end
+}
+
 function timelinetick(startbound, endbound){
     if (timeline){
         clearInterval(timeline)
