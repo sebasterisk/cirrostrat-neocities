@@ -10,6 +10,22 @@
     <header>
         <h1>schedulizer!</h1>
     </header>
+    <div id="leanbanner">
+        <div id="leancontent">
+            <div class="leanelement" id="leantime">
+                12:34:56 AM
+            </div>
+            <div class="leanelement" id="leanhead">
+                <i>now</i>
+            </div>
+            <div class="leanelement" id="leanmain">
+                lalalala
+            </div>
+            <div class="leanelement" id="leanend">
+                in 123:45
+            </div>
+        </div>
+    </div>
     <hr>
     <span id="errors"></span>
 
@@ -21,10 +37,12 @@
 
         <script>
             const timenow = document.getElementById("timenow")
+            const bannertimenow = document.getElementById("leantime")
             const date = document.getElementById("date")
 
             setInterval(function(){
                 timenow.innerHTML = new Date().toLocaleTimeString()
+                bannertimenow.innerHTML = new Date().toLocaleTimeString()
                 date.innerHTML = new Date().toLocaleDateString("en-US", {"dateStyle":"full"})
             })
         </script>
