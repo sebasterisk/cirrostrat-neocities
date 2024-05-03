@@ -16,13 +16,12 @@
                 12:34:56 AM
             </div>
             <div class="leanelement" id="leanhead">
-                <i>now</i>
+                <i></i>
             </div>
             <div class="leanelement" id="leanmain">
-                lalalala
+                <marquee id="leanmainmarquee">select a schedule type...</marquee>
             </div>
             <div class="leanelement" id="leanend">
-                in 123:45
             </div>
         </div>
     </div>
@@ -108,36 +107,58 @@
         </select>
     </div>
     <button id="calendarbutton">open calendar</button>
+    <button id="leanbutton" class="button">banner mode</button>
+
     <script src="/creations/schedulizer/script.js">
     </script>
 
     <script>
         // for calendar sidebar open/close
         const cal = document.getElementById("calendar")
-        const button = document.getElementById("calendarbutton")
-        let open = false
+        const calbutton = document.getElementById("calendarbutton")
+        let calopen = false
 
-        button.onclick = () => {
-            if (!open) {
-                open = true
+        const lean = document.getElementById("leanbanner")
+        const leanbutton = document.getElementById("leanbutton")
+        let leanopen = false
+
+        calbutton.onclick = () => {
+            if (!calopen) {
+                calopen = true
                 cal.style.width = "33%"
 
                 cal.ontransitionend = () => {
-                    if(open){
+                    if(calopen){
                         cal.style.visibility = "visible"
                         cal.style.opacity = "1"
                         cal.style.textWrap = "wrap"
                     }
                 }
             } else {
-                open = false
+                calopen = false
                 cal.style.width = "0"
                 cal.style.opacity = "0"
                 cal.style.visibility = "hidden"
                 cal.style.textWrap = "nowrap"
             }
-
         }
+
+        leanbutton.onclick = () => {
+            if (!leanopen) {
+                leanopen = true
+                lean.style.visibility = "visible"
+                lean.style.opacity = "1"
+                lean.style.textWrap = "wrap"
+                document.documentElement.requestFullscreen()
+            } else {
+                leanopen = false
+                lean.style.opacity = "0"
+                lean.style.visibility = "hidden"
+                lean.style.textWrap = "nowrap"
+                document.exitFullscreen()
+            }
+        }
+
     </script>
 
     <footer><hr>

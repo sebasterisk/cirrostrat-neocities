@@ -27,7 +27,7 @@ const finaltable_new = document.getElementById("datatable_new")
 // lean mode banner elements
 const leantime = document.getElementById("leantime")
 const leanhead = document.getElementById("leanhead")
-const leanmain = document.getElementById("leanmain")
+const leanmain = document.getElementById("leanmainmarquee")
 const leanend = document.getElementById("leanend")
 //
 function timediff_mins(s,e){
@@ -260,9 +260,9 @@ function startcount(){
                 towrite += `next up: ${next.name} at ${new Date(next_time).toLocaleTimeString("en-US", {"timeStyle":"short"})} &mdash; ${betweentime} mins after`
             
                 if (tick <= 50){
-                    bannerwrite("now", now.name, "ending in "+  nowdiff_string  )
+                    bannerwrite("now", now.name, "ends in "+  nowdiff_string  )
                 } else if (tick <= 100){
-                    bannerwrite("now", now.name, "ending at "+ new Date(now_endtime).toLocaleTimeString("en-US", {"timeStyle":"short"}) )
+                    bannerwrite("now", now.name, "ends "+ new Date(now_endtime).toLocaleTimeString("en-US", {"timeStyle":"short"}) )
                 } else if (tick <= 150) {
                     bannerwrite("next", next.name, "in "+ diff_string)
                 } else {
@@ -273,7 +273,7 @@ function startcount(){
                 towrite += `next up: ${next.name} in ${diff_string}`
 
                 if (tick <= 100){
-                    bannerwrite("now", "betwixt periods", "" )
+                    bannerwrite("now", "starting soon...", "" )
                 } else if (tick <= 150) {
                     bannerwrite("next", next.name, "in "+ diff_string)
                 } else {
@@ -291,30 +291,9 @@ function startcount(){
 }
 
 function bannerwrite(head, main, end){
-    let oldleanmain = leanmain.nodeName
     leanhead.innerHTML = head
     leanmain.innerHTML = main
     leanend.innerHTML = end
-
-    function isElementOverflowing(element) {
-        var overflowX = element.offsetWidth < element.scrollWidth,
-          overflowY = element.offsetHeight < element.scrollHeight;
-      
-        return (overflowX || overflowY);
-    }
-      
-    function wrapContentsInMarquee(element) {
-        var marquee = document.createElement('marquee'),
-          contents = element.innerText;
-      
-        marquee.innerText = contents;
-        element.innerHTML = '';
-        element.appendChild(marquee);
-    }
-      
-    if (isElementOverflowing(leanmain) && oldleanmain != "MARQUEE") {
-        wrapContentsInMarquee(leanmain);
-    }
 }
 
 function timelinetick(startbound, endbound){

@@ -74,7 +74,10 @@ h1 {
     overflow: hidden;
     resize: vertical;
     z-index: 100;
-    background-color: palegoldenrod;
+    background-color: rgb(204, 224, 230);
+    border-bottom: 4px double rgb(60, 94, 136);
+
+    visibility: hidden;
     
     #leancontent{
         box-sizing: border-box;
@@ -84,7 +87,6 @@ h1 {
             padding: 0;
             margin: 0;
             border-spacing: 0;
-            border: 1px solid;
             padding: 0 0.25em;
         }
         #leantime,#leanhead,#leanmain,#leanend{
@@ -94,10 +96,19 @@ h1 {
             text-wrap: nowrap;
         }
         #leantime{
-            width: 4em
+            width: 4em;
+            background-color: rgb(144, 176, 199);
+        }
+        #leanhead{
+            font-style: italic;
         }
         #leanmain{
+            box-shadow: 0 -10px 5px inset;
+            padding: inherit;
             flex: 1;
+        }
+        #leanend{
+            text-align: right;
         }
     }
 }
