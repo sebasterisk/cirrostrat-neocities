@@ -10,6 +10,21 @@
     <header>
         <h1>schedulizer!</h1>
     </header>
+    <div id="leanbanner">
+        <div id="leancontent">
+            <div class="leanelement" id="leantime">
+                12:34:56 AM
+            </div>
+            <div class="leanelement" id="leanhead">
+                <i></i>
+            </div>
+            <div class="leanelement" id="leanmain">
+                <marquee id="leanmainmarquee">select a schedule type...</marquee>
+            </div>
+            <div class="leanelement" id="leanend">
+            </div>
+        </div>
+    </div>
     <hr>
     <span id="errors"></span>
 
@@ -21,10 +36,12 @@
 
         <script>
             const timenow = document.getElementById("timenow")
+            const bannertimenow = document.getElementById("leantime")
             const date = document.getElementById("date")
 
             setInterval(function(){
                 timenow.innerHTML = new Date().toLocaleTimeString()
+                bannertimenow.innerHTML = new Date().toLocaleTimeString()
                 date.innerHTML = new Date().toLocaleDateString("en-US", {"dateStyle":"full"})
             })
         </script>
@@ -113,7 +130,8 @@
         <select name="day" id="day" hidden>
         </select>
     </div>
-    <button id="calendarbutton" class="button">open calendar</button>
+    <button id="calendarbutton">open calendar</button>
+    <button id="leanbutton" class="button">banner mode</button>
     <button id="flagbutton" class="button">open flags</button>
     <script src="/creations/schedulizer/script.js">
     </script>
@@ -121,27 +139,47 @@
     <script>
         // for calendar sidebar open/close
         const cal = document.getElementById("calendar")
-        const button = document.getElementById("calendarbutton")
-        let open = false
+        const calbutton = document.getElementById("calendarbutton")
+        let calopen = false
 
-        button.onclick = () => {
-            if (!open) {
-                open = true
+        const lean = document.getElementById("leanbanner")
+        const leanbutton = document.getElementById("leanbutton")
+        let leanopen = false
+
+        calbutton.onclick = () => {
+            if (!calopen) {
+                calopen = true
                 cal.style.width = "33%"
 
                 cal.ontransitionend = () => {
-                    if(open){
+                    if(calopen){
                         cal.style.visibility = "visible"
                         cal.style.opacity = "1"
                         cal.style.textWrap = "wrap"
                     }
                 }
             } else {
-                open = false
+                calopen = false
                 cal.style.width = "0"
                 cal.style.opacity = "0"
                 cal.style.visibility = "hidden"
                 cal.style.textWrap = "nowrap"
+            }
+        }
+
+        leanbutton.onclick = () => {
+            if (!leanopen) {
+                leanopen = true
+                lean.style.visibility = "visible"
+                lean.style.opacity = "1"
+                lean.style.textWrap = "wrap"
+                document.documentElement.requestFullscreen()
+            } else {
+                leanopen = false
+                lean.style.opacity = "0"
+                lean.style.visibility = "hidden"
+                lean.style.textWrap = "nowrap"
+                document.exitFullscreen()
             }
         }
 
