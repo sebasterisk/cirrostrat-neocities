@@ -207,6 +207,15 @@ footer {
   font-size: 10pt;
   line-height: 10pt;
 }
+
 .updatedate{
   text-align: right;
+}
+
+#mccode{
+  position: absolute;
+  width: 100vw;
+  text-align: center;
+  margin: auto;
+  top: 50%;
 }
