@@ -1,0 +1,118 @@
+:root{
+    background-color: #202023;
+}
+
+#containall{
+    width: 75vw;
+    min-width: 600px;
+    max-width: 1000px;
+    height: 1000px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham.otf);
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-b.otf);
+    font-weight: bold;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-i.otf);
+    font-style: italic;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-bi.otf);
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-c.otf);
+    font-stretch: condensed;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-ci.otf);
+    font-stretch: condensed;
+    font-style: italic;
+}
+
+.box{
+    position: relative;
+    background-image: linear-gradient(20deg, #f9823d, #ffe5c188), url("halftone.png"), linear-gradient(#e7931e, #e7931e);
+    background-size: 300%;
+    background-color: #f9823d;
+    padding: 3% 8% 5%;
+    font-weight: bold;
+    font-size: 15pt;
+    line-height: 14pt;
+    span{
+        font-size: 12px;
+    }
+}
+
+#wrapper {
+    font-family: Gotham;
+    display: block;
+    position: relative;
+    width: 200px;
+    height: 0;
+    margin: 0;
+    top: 50px;
+    left: 30px;
+
+    filter: drop-shadow(7px 7px);
+}
+
+#banner{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: -2;
+    background-image: linear-gradient(20deg, #b05a28, #ffe5c1), url(lbheader.jpg);
+    background-size: 100%;
+    background-blend-mode: darken;
+    background-position-y: 60%;
+    margin: 0;
+}
+#navbar{
+    background-image: linear-gradient(to right,#ffffff00,#f9823d55);
+    color: white;
+    font-family: Gotham;
+    font-stretch: condensed;
+    padding: 4px 2px 2px 250px;
+    font-size: 14pt;
+    display: block;
+    top: 80px;
+    z-index: -1;
+    width: 1;
+    height: fit-content;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 90%);
+}
+
+main{
+    color: white;
+    position: relative;
+    font-family: Gotham;
+    top: 30px;
+    text-align: center;
+}
+
+#workingonit{
+    background-color: #18181a;
+    width: 66%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    img{
+        width: 200px;
+    }
+}
