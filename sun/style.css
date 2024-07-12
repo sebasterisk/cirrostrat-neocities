@@ -188,3 +188,25 @@ h1 {
         width: 200px;
     }
 }
+
+article.articlecontain {
+    background-color: #18181a;
+    box-sizing: border-box;
+    padding: 10px;
+    padding-right: 30px;
+    margin-top: 5pt;
+    clip-path: polygon(0% 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
+    h2 {
+        margin: 2px;
+        font-stretch: condensed;
+        font-size: 23pt;
+    }
+    .article_sub{
+        font-size: 11pt;
+        font-style: italic;
+    }
+    .article_meta{
+        font-size: 9pt;
+        color: #fff8
+    }
+}
