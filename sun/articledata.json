@@ -1,9 +1,26 @@
 [
     {
-        "title": "This is a Test Article",
-        "sub": "Great article made to test some stuff",
+        "title": "Welcome to the Sophomore Sun",
+        "sub": "Resources, articles, and information provided by your SGA class officers.",
         "timestamp": "2024-07-10T01:50:00",
-        "author": "Dingus McDingus",
-        "content": "<p><img alt=\"Sample image\" src=\"legacymedkit.png\" style=\"border-style:solid; border-width:3px; float:right; height:200px; margin-left:20px; margin-right:20px; width:200px\" /></p> <p>Feel free to use this <strong>free online HTML editor</strong> to generate HTML code for your own website, blog, email newsletter, etc.</p> <p>To get started:</p> <ul> <li>Delete this content and enter your own content</li> <li>To view the source code, simply select the <kbd>Tools &gt; Source</kbd> menu option above</li> <li>Rinse and repeat as required</li> <li>Copy and paste the source code into your own website, blog, email newsletter, etc</li> </ul> <p>Go ahead - try it!</p>"
+        "author": "Sebastian Rugas '27",
+        "thumbnailimg": "lbheader.jpg",
+        "content": "Hello hi"
+    },
+    {
+        "title": "Test article 2",
+        "sub": "Just a test",
+        "timestamp": "2024-07-11T01:20:00",
+        "author": "Sebastian Rugas '27",
+        "thumbnailimg": "/phi.png",
+        "content": "Hello hi"
+    },
+    {
+        "title": "Lorem ipsum",
+        "sub": "Formatting test",
+        "timestamp": "2024-07-11T02:40:00",
+        "author": "Sebastian Rugas '27",
+        "thumbnailimg": "/phi.png",
+        "content": "<img src=\"img/whimsey.jpg\" style=\"width: 200px; float: right;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <h3>BROKER</h3><img src=\"https://c.tenor.com/ErsfsdSkV70AAAAC/tenor.gif\" style=\"width: 300px;\">"
     }
 ]
