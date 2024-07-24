@@ -44,6 +44,22 @@
     font-style: italic;
 }
 
+header{
+    position: sticky;
+    top:-55px;
+    z-index: 20;
+}
+
+#sunicon{
+    width:140px;
+    filter: brightness(107%);
+    rotate: -10deg;
+    position: absolute;
+    z-index: -5;
+    left: -60px;
+
+}
+
 .box{
     position: relative;
     background-image: linear-gradient(20deg, #f9823d, #ffe5c188), url("halftone.png"), linear-gradient(#e7931e, #e7931e);
@@ -84,11 +100,12 @@
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10px 100%);
 }
 #navbar{
-    background-image: linear-gradient(to right,#ffffff00,#f9823d55);
+    background-image: linear-gradient(to right,#202023 ,#f9823d55);
     color: white;
     font-family: Gotham;
     font-stretch: condensed;
-    padding: 4px 2px 2px 250px;
+    padding: 4px 2px 2px 190px;
+    margin-left: 60px;
     font-size: 14pt;
     display: block;
     top: 80px;
@@ -96,6 +113,7 @@
     width: 1;
     height: fit-content;
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 90%);
+    backdrop-filter: blur(10px);
 }
 .menu{
     color: white;
@@ -139,6 +157,25 @@
     z-index: 2;
     backdrop-filter: blur(0px);
     transition: width 1s, min-width 1s, max-width 1s, height 1s, padding 1s, backdrop-filter 4s;
+    ul{
+        margin: 0;
+        padding: 0;
+    }
+}
+
+#menulist .menuitem {
+    margin: 0;
+    color: white;
+    font-size: 13pt;
+    font-weight: bold;
+    text-decoration-line: none;
+    letter-spacing: normal;
+
+    transition: all 0.5s
+}
+
+#menulist .menuitem:hover{
+    letter-spacing: 0.5em;
 }
 
 .menu:hover .contents{
@@ -160,6 +197,7 @@ main{
     color: white;
     position: relative;
     font-family: Gotham;
+    margin: 10px
 }
 
 h1 {
@@ -191,22 +229,72 @@ h1 {
 
 article.articlecontain {
     background-color: #18181a;
+    background-position: center;
+    background-size: cover;
     box-sizing: border-box;
     padding: 10px;
     padding-right: 30px;
     margin-top: 5pt;
     clip-path: polygon(0% 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
+    line-height: 1;
     h2 {
-        margin: 2px;
+        margin: 0;
         font-stretch: condensed;
-        font-size: 23pt;
+        font-size: 18pt;
     }
     .article_sub{
-        font-size: 11pt;
+        font-size: 9pt;
         font-style: italic;
     }
     .article_meta{
-        font-size: 9pt;
+        font-size: 7pt;
         color: #fff8
+    }
+    br{
+        margin: 0;
+    }
+}
+
+.smalllink{
+    color: white;
+    font-size: 10pt;
+    font-style: italic;
+    text-decoration-line: none;
+    letter-spacing: normal;
+    transition: all 0.5s
+}
+
+.sectheader {
+    font-family: Gotham;
+    font-weight: bold;
+    font-size: 18pt;
+}
+
+#paginator{
+    margin: 10px auto;
+    width: fit-content
+}
+#paginator button{
+    background-color: white;
+    font-family: Gotham;
+    border: 3px solid #18181a;
+    box-sizing: border-box;
+}
+#paginator #currentpage{
+    font-family: Gotham;
+    color: white;
+}
+
+.flexy{
+    display: flex;
+    #calendar{
+        width: 250px;
+        margin: 0 10px;
+        iframe{
+            margin-top: 6px;
+        }
+    };
+    #articlelistcontainer{
+        flex:1
     }
 }

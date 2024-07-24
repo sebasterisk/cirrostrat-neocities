@@ -1,17 +1,10 @@
-<!--
-please don't look at this
-lol i'll make it better sumday
-
-- seb '27 
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Testing</title>
+    <title>Home | The Sophomore Sun</title>
 </head>
 <body>
     <div id="containall">
@@ -22,7 +15,7 @@ lol i'll make it better sumday
                     SOPHOMORE <br>
                     SUN
                 </div>
-                <script src="boiler.js"></script>
+                <script src="boiler.js" type="module"></script>
             </div>
             <div id="banner"></div>
             <div id="navbar">
@@ -30,81 +23,37 @@ lol i'll make it better sumday
             </div>
             <div class="menu">
                 <div id="menubutton">menu</div>
-                <div class="contents">xyx</div>
+                <!-- MENU ITEMS -->
+                <div class="contents">
+                    <ul id="menulist">
+                        <a href="index.html" class="menuitem">HOME</a>
+                    </ul>
+                </div>
+                <!-- END MENU ITEMS -->
             </div>
         </header>
 
         <main>
             <noscript>you're gonna need javascript so things properly work. please turn it on</noscript>
-            <div id="workingonit">
-                working on it...<br>
-                <img id="skateboard" src="skate.png" 
-                title="skateboard phighting placeholder">
-                <br>
-                article id
-                <input type="number" name="idinput" id="idinput">
-                <input type="submit" value="go!!" id="submit">
-
-                <script>
-                    const id = document.getElementById("idinput")
-                    const submit = document.getElementById("submit")
-
-                    submit.addEventListener("click", ()=>{
-                        console.log(id.value)
-                        window.location.replace("/sun/article.html?id="+id.value )
-                    })
-
-                    const medkit = document.getElementById("skateboard")
-                    let current = [0,0,0]
-                    let target = [Math.random()*360, Math.random()*360, Math.random()*360]
-                    let tick = 0
-                    let diff = [target[0]-current[0],target[1]-current[1],target[2]-current[2]]
-                    setInterval(()=>{
-                        string = "rotateX(" + (current[0]+(diff[0]/200)*tick) + "deg)"
-                        string += "rotateY(" + (current[1]+(diff[1]/200)*tick) + "deg)"
-                        string += "rotateZ(" + (current[2]+(diff[2]/200)*tick) + "deg)"
-                        medkit.style.transform = string
-                        tick += 1
-                
-                        if (tick == 200){
-                            console.log("destination reached")
-                            current = target
-                            target = [Math.random()*360, Math.random()*360, Math.random()*360]
-                            tick = 0
-                            diff = [target[0]-current[0],target[1]-current[1],target[2]-current[2]]
-                        }
-                    }, 10)
-                
-                    const workingonit = document.getElementById("workingonit")
-                    function boil2(){
-                        let string = "polygon("
-                        string += (Math.random()*2) + "%"
-                        string += (Math.random()*2) + "%,"
-
-                        string += (100 - Math.random()*2) + "%"
-                        string += (Math.random()*2) + "%,"
-
-                        string += (100 - Math.random()*2) + "%"
-                        string += (100 - Math.random()*2) + "%,"
-
-                        string += (Math.random()*2) + "%"
-                        string += (100 - Math.random()*2) + "%)"
-
-                        workingonit.style.clipPath = string
-                    }
-
-                    setInterval(boil2, 750)
-                </script>
-            </div>
-            <hr>
-            <div id="articlelist">
-                Recent Articles
-                <article class="articlecontain" data-articleid="0" id="article_template" onclick="articleredirect(this)" hidden>
-                    <h2 class="article_title">TITLE</h2>
-                    <span class="article_sub">Subtitle</span><br>
-                    <span class="article_meta"></span>
-                </article>
-                <script src="articlelister.js"></script>
+            <br>
+            <div class="flexy">
+                <div id="articlelistcontainer">
+                    <div id="articlelist">
+                        <span class="sectheader">RECENT ARTICLES</span>
+                        <article class="articlecontain" data-articleid="0" id="article_template" onclick="articleredirect(this)" hidden>
+                            <h2 class="article_title">TITLE</h2>
+                            <span class="article_sub">Subtitle</span><br>
+                            <span class="article_meta"></span>
+                        </article>
+                        <script src="articlelister.js"></script>
+                        <script>perpage = 5</script>
+                    </div> <!-- END ARTICLE LIST -->
+                    <a href="articlelist.html" class="smalllink">see all articles...</a>
+                </div>
+                <div id="calendar">
+                    <span class="sectheader">EVENTS</span>
+                    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&bgcolor=%23ffffff&mode=AGENDA&title=Calendar&showTitle=0&showDate=0&showTabs=0&showPrint=0&showTz=0&showCalendars=0&src=MmNnYXYwcWxoY2llNWNpazZmbGRuMmE1bDY4NDZiNzlAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%237986CB" style="border-width:0" width="240" height="400" frameborder="0" scrolling="no"></iframe>
+                </div>
             </div>
         </main>
     </div>
