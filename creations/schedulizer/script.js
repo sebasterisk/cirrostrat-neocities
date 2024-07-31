@@ -37,9 +37,10 @@ const leanend = document.getElementById("leanend")
 const timeinput = document.getElementById("flagtime")
 const textinput = document.getElementById("flagtitle")
 const addbtn = document.getElementById("flagadd")
+const delall = document.getElementById("deleteallflags")
 const flaglist = document.getElementById("flaglist")
 
-let flags = {}
+let flags = []
 
 // functions!
 function timediff_mins(s,e){
@@ -328,16 +329,37 @@ function timelinetick(startbound, endbound){
 }
 function getflags(){
     // get flags from localstorage, assign to var "flags"
-    if (window.localStorage.getItem("flags")){
-        
+    storedflags = window.localStorage.getItem("flags")
+    if (storedflags){
+        flags = JSON.parse(storedflags)
+        console.log(flags)
+    }
+    for(let i in flags){
+        addflagtolist(flags[i].time, flags[i].text, i)
     }
 }
-function deleteflag(flag){
+function deleteflag(flagid){
+    
+}
+function addflagtolist(timeval, textval, id){
+    console.log("flag add")
+    const newdiv = document.createElement("div")
+    let string = ""
+    string += textval + "<br>"
+    string += "<p class='small'>" + timeval + "</p>"
+    newdiv.dataset.ident = id
+    console.log(newdiv.dataset.ident)
+    newdiv.classList.add("flagelement")
+    newdiv.innerHTML = string
+    flaglist.appendChild(newdiv)
 
+    timeinput.value = ""
+    textinput.value = ""
 }
 
 filtercomplete()
 getjson()
+getflags()
 type.onchange = function(){
     reset_days()
     update()
@@ -349,16 +371,17 @@ addbtn.onclick = () => {
     const textval = textinput.value
 
     if((timeval != "") && (textval != "")){
-        console.log("flag add")
-        const newdiv = document.createElement("div")
-        let string = ""
-        string += textval + "<br>"
-        string += "<p class='small'>" + timeval + "</p>"
-        newdiv.innerHTML = string
-        newdiv.classList.add("flagelement")
-        flaglist.appendChild(newdiv)
+        addflagtolist(timeval, textval, flags.length)
 
-        timeinput.value = ""
-        textinput.value = ""
+        flags.push({
+            "time": timeval,
+            "text": textval
+        })
+
+        window.localStorage.setItem("flags", JSON.stringify(flags))
     }
+}
+delall.onclick = () => {
+    flags = []
+    window.localStorage.setItem("flags", JSON.stringify(flags))
 }
