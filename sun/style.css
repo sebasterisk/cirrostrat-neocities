@@ -6,7 +6,7 @@
     width: 75vw;
     min-width: 600px;
     max-width: 1000px;
-    height: 1000px;
+    height: fit-content;
     margin: 0 auto;
     padding: 0;
 }
@@ -297,4 +297,19 @@ article.articlecontain {
     #articlelistcontainer{
         flex:1
     }
+}
+
+footer{
+    margin-top: 40px;
+    height: 80px;
+    color: gray;
+    font-family: Gotham;
+    font-size: 8pt;
+    background: #18181a;
+    padding:4px;
+    #csinfo{
+        opacity: 0.5;
+        float: left;
+        margin-right: 5px;
+    };
 }
