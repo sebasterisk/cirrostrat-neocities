@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="/creations/schedulizer/style.css">
 </head>
 <body>
-    <header>
-        <h1>schedulizer!</h1>
-    </header>
+    
     <div id="leanbanner">
         <div id="leancontent">
             <div class="leanelement" id="leantime">
@@ -25,8 +23,7 @@
             </div>
         </div>
     </div>
-    <br>
-    <span id="errors"></span>
+    <span id="errors" hidden></span>
 
     <div id="tracker">
         <div id="clock">
@@ -129,10 +126,10 @@
 
         <select name="day" id="day" hidden>
         </select>
+        <button id="calendarbutton">open calendar</button>
+        <button id="leanbutton" class="button">banner mode</button>
+        <!-- button id="flagbutton" class="button">open flags</button -->
     </div>
-    <button id="calendarbutton">open calendar</button>
-    <button id="leanbutton" class="button">banner mode</button>
-    <button id="flagbutton" class="button">open flags</button>
     <script src="/creations/schedulizer/script.js">
     </script>
 

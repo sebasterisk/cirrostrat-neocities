@@ -31,49 +31,25 @@
 }
 
 body{
-    width: 75%;
-    max-width: 750px;
-    min-width: 400px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
     background-color: #181a1d;
+    height: 100vh;
+    width: 100vw;
+    max-width: 800px;
+    max-height: 700px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     color: #ccc;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 12px;
 }
 body, h1, select, option{
     font-family: Gotham, Verdana, sans-serif;
-}
-h1{
-    letter-spacing: 0.5rem;
-    font-weight: bold;
-}
-
-header{
-    position: absolute;
-    color: #111317;
-    background-repeat: no-repeat;
-    background-clip: padding-box;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    text-align: center;
-    letter-spacing: 4px;
-    line-height: 45pt;
-    font-stretch: condensed;
-    font-weight: bold;
-    font-size: 20pt;
-    margin: 0;
-    padding: none;
-}
-
-h1 {
-    display: block;
-    border: 1px solid white;
-    position: absolute;
-    top: calc(50%);
-    left: 25%;
-    transform-origin: center;
-    transform: rotate(270deg) translate(-50%, -50%);
 }
 
 #leanbanner{
@@ -235,10 +211,12 @@ table {
 #datatable_new {
     display: block;
     position: relative;
+    box-sizing: border-box;
     width: auto;
-    height: 500px;
+    height: 100%;
     padding: 4px;
     flex: 1;
+    overflow: scroll;
 }
 
 .scheduleelement {
@@ -281,8 +259,8 @@ table {
     text-align: center;
     margin: auto;
     position: relative;
-    top: 250px;
-    color: #000b1d2e;
+    top: 50%;
+    color: #ffffff2e;
 }
 
 #timeline {
@@ -296,12 +274,7 @@ table {
 }
 
 #content {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    flex:2;
     display: flex;
 }
 
@@ -315,7 +288,7 @@ table {
     transition: width 0.5s linear;
 
     height: 1;
-    background-color:lightsteelblue;
+    background-color:rgb(25, 42, 63);
     overflow-y: auto;
     overflow-x: hidden;
     text-wrap: nowrap;
