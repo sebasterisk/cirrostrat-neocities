@@ -1,3 +1,5 @@
+// it works 
+
 if (window.location.search == "") {
     console.error("no data in searchparams!")
     const errtext = document.getElementById("errors")
@@ -53,7 +55,7 @@ function pixelperminute(rangestart, rangeend){
     // pass strings formatted as "00:00", "23:00"
     const start_time = new Date("1970-01-01T"+rangestart+":00")
     const end_time = new Date("1970-01-01T"+rangeend+":00")
-    const day_len = 500/(((end_time - start_time) / 1000)/60)
+    const day_len = finaltable_new.offsetHeight /(((end_time - start_time) / 1000)/60)
     return day_len
 }
 function filtercomplete(){
@@ -251,7 +253,7 @@ function startcount(){
             const diff_string = `${diff_min}:${diff_secleft}`
             
             if ((now) && (timenow > now_endtime)){
-                towrite += `betwixt periods<br>`
+                towrite += `in between periods<br>`
                 towrite += `next up: ${next.name} in ${diff_string}`
 
                 if (tick <= 100){
@@ -321,8 +323,10 @@ function timelinetick(startbound, endbound){
         const set = ppm * timediff_mins(startbound, now)
         if (set <= 0 || set >= 500){
             hr.style.visibility = "hidden"
+            hr.style.display = "none"
         } else {
             hr.style.visibility = "visible"
+            hr.style.display = "block"
         }
         hr.style.top = set + "px"
     }, 100)
@@ -385,3 +389,7 @@ delall.onclick = () => {
     flags = []
     window.localStorage.setItem("flags", JSON.stringify(flags))
 }
+
+window.addEventListener("resize", () => {
+    update()
+})
