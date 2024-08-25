@@ -147,11 +147,6 @@ body, h1, select, option{
     display: flex;
 }
 
-table, td {
-
-    min-width: 100px;
-}
-
 table {
     margin: 5px 0;
 }
@@ -208,15 +203,26 @@ table {
     }
 }
 
-#datatable_new {
+#datatablewrap{
+    container-name: datatable;
+    container-type: size;
+    background-color: #121416;
     display: block;
     position: relative;
     box-sizing: border-box;
-    width: auto;
-    height: 100%;
-    padding: 4px;
-    flex: 1;
+    width: 100%;
+    flex: 0 1 auto;
     overflow: scroll;
+}
+#datatable_new {
+    display: block;
+    position: absolute;
+
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    min-height: 340px;
+    margin: 6px;
+    flex: 1;
 }
 
 .scheduleelement {
@@ -228,6 +234,7 @@ table {
     box-shadow: 6px 6px 6px #00000030;
     border: 2px solid rgb(58, 74, 95);
     line-height: 10pt;
+    overflow: auto;
 }
 
 .specialpd {
@@ -270,7 +277,7 @@ table {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: 1px solid red;
+    border: 1px solid rgb(107, 34, 34);
 }
 
 #content {

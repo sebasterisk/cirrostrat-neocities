@@ -70,12 +70,15 @@
             </div>
         </div>
 
-
-        <div id="datatable_new">
-            <p id="message">
-                &darr; select a schedule type... &darr;
-            </p>
+        <div id="datatablewrap">
+            
+            <div id="datatable_new">
+                <p id="message">
+                    &darr; select a schedule type... &darr;
+                </p>
+            </div>             
         </div>
+        
 
         <div id="calendar">
             <div class="calcontain" id="ficontain">
@@ -163,7 +166,7 @@
                 cal.style.textWrap = "nowrap"
             }
         }
-
+        /*
         const flag = document.getElementById("flags")
         const fbutton = document.getElementById("flagbutton")
         let fopen = false
@@ -187,7 +190,7 @@
                 flag.style.visibility = "hidden"
                 flag.style.textWrap = "nowrap"
             }
-        }
+        }*/
 
         leanbutton.onclick = () => {
             if (!leanopen) {
