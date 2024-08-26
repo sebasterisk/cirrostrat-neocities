@@ -1,18 +1,4 @@
 // it works 
-
-if (window.location.search == "") {
-    console.error("no data in searchparams!")
-    const errtext = document.getElementById("errors")
-    errtext.innerHTML = "no schedule in save. check your url, or select &quot;edit&quot; to begin."
-} else {
-// url params
-const here = window.location.href,
-      thisurl = new URL(here),
-      params = thisurl.searchParams,
-      data = params.get("data"),
-      complete = JSON.parse(data)
-
-// 
 let fetchres
 let newcomplete = {}
 let map_totable = []
@@ -23,26 +9,43 @@ let timeline
 // document constants 
 const type = document.getElementById("type")
 const day = document.getElementById("day")
-const selected = document.getElementById("selected")
-const finaltable = document.getElementById("datatable")
-const allnext = document.getElementById("allnext")
 const finaltable_new = document.getElementById("datatable_new")
-//
-// lean mode banner elements
-const leantime = document.getElementById("leantime")
+
 const leanhead = document.getElementById("leanhead")
 const leanmain = document.getElementById("leanmainmarquee")
 const leanend = document.getElementById("leanend")
-//
 
-// flag data /*
-const timeinput = document.getElementById("flagtime")
-const textinput = document.getElementById("flagtitle")
-const addbtn = document.getElementById("flagadd")
-const delall = document.getElementById("deleteallflags")
-const flaglist = document.getElementById("flaglist")
+const stathead = document.getElementById("stathead")
+const statmain = document.getElementById("statmain")
+const statend = document.getElementById("statend")
 
-let flags = []
+// url parameters
+let here, thisurl, params, data, complete
+
+// check for data
+if (window.location.search == "") {
+    console.error("no data in searchparams!")
+    const errtext = document.getElementById("errors")
+    errtext.innerHTML = "no schedule in save. check your url, or select &quot;edit&quot; to begin."
+} else {
+    here = window.location.href
+    thisurl = new URL(here)
+    params = thisurl.searchParams
+    data = params.get("data")
+    complete = JSON.parse(data)
+    filtercomplete()
+    getjson()
+
+    type.onchange = function(){
+        reset_days()
+        update()
+    }
+    day.onchange = update
+
+    window.addEventListener("resize", () => {
+        update()
+    })
+}
 
 // functions!
 function timediff_mins(s,e){
@@ -98,6 +101,9 @@ function update(){
     map(typeval, dayval)
 }
 function map(map_type, map_day){
+    // this function forms and renders the schedule
+    // for the specified type and day
+
     const map_look = fetchres[map_type] // schedule type (json file)
     const map_set = map_look.attr.sets[map_day]  // period selectors
     const map_shifts = map_look.attr.hsdiff
@@ -109,7 +115,6 @@ function map(map_type, map_day){
     const ppm = pixelperminute(start, end)
 
     // period selection iteration
-    //console.clear()
     for(i in map_set){
         const current = Number(i) + 1
         const v = map_set[i]
@@ -150,7 +155,6 @@ function map(map_type, map_day){
     } 
     
     map_totable.sort((a,b) => a.time - b.time)
-    console.log(map_totable)
 
     finaltable_new.innerHTML = ""
     for (i in map_totable){
@@ -177,7 +181,6 @@ function map(map_type, map_day){
     timelinetick(start, end)
 }
 function startcount(){
-
     if (count){
         clearInterval(count)
     }
@@ -186,9 +189,8 @@ function startcount(){
         setmarq()
         const timenow = new Date()
         let next, next_time, now, now_time, now_endtime
-        let towrite = ""
 
-        // calculate which period we're on
+        // iterates over each period
         for (i in map_totable){
             const v = map_totable[i]
             const v_today = new Date().setHours(v.time.getHours(), v.time.getMinutes(), v.time.getSeconds())
@@ -213,7 +215,7 @@ function startcount(){
                 }
 
                 break
-            } else if (i == map_totable.length - 1) {
+            } else if (i == map_totable.length - 1) { // last period
                 if (prev_v){ 
                     now = v
                     now_time = v_today
@@ -225,8 +227,7 @@ function startcount(){
             }
         }
 
-        // calculate times to end, next
-        if (!next){
+        if (!next){ // ran at final period
             if ((now) && !(timenow > now_endtime)){
                 const nowdiff = now_endtime - timenow
                 const nowdiff_sec = (nowdiff / 1000)
@@ -234,7 +235,6 @@ function startcount(){
                 const nowdiff_secleft = ("0" + Math.round(nowdiff_sec % 60)).slice(-2)
                 const nowdiff_string = `${nowdiff_min}:${nowdiff_secleft}`
 
-                towrite += `now: ${now.name} &mdash; ends at: ${now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})} &mdash; ${nowdiff_string} from now<br>next up: `
                 if (tick <= 50){
                     bannerwrite("now", now.name, "ends in "+  nowdiff_string  )
                 } else if (tick <= 100){
@@ -242,22 +242,18 @@ function startcount(){
                 } else {
                     bannerwrite("next", "end of day", "")
                 }
-            } else {
+            } else { // end of day
                 bannerwrite("next", "end of day", "")
             }
 
-            towrite += "end of day"
-        } else {
+        } else { // ran during the day
             const diff = next_time - timenow
             const diff_sec = (diff / 1000)
             const diff_min = Math.floor(diff_sec / 60)
             const diff_secleft = ("0" + Math.round(diff_sec % 60)).slice(-2)
             const diff_string = `${diff_min}:${diff_secleft}`
             
-            if ((now) && (timenow > now_endtime)){
-                towrite += `in between periods<br>`
-                towrite += `next up: ${next.name} in ${diff_string}`
-
+            if ((now) && (timenow > now_endtime)){ // in between periods
                 if (tick <= 100){
                     bannerwrite("now", "in between periods", "" )
                 } else if (tick <= 150) {
@@ -265,16 +261,12 @@ function startcount(){
                 } else {
                     bannerwrite("next", next.name, "at "+ new Date(next_time).toLocaleTimeString("en-US", {"timeStyle":"short"}))
                 }
-            } else if (now){
+            } else if (now){ // during period
                 const nowdiff = now_endtime - timenow
                 const nowdiff_sec = (nowdiff / 1000)
                 const nowdiff_min = Math.floor(nowdiff_sec / 60)
                 const nowdiff_secleft = ("0" + Math.round(nowdiff_sec % 60)).slice(-2)
                 const nowdiff_string = `${nowdiff_min}:${nowdiff_secleft}`
-
-                const betweentime = Math.floor((next_time - now_endtime)/60000)
-                towrite += `now: ${now.name} &mdash; ends at: ${now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})} &mdash; ${nowdiff_string} from now<br>`
-                towrite += `next up: ${next.name} at ${new Date(next_time).toLocaleTimeString("en-US", {"timeStyle":"short"})} &mdash; ${betweentime} mins after`
             
                 if (tick <= 50){
                     bannerwrite("now", now.name, "ends in "+  nowdiff_string  )
@@ -285,10 +277,7 @@ function startcount(){
                 } else {
                     bannerwrite("next", next.name, "at "+ new Date(next_time).toLocaleTimeString("en-US", {"timeStyle":"short"}))
                 }
-            } else { // if not, show this
-                towrite += `starting soon... <br>`
-                towrite += `next up: ${next.name} in ${diff_string}`
-
+            } else { // ran before first period
                 if (tick <= 100){
                     bannerwrite("now", "starting soon...", "" )
                 } else if (tick <= 150) {
@@ -299,18 +288,13 @@ function startcount(){
             }
         }
 
-        tick++
+        tick++ // runs a tick every 0.1 seconds, status changes every 5
         if (tick > 200){
             tick = 0
         }
         //allnext.innerHTML = towrite
     },100)
 }
-
-const stathead = document.getElementById("stathead")
-const statmain = document.getElementById("statmain")
-const statend = document.getElementById("statend")
-
 function bannerwrite(head, main, end){
     leanhead.innerHTML = head
     stathead.innerHTML = head
@@ -319,7 +303,6 @@ function bannerwrite(head, main, end){
     leanend.innerHTML = end
     statend.innerHTML = end
 }
-
 function timelinetick(startbound, endbound){
     if (timeline){
         clearInterval(timeline)
@@ -328,10 +311,9 @@ function timelinetick(startbound, endbound){
     timeline = setInterval(() => {
         const hr = document.getElementById("timeline")
         const ppm = pixelperminute(startbound, endbound)
-        const now = new Date().toLocaleTimeString("en-US",{"timeStyle":"short", "hourCycle":"h24"})
+        const now = new Date().toLocaleTimeString("en-US",{"timeStyle":"short", "hourCycle":"h23"})
         const set = ppm * timediff_mins(startbound, now)
         if (set <= 0 || set >= finaltable_new.offsetHeight){
-            console.log(set, finaltable_new.offsetHeight)
             hr.style.visibility = "hidden"
             hr.style.display = "none"
             hr.visibility = false
@@ -343,72 +325,7 @@ function timelinetick(startbound, endbound){
         hr.style.top = set + "px"
     }, 100)
 }
-function getflags(){
-    // get flags from localstorage, assign to var "flags"
-    storedflags = window.localStorage.getItem("flags")
-    if (storedflags){
-        flags = JSON.parse(storedflags)
-        console.log(flags)
-    }
-    for(let i in flags){
-        addflagtolist(flags[i].time, flags[i].text, i)
-    }
-}
-function deleteflag(flagid){
-    
-}
-function addflagtolist(timeval, textval, id){
-    console.log("flag add")
-    const newdiv = document.createElement("div")
-    let string = ""
-    string += textval + "<br>"
-    string += "<p class='small'>" + timeval + "</p>"
-    newdiv.dataset.ident = id
-    console.log(newdiv.dataset.ident)
-    newdiv.classList.add("flagelement")
-    newdiv.innerHTML = string
-    flaglist.appendChild(newdiv)
-
-    timeinput.value = ""
-    textinput.value = ""
-}
-
-filtercomplete()
-getjson()
-getflags()
-type.onchange = function(){
-    reset_days()
-    update()
-}
-day.onchange = update
-
-// addbtn.onclick = () => {
-//     const timeval = timeinput.value
-//     const textval = textinput.value
-
-//     if((timeval != "") && (textval != "")){
-//         addflagtolist(timeval, textval, flags.length)
-
-//         flags.push({
-//             "time": timeval,
-//             "text": textval
-//         })
-
-//         window.localStorage.setItem("flags", JSON.stringify(flags))
-//     }
-// }
-// delall.onclick = () => {
-//     flags = []
-//     window.localStorage.setItem("flags", JSON.stringify(flags))
-// }
-
-window.addEventListener("resize", () => {
-    update()
-})
-}
-
 function setmarq(){
-    console.log(statmain.scrollWidth, document.getElementById("statmainw").offsetWidth)
     if(statmain.scrollWidth > document.getElementById("statmainw").offsetWidth){
         statmain.classList.add("marquee")
     }else{
