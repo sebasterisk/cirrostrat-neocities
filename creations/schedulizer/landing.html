@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/creations/schedulizer/style.css">
 </head>
 <body>
-    
+    <div id="errors"></div>
     <div id="leanbanner">
         <div id="leancontent">
             <div class="leanelement" id="leantime">
@@ -23,7 +23,6 @@
             </div>
         </div>
     </div>
-    <span id="errors" hidden></span>
 
     <div id="tracker">
         <div id="clock">
@@ -43,14 +42,19 @@
             })
         </script>
         
-        <div id="status">
-            <p id="allnext">
-            </p>
+        <div id="statusw">
+            <div id="status">
+                <div id="stathead"></div>
+                <div id="statmainw"><div id="statmain"></div></div>
+                <div id="statend"></div>
+                <!--p id="allnext">
+                </p-->
+            </div>
         </div>
     </div>
 
     <div id="content">
-        <div id="flags">   
+        <!--div id="flags">   
             <div class="flagcontain">
                 Add a Flag
                 <input type="time" name="flagtime" id="flagtime">
@@ -68,7 +72,23 @@
             <div class="flagcontain" id="flagapply">
                 <button class="button" id="deleteallflags" value="apply">delete all</button>
             </div>
-        </div>
+        </div-->
+
+        <script>
+        const form = document.getElementById("inputform")
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+            const formData = new FormData(form)
+            let things = Object.fromEntries(formData)
+            let string = JSON.stringify(things)
+
+            const headto = new URL(window.location.origin + "/creations/schedulizer/landing.html")
+            headto.searchParams.set("data", string)
+            window.location.href = headto.toString()
+        })
+        </script>
+
 
         <div id="datatablewrap">
             
@@ -123,6 +143,7 @@
             <option value="earlydis">early dismissal</option>
             <option value="latestart">delayed start (10am)</option>
             <option value="anchor">anchor</option>
+            <option value="test">test</option>
             <!--
             -->
         </select>
@@ -131,6 +152,7 @@
         </select>
         <button id="calendarbutton">open calendar</button>
         <button id="leanbutton" class="button">banner mode</button>
+        <a href="./index.html"> <button id="edit" class="button">edit</button> </a>
         <!-- button id="flagbutton" class="button">open flags</button -->
     </div>
     <script src="/creations/schedulizer/script.js">
@@ -166,31 +188,6 @@
                 cal.style.textWrap = "nowrap"
             }
         }
-        /*
-        const flag = document.getElementById("flags")
-        const fbutton = document.getElementById("flagbutton")
-        let fopen = false
-
-        fbutton.onclick = () => {
-            if (!fopen) {
-                fopen = true
-                flag.style.width = "20%"
-
-                flag.ontransitionend = () => {
-                    if(fopen){
-                        flag.style.visibility = "visible"
-                        flag.style.opacity = "1"
-                        flag.style.textWrap = "wrap"
-                    }
-                }
-            } else {
-                fopen = false
-                flag.style.width = "0"
-                flag.style.opacity = "0"
-                flag.style.visibility = "hidden"
-                flag.style.textWrap = "nowrap"
-            }
-        }*/
 
         leanbutton.onclick = () => {
             if (!leanopen) {
