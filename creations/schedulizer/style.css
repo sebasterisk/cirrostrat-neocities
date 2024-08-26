@@ -30,7 +30,13 @@
     font-style: italic;
 }
 
+#errors{
+    color: #a54b06;
+    background-image: url(./hatched.png);
+
+}
 body{
+    container-name: body;
     display: flex;
     flex-direction: column;
     background-color: #181a1d;
@@ -55,10 +61,10 @@ body, h1, select, option{
 #leanbanner{
     container-name: leanbanner;
     container-type: size;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 50px;
     max-height: 10vh;
     overflow: hidden;
@@ -130,16 +136,71 @@ body, h1, select, option{
 #status{
     padding: 0;
     margin: 0;
+    width: 0;
     font-size: 14pt;
     flex: 1;
-    text-align: center;
     padding: auto;
     display: flex;
-    align-items: center;
-
+    align-items: flex-end;
+    #stathead, #statmainw, #statend{
+        padding: 10px;
+        position: relative;
+    }
+    #stathead{
+        text-transform:uppercase;
+        font-weight:bold;
+        font-size: 10pt;
+        padding-bottom: 11px;
+        text-wrap: nowrap;
+    }
+    #statmain{
+        top:0;
+        width: fit-content;
+        left:0;
+        position: relative;
+        text-wrap: nowrap;
+    }
+    #statmainw{
+        width: 1;
+        min-width: 1;
+        flex: 1;
+        overflow: hidden;
+    }
     #allnext {
         width: 100%;
         margin: 2px;
+    }
+}
+
+#statusw{
+    padding: 0;
+    margin: 0;
+    width: 0;
+    font-size: 14pt;
+    flex: 1;
+    padding: auto;
+    display: flex;
+    container-name: statusw;
+    container-type: size;
+}
+@container statusw (width < 300px){
+    #status{
+        flex-direction: column;
+        align-items: baseline;
+        width: 1;
+        padding: 5px;
+        padding-bottom: 10px;
+        >div{
+            text-align: left;
+            line-height: 0;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 0;
+        }
+        #statend{
+            font-stretch: condensed;
+            text-align: right;
+        }
     }
 }
 
@@ -158,23 +219,25 @@ table {
 .form {
     margin: 20px auto;
     padding: 5px;
-    width: fit-content;
-    text-wrap: nowrap;
+    width: 100%;
 }
 
 #flags{
-    width: 0;
-    height: 1;
-    visibility: hidden;
-    display: flex;
+    max-width: 0;
+    height: 100%;
     position: relative;
     flex-direction: column;
-    opacity: 0;
-    background-color:lightsteelblue;
+    background-color:rgb(25, 42, 63);
     overflow-y: auto;
     overflow-x: hidden;
-    transition: width 0.5s linear;
+    transition: max-width 2s ease;
     
+    .form{
+        right: 0;
+        min-width: max-content;
+        width: max-content;
+    }
+
     .flagcontain{
         margin: 2px;
         padding: 2px;
@@ -256,8 +319,8 @@ table {
 #clock{
     width: fit-content;
     text-wrap: nowrap;
-
-    padding: 6px;
+    background-color: #121416;
+    padding: 10px;
     span{
         margin: 0;
     }
@@ -281,7 +344,7 @@ table {
 }
 
 #content {
-    flex:2;
+    flex:1;
     display: flex;
 }
 
@@ -369,16 +432,14 @@ input[type=text]{
 
 input[type=submit]{
     width: 100%;
-    margin-top: 4px;
     font-family: Gotham, Tahoma, Verdana, sans-serif;
     font-size: 12pt;
     border-radius: 0;
-    border: 1px solid green; 
+    border: 2px solid green; 
 }
 
 input[type=submit]:hover{
     width: 100%;
-    margin-top: 4px;
     font-family: Gotham, Tahoma, Verdana, sans-serif;
     font-size: 12pt;
     border-radius: 0;
@@ -419,4 +480,55 @@ footer{
     margin-bottom: 10px;
     margin-top: 20px;
     font-size: 9pt;
+}
+
+/* schedule builder rules */
+#schedbuildhead>h1{
+    font-size: 30pt;
+    line-height: 30pt;
+    margin: 4px;
+    padding: 0;
+    font-stretch: condensed;
+}
+
+#content.schedbuild{
+    background-color: #121416;
+    padding: 7px;
+    overflow-y: scroll;
+}
+
+.sb-label{
+    letter-spacing: -0.07rem;
+}
+.sb-table{
+    margin: 0;
+    padding: 0;
+}
+
+.sb-fieldset{
+    border: 1px solid #202326;
+    legend{
+        padding: 0px 10px
+    }
+}
+
+.marquee{
+    animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        opacity: 0;
+        transform: translateX(0%);
+    }
+    5% {
+        opacity: 1;
+    }
+    10%{
+        transform: translateX(0%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-130%);
+    }
 }

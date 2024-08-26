@@ -3,8 +3,8 @@
 if (window.location.search == "") {
     console.error("no data in searchparams!")
     const errtext = document.getElementById("errors")
-    errtext.innerHTML = "No data. Head to <a href='/creations/schedulizer/index.html'>home page</a> for setup.<br>"
-}
+    errtext.innerHTML = "no schedule in save. check your url, or select &quot;edit&quot; to begin."
+} else {
 // url params
 const here = window.location.href,
       thisurl = new URL(here),
@@ -35,7 +35,7 @@ const leanmain = document.getElementById("leanmainmarquee")
 const leanend = document.getElementById("leanend")
 //
 
-// flag data
+// flag data /*
 const timeinput = document.getElementById("flagtime")
 const textinput = document.getElementById("flagtitle")
 const addbtn = document.getElementById("flagadd")
@@ -177,11 +177,13 @@ function map(map_type, map_day){
     timelinetick(start, end)
 }
 function startcount(){
+
     if (count){
         clearInterval(count)
     }
     let tick = 0
     count = setInterval(() => {
+        setmarq()
         const timenow = new Date()
         let next, next_time, now, now_time, now_endtime
         let towrite = ""
@@ -234,9 +236,9 @@ function startcount(){
 
                 towrite += `now: ${now.name} &mdash; ends at: ${now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})} &mdash; ${nowdiff_string} from now<br>next up: `
                 if (tick <= 50){
-                    bannerwrite("now", now.name, "in "+  nowdiff_string  )
+                    bannerwrite("now", now.name, "ends in "+  nowdiff_string  )
                 } else if (tick <= 100){
-                    bannerwrite("now", now.name, "at "+  now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})  )
+                    bannerwrite("now", now.name, "ends "+  now_endtime.toLocaleTimeString("en-US", {"timeStyle":"short"})  )
                 } else {
                     bannerwrite("next", "end of day", "")
                 }
@@ -257,7 +259,7 @@ function startcount(){
                 towrite += `next up: ${next.name} in ${diff_string}`
 
                 if (tick <= 100){
-                    bannerwrite("now", "betwixt periods", "" )
+                    bannerwrite("now", "in between periods", "" )
                 } else if (tick <= 150) {
                     bannerwrite("next", next.name, "in "+ diff_string)
                 } else {
@@ -301,14 +303,21 @@ function startcount(){
         if (tick > 200){
             tick = 0
         }
-        allnext.innerHTML = towrite
+        //allnext.innerHTML = towrite
     },100)
 }
 
+const stathead = document.getElementById("stathead")
+const statmain = document.getElementById("statmain")
+const statend = document.getElementById("statend")
+
 function bannerwrite(head, main, end){
     leanhead.innerHTML = head
+    stathead.innerHTML = head
     leanmain.innerHTML = main
+    statmain.innerHTML = main
     leanend.innerHTML = end
+    statend.innerHTML = end
 }
 
 function timelinetick(startbound, endbound){
@@ -321,12 +330,15 @@ function timelinetick(startbound, endbound){
         const ppm = pixelperminute(startbound, endbound)
         const now = new Date().toLocaleTimeString("en-US",{"timeStyle":"short", "hourCycle":"h24"})
         const set = ppm * timediff_mins(startbound, now)
-        if (set <= 0 || set >= 500){
+        if (set <= 0 || set >= finaltable_new.offsetHeight){
+            console.log(set, finaltable_new.offsetHeight)
             hr.style.visibility = "hidden"
             hr.style.display = "none"
+            hr.visibility = false
         } else {
             hr.style.visibility = "visible"
             hr.style.display = "block"
+            hr.visibility = true
         }
         hr.style.top = set + "px"
     }, 100)
@@ -370,26 +382,36 @@ type.onchange = function(){
 }
 day.onchange = update
 
-addbtn.onclick = () => {
-    const timeval = timeinput.value
-    const textval = textinput.value
+// addbtn.onclick = () => {
+//     const timeval = timeinput.value
+//     const textval = textinput.value
 
-    if((timeval != "") && (textval != "")){
-        addflagtolist(timeval, textval, flags.length)
+//     if((timeval != "") && (textval != "")){
+//         addflagtolist(timeval, textval, flags.length)
 
-        flags.push({
-            "time": timeval,
-            "text": textval
-        })
+//         flags.push({
+//             "time": timeval,
+//             "text": textval
+//         })
 
-        window.localStorage.setItem("flags", JSON.stringify(flags))
-    }
-}
-delall.onclick = () => {
-    flags = []
-    window.localStorage.setItem("flags", JSON.stringify(flags))
-}
+//         window.localStorage.setItem("flags", JSON.stringify(flags))
+//     }
+// }
+// delall.onclick = () => {
+//     flags = []
+//     window.localStorage.setItem("flags", JSON.stringify(flags))
+// }
 
 window.addEventListener("resize", () => {
     update()
 })
+}
+
+function setmarq(){
+    console.log(statmain.scrollWidth, document.getElementById("statmainw").offsetWidth)
+    if(statmain.scrollWidth > document.getElementById("statmainw").offsetWidth){
+        statmain.classList.add("marquee")
+    }else{
+        statmain.classList.remove("marquee")
+    }
+}
