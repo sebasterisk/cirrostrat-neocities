@@ -129,7 +129,10 @@ body, h1, select, option{
     color: rgb(255, 255, 255);
     background-color: rgb(43, 50, 55);
     padding: 4px 0.25em; 
-    width: fit-content;
+    width: 1;
+    display: inline-block;
+}
+#buttontray{
     display: inline-block;
 }
 
@@ -454,9 +457,10 @@ input[type=file]{
 }
 
 #calendarbutton, .button{
+    color: #ccccd1;
     font-family: Gotham, Tahoma, Verdana, sans-serif;
     display: inline-block;
-    background-color: aliceblue;
+    background-color: rgb(50, 61, 69);
     position: relative;
     border: 0;
     top: 0;
@@ -472,7 +476,7 @@ input[type=file]{
 }
 #calendarbutton:hover, .button:hover{
     box-shadow: 0 0 #0222445a;
-    background-color: rgb(206, 223, 244);
+    background-color: #1f2730;
     top: 2px;
     left: 2px;
 }

@@ -36,9 +36,15 @@
             const date = document.getElementById("date")
 
             setInterval(function(){
-                timenow.innerHTML = new Date().toLocaleTimeString()
+                if(window.innerWidth < 400){
+                    timenow.innerHTML = new Date().toLocaleTimeString("en-US", {"timeStyle": "short"})
+                    date.innerHTML = new Date().toLocaleDateString("en-US", {"weekday":"short", "month":"short", "day":"numeric"})
+
+                } else {
+                    timenow.innerHTML = new Date().toLocaleTimeString()
+                    date.innerHTML = new Date().toLocaleDateString("en-US", {"dateStyle":"full"})
+                }
                 bannertimenow.innerHTML = new Date().toLocaleTimeString()
-                date.innerHTML = new Date().toLocaleDateString("en-US", {"dateStyle":"full"})
             })
         </script>
         
@@ -133,9 +139,9 @@
     <script type="module" src="./calendar.js"></script>
 
     <div id="options">
-        schedule options:
+        options
         <select name="type" id="type">
-            <option value="" selected disabled hidden>select schedule type</option>
+            <option value="" selected disabled hidden>schedule type</option>
             <option value="default">default</option>
             <option value="wed">wednesday (9am)</option>
             <option value="forum">forum (50 min event)</option>
@@ -150,9 +156,11 @@
 
         <select name="day" id="day" hidden>
         </select>
-        <button id="calendarbutton">open calendar</button>
-        <button id="leanbutton" class="button">banner mode</button>
-        <a href="./index.html"> <button id="edit" class="button">edit</button> </a>
+        <div id="buttontray">
+            <button id="calendarbutton">open calendar</button>
+            <button id="leanbutton" class="button">banner mode</button>
+            <a href="./index.html"> <button id="edit" class="button">edit</button> </a>
+        </div>
         <!-- button id="flagbutton" class="button">open flags</button -->
     </div>
     <script src="/creations/schedulizer/script.js">
