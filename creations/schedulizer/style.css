@@ -284,10 +284,9 @@ table {
 #datatable_new {
     display: block;
     position: absolute;
-
     width: calc(100% - 6px);
     height: calc(100% - 6px);
-    min-height: 340px;
+    min-height: 400px;
     margin: 6px 9px;
     flex: 1;
 }
@@ -302,6 +301,29 @@ table {
     border: 2px solid rgb(58, 74, 95);
     line-height: 10pt;
     overflow: auto;
+    container-name: schedelem;
+    container-type: size;
+}
+@container schedelem (max-height: 35px){
+    br{
+        visibility: hidden;
+    }
+    .starttime{
+        color: rgb(78, 97, 122);
+        text-wrap: nowrap;
+    }
+    .cname{
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        z-index: 2;
+        text-align: right;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-wrap: nowrap;
+        max-width: 100%;
+    }
+
 }
 
 .specialpd {
