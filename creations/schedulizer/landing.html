@@ -60,39 +60,51 @@
     </div>
 
     <div id="content">
-        <!--div id="flags">   
-            <div class="flagcontain">
-                Add a Flag
-                <input type="time" name="flagtime" id="flagtime">
-                <input type="text" name="flagtitle" id="flagtitle" placeholder="flag title" maxlength="16">
-                <input type="button" value="add flag" class="button" id="flagadd">
-                <hr>
+        <div id="flags">   
+            VERY EXPERIMENTAL CUSTOM SCHEDULE IMPORT PAGE
+            <div class="fauxbutton">
+                <label for="skedinput" class="button">silly</label> <span class="small">max size 512kb</span>
             </div>
-            <div class="flagcontain">
-                Current Flags
-                <div id="flaglist">
-                    
-                </div>
-                
-            </div>
-            <div class="flagcontain" id="flagapply">
-                <button class="button" id="deleteallflags" value="apply">delete all</button>
-            </div>
-        </div-->
+            <input type="file" name="skedinput" id="skedinput" class="hidefile">
+            <div id="skedmsg"></div>
+        </div>
 
         <script>
-        const form = document.getElementById("inputform")
+            const skedin = document.getElementById("skedinput")
+            function skedpreviewFile() {
+                const [file] = skedin.files
+                const reader = new FileReader()
 
-        form.addEventListener("submit", (e) => {
-            e.preventDefault()
-            const formData = new FormData(form)
-            let things = Object.fromEntries(formData)
-            let string = JSON.stringify(things)
+                reader.addEventListener(
+                    "load",
+                    () => {
+                        let final = reader.result
+                        try{
+                            JSON.parse(final)
+                            window.localStorage.setItem("sked", final)
+                            console.log(final, window.sessionStorage)
+                            window.location.reload()
+                        } catch(ex) {
+                            document.getElementById("errors").innerHTML = "bad file "+ex
+                            setTimeout(()=>{
+                                document.getElementById("errors").innerHTML = ""
+                            }, 5000)
+                        }
+                    },
+                    false,
+                );
 
-            const headto = new URL(window.location.origin + "/creations/schedulizer/landing.html")
-            headto.searchParams.set("data", string)
-            window.location.href = headto.toString()
-        })
+                if (file && file.size <= 512000) {
+                    reader.readAsText(file);
+                } else {
+                    document.getElementById("errors").innerHTML = "nuh uh"
+                    setTimeout(()=>{
+                        document.getElementById("errors").innerHTML = ""
+                    }, 5000)
+                }
+            }
+
+            skedin.onchange = skedpreviewFile
         </script>
 
 
@@ -142,14 +154,6 @@
         options
         <select name="type" id="type">
             <option value="" selected disabled hidden>schedule type</option>
-            <option value="default">default</option>
-            <option value="wed">wednesday (9am)</option>
-            <option value="forum">forum (50 min event)</option>
-            <option value="mass">mass (80 min event)</option>
-            <option value="earlydis">early dismissal</option>
-            <option value="latestart">delayed start (10am)</option>
-            <option value="anchor">anchor</option>
-            <option value="test">test</option>
             <!--
             -->
         </select>
@@ -161,7 +165,7 @@
             <button id="leanbutton" class="button">banner mode</button>
             <a href="./index.html"> <button id="edit" class="button">edit</button> </a>
         </div>
-        <!-- button id="flagbutton" class="button">open flags</button -->
+        <button id="importbutton" class="button">import</button>
     </div>
     <script src="/creations/schedulizer/script.js">
     </script>
@@ -171,6 +175,10 @@
         const cal = document.getElementById("calendar")
         const calbutton = document.getElementById("calendarbutton")
         let calopen = false
+
+        const flags = document.getElementById("flags")
+        const flagbutton = document.getElementById("importbutton")
+        let flagopen = false
 
         const lean = document.getElementById("leanbanner")
         const leanbutton = document.getElementById("leanbutton")
@@ -196,6 +204,28 @@
                 cal.style.textWrap = "nowrap"
             }
         }
+
+        flagbutton.onclick = () => {
+            if (!flagopen) {
+                flagopen = true
+                flags.style.width = "63%"
+
+                flags.ontransitionend = () => {
+                    if(flagopen){
+                        flags.style.visibility = "visible"
+                        flags.style.opacity = "1"
+                        flags.style.textWrap = "wrap"
+                    }
+                }
+            } else {
+                flagopen = false
+                flags.style.width = "0"
+                flags.style.opacity = "0"
+                flags.style.visibility = "hidden"
+                flags.style.textWrap = "nowrap"
+            }
+        }
+
 
         leanbutton.onclick = () => {
             if (!leanopen) {
