@@ -188,7 +188,7 @@ function startcount(){
     count = setInterval(() => {
         setmarq()
         const timenow = new Date()
-        let next, next_time, now, now_time, now_endtime
+        let next, next_time, now, now_endtime
 
         // iterates over each period
         for (i in map_totable){
