@@ -48,6 +48,9 @@ if (window.location.search == "") {
 }
 
 // functions!
+function cry(about){
+    document.getElementById("errors").innerHTML += about + "<br>"
+}
 function timediff_mins(s,e){
     const start_time = new Date("1970-01-01T"+s+":00")
     const end_time = new Date("1970-01-01T"+e+":00")
@@ -79,14 +82,38 @@ function filtercomplete(){
     }
 }
 function getjson(){
-    // gets json file 
-    fetch('/creations/schedulizer/schedule.json')
-        .then((response) => response.json())
-        .then((json) => {fetchres = json})
+    // gets json file
+    if(window.localStorage.getItem("sked")){
+        fetchres = JSON.parse(window.localStorage.getItem("sked"))
+        listprofiles()
+
+        console.log("using custom schedule " + fetchres.meta.name)
+        document.getElementById("skedmsg").innerHTML = `SAVE ${fetchres.meta.name} LOADED!!!`
+    } else {
+        fetch('/creations/schedulizer/schedule.json')
+            .then((response) => response.json())
+            .then((json) => {
+                fetchres = json
+                listprofiles()
+            })
+        console.log("not using save")
+        document.getElementById("skedmsg").innerHTML = `NO SAVE LOADED!!!`
+    }
+}
+function listprofiles(){
+    if(!(fetchres.profiles)){
+        cry("INVALID JSON!!!!!!!!!")
+    }
+    for(let i in fetchres.profiles){
+        let profile = document.createElement("option")
+        profile.innerHTML = fetchres.profiles[i].attr.name
+        profile.value = fetchres.profiles[i].attr.name
+        type.appendChild(profile)
+    }
 }
 function reset_days() {
     day.innerHTML = ""
-    let keys = Object.keys( fetchres[type.value].attr.sets )
+    let keys = Object.keys(fetchres.profiles.find(p => p.attr.name == type.value).attr.sets)
 
     for(i in keys){
         day.add(new Option(keys[i], keys[i]))
@@ -104,13 +131,13 @@ function map(map_type, map_day){
     // this function forms and renders the schedule
     // for the specified type and day
 
-    const map_look = fetchres[map_type] // schedule type (json file)
+    const map_look = fetchres.profiles.find(p => p.attr.name == map_type) // schedule type (json file)
     const map_set = map_look.attr.sets[map_day]  // period selectors
-    const map_shifts = map_look.attr.hsdiff
+    const map_shifts = map_look.attr.typediff
     map_totable = [] 
 
-    const start = map_look.attr.range[0]
-    const end = map_look.attr.range[1]
+    const start = map_look.attr.bounds[0]
+    const end = map_look.attr.bounds[1]
     const pd_len = map_look.attr.len
     const ppm = pixelperminute(start, end)
 
@@ -122,13 +149,13 @@ function map(map_type, map_day){
         const shift = map_shifts.includes(current)
         let starttime
         let starttime_px
-
+        
         if (shift){
-            starttime = map_look.times[String(current)][selectedperiod.type]
+            starttime = map_look.times[i][selectedperiod.type]
         } else {
-            starttime = map_look.times[String(current)]
+            starttime = map_look.times[i]
         }
-
+        
         starttime_px = Number(ppm * timediff_mins(start, starttime))
         len_px = Number(ppm * pd_len)
         map_totable[current-1] = { 
@@ -136,11 +163,12 @@ function map(map_type, map_day){
             "time": new Date("1970-01-01T"+starttime+":00"),
             "len": pd_len,
             "table_offset": starttime_px,
-            "table_len": len_px
-        }        
+            "table_len": len_px,
+            "fixed": false
+        }   
     }
 
-    if (Object.hasOwn(map_look.attr, "fixed")){
+    if (map_look.attr.fixed && map_look.attr.fixed[0]){
         let fixed = map_look.attr.fixed
         for (i in fixed){
             map_totable.push({ 
@@ -155,7 +183,7 @@ function map(map_type, map_day){
     } 
     
     map_totable.sort((a,b) => a.time - b.time)
-
+    
     finaltable_new.innerHTML = ""
     for (i in map_totable){
         // new table iteration (fancier with divs)

@@ -226,47 +226,19 @@ table {
 }
 
 #flags{
-    max-width: 0;
-    height: 100%;
-    position: relative;
+    width: 0;
+    visibility: hidden;
+    display: flex;
+    opacity: 0;
     flex-direction: column;
+    position: relative;
+    transition: width 0.5s linear;
+
+    height: 1;
     background-color:rgb(25, 42, 63);
     overflow-y: auto;
     overflow-x: hidden;
-    transition: max-width 2s ease;
-    
-    .form{
-        right: 0;
-        min-width: max-content;
-        width: max-content;
-    }
-
-    .flagcontain{
-        margin: 2px;
-        padding: 2px;
-    }
-
-    #flaglist{
-        .flagelement{
-            border: 1px solid white;
-            padding: 2px;
-            box-sizing: border-box;
-        }
-    }
-    #flagapply{
-        position: absolute;
-        bottom: 0;
-        *{
-            margin-top: 4px;
-            line-height: 10pt;
-        }
-    }
-    input[type=text], input[type=time]{
-        width: calc(100% - 8px);
-    }
-    input[type=button]{
-        margin-top: 4px;
-    }
+    text-wrap: nowrap;
 }
 
 #datatablewrap{
@@ -438,6 +410,10 @@ table {
     font-size: 11pt;
     font-stretch: condensed;
     margin: 0;
+}
+
+.hidefile{
+    display: none;
 }
 
 .starttime {
