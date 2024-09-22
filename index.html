@@ -1,146 +1,27 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cirrostrat</title>
-    <link href="/newstyle.css" rel="stylesheet" type="text/css" media="all">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  </head>
-  <body>
-    <a id="top"></a>
-    <div id="containall" class="simplecentered">
-      <!--<img src="/websiteIcon.png" class="headicon border" alt="cirrostrat Icon" style="float: right; position: relative; bottom: 75px; opacity: 0.25;">-->
-      <header> 
-      <!-- HEADING -->
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="backbox"></div>
+    <div class="cont"></div>
+    <script>
+        // background moving thing
+        const offset = 100
+        let tick = 0
+        setInterval(()=>{
+            if (tick >= offset){tick = 0}
+            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
+            tick++
+        }, 50)
+    </script>
+    <div id="contall">
         <h1>cirrostrat</h1>
-        <p>my place on the internet, established 2024</p>
-        <!-- NAVBAR -->
-        <nav id="headlinks">
-          <ul class="hzlinks">
-            <li><a href="/index.html" class="hzel">home</a></li>
-            <li><a href="/tributes/index.html" class="hzel">tributes</a></li>
-            <li><a href="/aboutself.html" class="hzel">about me</a></li>
-            <!-- <li><a href="" class="hzel"></a></li> -->
-          </ul>
-        </nav>
-      </header>
-      <marquee style="font-size: 10pt; opacity: 0.25; padding: 0px; margin: 0px; position: sticky; clear: right;">hello peoples of the Internet. this website is very work in progress so this scrolling banner should entertain you.</marquee>
-      
-      <div class="constructionBanner"></div>
-      <p align=center> UNDER CONSTRUCTION! </p>
-      <div class="constructionBanner"></div>
-      
-      <hr style="margin-top: 0;">
-      <div id="containmost">
-        <aside>
-        <!-- SIDEBAR -->
-          <section class="sidebarsect">
-            <marquee vspace=0 style="font-size: 10pt; opacity: 0.25; padding: 0px; margin: 0px; position: sticky;" scrolldelay=90>i am cirrostrat </marquee>
-            <h2> who am i </h2>
-            <p> i'm cirrostrat, and i do cool stuff on the internet. this website is intended to be a home for this stuff </p>
-            <p class="smallerp" style="text-align: right;"><a href="/aboutself.html" class="nolinkstyle shadow">a bit more bout me</a></p> 
-          </section>
-          
-          <section class="sidebarsect">
-            <marquee vspace=0 style="font-size: 10pt; opacity: 0.25; padding: 0px; margin: 0px; position: sticky;" scrolldelay=90>making sure this website works </marquee>
-            <h2> updates </h2>
-
-            <div id=update0>
-              <hr>
-                <p align=right>
-                  <span class=updatedate> &mdash; 19 apr 2024</span>
-                </p>
-                <p>
-                  <span class="updateinf smallerp">lots of behind the scenes work. working on a little project called schedulizer </span>
-                </p>
-              </div>
-
-            <div id=update1>
-            <hr>
-              <p align=right>
-                <span class=updatedate> &mdash; 10 apr 2024</span>
-              </p>
-              <p>
-                <span class="updateinf smallerp">moved some stuff around on this home screeen </span>
-              </p>
-            </div>
-            
-            <div id=update2>
-            <hr>
-              <p align=right>
-                <span class=updatedate> &mdash; 28 mar 2024</span>
-              </p>
-              <p>
-                <span class="updateinf smallerp">added /tannerAndThames/ and more stuff to /aboutself and this home screen. </span>
-              </p>
-            </div>
-            
-          </section>
-          
-          <section class="sidebarsect">
-            <marquee vspace=0 style="font-size: 10pt; opacity: 0.25; padding: 0px; margin: 0px; position: sticky;" scrolldelay=90>yeah i'm online </marquee>
-            <h2> see you on </h2>
-            <div id="socialtray">
-            <a href="//www.instagram.com/sebasterisk/" class="sociallink shadow nolinkstyle">instagram</a>
-            <a href="//www.youtube.com/channel/UC9Qm3XA8oqiXHAXxxZ1fYAA" class="sociallink shadow nolinkstyle">youtube</a>
-            <a href="//discord.gg/byY5nWdtEp" class="sociallink shadow nolinkstyle">badwars dc</a>
-            <a href="//www.roblox.com/users/394796812/profile" class="sociallink shadow nolinkstyle">roblox</a>
-            </div>
-          </section>
-          
-          <hr>
-           <script type="text/javascript" src="//counter.websiteout.com/js/7/0/0/0"></script>
-          <hr>
-        </aside>
-        <main>
-        <!-- PRIMARY SECTION -->
-          <section id="intro" style="text-align: center; padding: 20px 0px;">
-            <h2>hello!</h2>
-            <p>welcome to mah very cool awesome website! 
-            <br>feel free to stick around and explore, i don't mind!
-            </p>
-          </section>
-          <hr>
-
-          <section id="video">
-            <iframe width="400" height="300" src="https://www.youtube.com/embed/p9XTu9THQa4?si=GZ_O1iXJb2JUZvBl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </section>
-          <hr>
-
-          <section id="coolstuff">
-            <h2>a few of my creations</h2>
-            <div class="border mainsect" style="background-image: linear-gradient(to bottom, rgb(13 1 11 / 30%) 0%, rgb(13 1 11 / 60%) 100%), url('/tributes/fskb.gif'); background-size: 100% auto; background-position: 0 65%;">
-              <p><a href="/tannerAndThames/index.html" class="shadow nolinkstyle">tanner and thames</a></p>
-              <p>sixteen-part comic i'm kinda proud of</p>
-            </div> 
-            <div class="border mainsect" style="background-image: url('/creations/badwars/pakresJunctionRender.gif'); background-size: 100% auto; background-position: 0 55%;">
-              <p><a href="//www.roblox.com/games/14255397578/" class="shadow nolinkstyle">badwars</a></p>
-              <p class="shadow">roblox recreation of bedwars (one of my proudest feats)</p>
-            </div> 
-          </section> 
-          <hr>
-
-          <section>
-            <h2>work in progress parts</h2>
-            <div class="border mainsect" style="background-color: #3e1824">
-              <p><a href="/creations/schedulizer/index.html" class="shadow nolinkstyle">scheduilzer beta</a><p>
-              <p class="shadow">school schedule manager, sequel to ClassDash</p>
-            </div> 
-          </section>
-        </main>
-      </div>
-      
-      <footer style="clear: both; margin-top: 50px;">
-        <hr>
-        <aside style="float: right; align-content: right; width: auto;">
-          <img class="crispedge" src="/button.png" style="margin: 0;">
-        </aside>
-        
-        <p> cirrostrat 2024. a neocities website. this page last updated 19 apr 2024.</p>
-        <p><a href="https://phighting.wiki/wiki/File:Darkageremake11.png" class="nolinkstyle">original banner image</a> / <a href="#top" class="nolinkstyle">head back top</a></p>
-        
-      </footer>
+        webpage under renovation<br>come back soon
     </div>
-  </body>
+</body>
 </html>

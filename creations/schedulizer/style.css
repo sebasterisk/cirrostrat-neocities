@@ -1,3 +1,8 @@
+:root{
+    --innercontainer: #121416;
+    --tray: #2b3237;
+}
+
 @font-face {
     font-family: Gotham;
     src: url(/fonts/gotham.otf);
@@ -127,7 +132,7 @@ body, h1, select, option{
 
 #options{
     color: rgb(255, 255, 255);
-    background-color: rgb(43, 50, 55);
+    background-color: #2b3237;
     padding: 4px 0.25em; 
     width: 1;
     display: inline-block;
@@ -346,6 +351,11 @@ table {
     display: flex;
 }
 
+.calcontain{
+    margin: 2px;
+    padding: 2px;
+}
+
 #calendar {
     width: 0;
     visibility: hidden;
@@ -360,11 +370,6 @@ table {
     overflow-y: auto;
     overflow-x: hidden;
     text-wrap: nowrap;
-
-    .calcontain{
-        margin: 2px;
-        padding: 2px;
-    }
 
     #calinput{
         display: none;
