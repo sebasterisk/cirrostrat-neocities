@@ -66,19 +66,15 @@ function pixelperminute(rangestart, rangeend){
     return day_len
 }
 function filtercomplete(){
-    let complete_keys = Object.keys(complete)
-    let periods_fkeys = complete_keys.filter(v => v.startsWith("periodtx"))
-    let ctype_fkeys = complete_keys.filter(v => v.startsWith("humsci"))
+    //let complete_keys = Object.keys(complete)
+    //let periods_fkeys = complete_keys.filter(v => v.startsWith("periodtx"))
+    //let ctype_fkeys = complete_keys.filter(v => v.startsWith("humsci"))
     
-    for(i in periods_fkeys){
-        const current_i = periods_fkeys[i]
-        const current_v = complete[current_i]
-        const corresp_ctype_i = ctype_fkeys[i]
-        const corresp_ctype_v = complete[corresp_ctype_i]
-        
-        newcomplete[current_i] = {
-            "name": current_v,
-            "type": corresp_ctype_v
+    for(i in complete.periods){
+        console.log(i)
+        newcomplete[i] = {
+            "name": complete.periods[i].name,
+            "type": complete.periods[i].type
         }
     }
     console.log(newcomplete)
@@ -145,7 +141,7 @@ function map(map_type, map_day){
     for(i in map_set){
         const current = Number(i) + 1
         const v = map_set[i]
-        const selectedperiod = newcomplete["periodtx"+v]
+        const selectedperiod = newcomplete[v-1]
         const shift = map_shifts.includes(current)
         let starttime
         let starttime_px
