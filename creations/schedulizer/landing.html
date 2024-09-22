@@ -45,7 +45,7 @@
                     date.innerHTML = new Date().toLocaleDateString("en-US", {"dateStyle":"full"})
                 }
                 bannertimenow.innerHTML = new Date().toLocaleTimeString()
-            })
+            }, 100)
         </script>
         
         <div id="statusw">
@@ -61,12 +61,24 @@
 
     <div id="content">
         <div id="flags">   
-            VERY EXPERIMENTAL CUSTOM SCHEDULE IMPORT PAGE
-            <div class="fauxbutton">
-                <label for="skedinput" class="button">silly</label> <span class="small">max size 512kb</span>
+            <div class="calcontain">
+                <b>upload a custom time order</b>
+                <p class="small">
+                Though schedulizer was originally designed with Loyola Blakefield schedules
+                in mind, the flexibility of schedulizer allows the creation of 
+                custom time order files. You can learn how to create your own, 
+                or download from a catalog of various preset ones for your school.
+                <br><br>
+                Your time order will be saved locally and can be changed at any time.
+                </p>
+                <hr>
+                <div class="fauxbutton">
+                    <label for="skedinput" class="button">import .sked</label> <span class="small">max size 128kb</span>
+                </div>
+                <input type="file" accept=".sked,.json" name="skedinput" id="skedinput" class="hidefile">
+                <div id="skedmsg"></div>
+                <button class="button" onclick="window.localStorage.removeItem('sked'); window.location.reload()">clear save</button>
             </div>
-            <input type="file" name="skedinput" id="skedinput" class="hidefile">
-            <div id="skedmsg"></div>
         </div>
 
         <script>
@@ -94,7 +106,7 @@
                     false,
                 );
 
-                if (file && file.size <= 512000) {
+                if (file && file.size <= 128000) {
                     reader.readAsText(file);
                 } else {
                     document.getElementById("errors").innerHTML = "nuh uh"
@@ -161,14 +173,15 @@
         <select name="day" id="day" hidden>
         </select>
         <div id="buttontray">
-            <button id="calendarbutton">open calendar</button>
-            <button id="leanbutton" class="button">banner mode</button>
+            <button id="calendarbutton">calendar</button>
+            <!--button id="leanbutton" class="button">banner mode</button-->
             <a href="./index.html"> <button id="edit" class="button">edit</button> </a>
         </div>
         <button id="importbutton" class="button">import</button>
     </div>
-    <script src="/creations/schedulizer/script.js">
-    </script>
+
+    <script src="https://unpkg.com/lz-string"></script>
+    <script src="/creations/schedulizer/script.js"></script>
 
     <script>
         // for calendar sidebar open/close
@@ -225,24 +238,6 @@
                 flags.style.textWrap = "nowrap"
             }
         }
-
-
-        leanbutton.onclick = () => {
-            if (!leanopen) {
-                leanopen = true
-                lean.style.visibility = "visible"
-                lean.style.opacity = "1"
-                lean.style.textWrap = "wrap"
-                document.documentElement.requestFullscreen()
-            } else {
-                leanopen = false
-                lean.style.opacity = "0"
-                lean.style.visibility = "hidden"
-                lean.style.textWrap = "nowrap"
-                document.exitFullscreen()
-            }
-        }
-
     </script>
 
     <footer hidden><hr>

@@ -75,20 +75,7 @@
             Bookmark the resulting URL for future use.
             </div>
     </div>
-
-    <script>
-        const form = document.getElementById("inputform")
-
-        form.addEventListener("submit", (e) => {
-            e.preventDefault()
-            const formData = new FormData(form)
-            let things = Object.fromEntries(formData)
-            let string = JSON.stringify(things)
-
-            const headto = new URL(window.location.origin + "/creations/schedulizer/landing.html")
-            headto.searchParams.set("data", string)
-            window.location.href = headto.toString()
-        })
-    </script>
+    <script src="https://unpkg.com/lz-string"></script>
+    <script src="scheduleform.js"></script>
 </body>
 </html>

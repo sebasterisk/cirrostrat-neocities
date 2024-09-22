@@ -32,7 +32,8 @@ if (window.location.search == "") {
     thisurl = new URL(here)
     params = thisurl.searchParams
     data = params.get("data")
-    complete = JSON.parse(data)
+    complete = JSON.parse(LZString.decompressFromEncodedURIComponent(data))
+    console.log(complete)
     filtercomplete()
     getjson()
 
@@ -80,15 +81,17 @@ function filtercomplete(){
             "type": corresp_ctype_v
         }
     }
+    console.log(newcomplete)
 }
 function getjson(){
     // gets json file
     if(window.localStorage.getItem("sked")){
         fetchres = JSON.parse(window.localStorage.getItem("sked"))
+        // handle bad JSON here
         listprofiles()
 
         console.log("using custom schedule " + fetchres.meta.name)
-        document.getElementById("skedmsg").innerHTML = `SAVE ${fetchres.meta.name} LOADED!!!`
+        document.getElementById("skedmsg").innerHTML = `current: ${fetchres.meta.name}`
     } else {
         fetch('/creations/schedulizer/schedule.json')
             .then((response) => response.json())
@@ -97,13 +100,10 @@ function getjson(){
                 listprofiles()
             })
         console.log("not using save")
-        document.getElementById("skedmsg").innerHTML = `NO SAVE LOADED!!!`
+        document.getElementById("skedmsg").innerHTML = `no custom time order yet`
     }
 }
 function listprofiles(){
-    if(!(fetchres.profiles)){
-        cry("INVALID JSON!!!!!!!!!")
-    }
     for(let i in fetchres.profiles){
         let profile = document.createElement("option")
         profile.innerHTML = fetchres.profiles[i].attr.name
