@@ -1,4 +1,5 @@
 const form = document.getElementById("inputform")
+const custom = document.getElementById("custom")
 
 form.addEventListener("submit", (e) => {
     e.preventDefault()
@@ -32,6 +33,10 @@ form.addEventListener("submit", (e) => {
             default:
                 console.error(`couldn't determine resulting key from things index ${i}`)
         }
+    }
+
+    if (custom.value != ""){
+        formatted = custom.value
     }
     console.log(formatted)
     let string = JSON.stringify(formatted)

@@ -62,12 +62,10 @@
     <div id="content">
         <div id="flags">   
             <div class="calcontain">
-                <b>upload a custom time order</b>
+                <b>upload a custom timetable</b>
                 <p class="small">
-                Though schedulizer was originally designed with Loyola Blakefield schedules
-                in mind, the flexibility of schedulizer allows the creation of 
-                custom time order files. You can learn how to create your own, 
-                or download from a catalog of various preset ones for your school.
+                Not a student of Loyola Blakefield? Schedulizer supports custom timetables.
+                EXPERIMENTAL! Documentation about the JSON schema is not yet available.
                 <br><br>
                 Your time order will be saved locally and can be changed at any time.
                 </p>
@@ -78,6 +76,10 @@
                 <input type="file" accept=".sked,.json" name="skedinput" id="skedinput" class="hidefile">
                 <div id="skedmsg"></div>
                 <button class="button" onclick="window.localStorage.removeItem('sked'); window.location.reload()">clear save</button>
+                <hr>
+                <p class="small" style="color:#fff2">
+                    JSON schema is checked.
+                </p>
             </div>
         </div>
 
@@ -166,8 +168,6 @@
         options
         <select name="type" id="type">
             <option value="" selected disabled hidden>schedule type</option>
-            <!--
-            -->
         </select>
 
         <select name="day" id="day" hidden>
@@ -181,7 +181,15 @@
     </div>
 
     <script src="https://unpkg.com/lz-string"></script>
-    <script src="/creations/schedulizer/script.js"></script>
+
+    <!-- AJV json schema validator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.17.1/ajv7.min.js" integrity="sha512-OIkF2zyWS+sUanhT2i75RexNDQ2EKHayyeOxBx4Z4ct0D+dlPzZPhHTi7xZ5eU7aznNLMX7pCZyZVSi25+EGMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        ;(function () {
+            const Ajv = window.ajv8
+        })()
+    </script>
+    <script src="./script.js"></script>
 
     <script>
         // for calendar sidebar open/close
