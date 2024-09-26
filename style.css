@@ -1,5 +1,43 @@
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham.otf);
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-b.otf);
+    font-weight: bold;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-i.otf);
+    font-style: italic;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-bi.otf);
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-c.otf);
+    font-stretch: condensed;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-ci.otf);
+    font-stretch: condensed;
+    font-style: italic;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-xc.otf);
+    font-stretch: semi-condensed;
+}
+
+
 :root{
-    font-family: Tahoma, Verdana, sans-serif;
+    font-family: Gotham, Tahoma, Verdana, sans-serif;
 }
 
 .backbox::before {
@@ -27,7 +65,7 @@
     font-family: Tahoma, Geneva, Verdana, sans-serif;
     z-index: 1;
     background-color: #21040f;
-    background-image: radial-gradient(#0000, #0009), url(/img/webscanlines.png);
+    background-image: radial-gradient(#0000, #000c), url(/img/webscanlines.png);
     opacity: 85%;
 }
 
@@ -38,12 +76,15 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-shadow: #000 1px 1px 3px;
+    text-shadow: #843953 0 0 10px;
     text-align: center;
+    font-size: 10pt;
 }
 
 h1{
     font-weight: normal;
+    font-size: 25pt;
+    font-stretch: semi-condensed;
     letter-spacing: 0.2em;
     margin: 4px;
     margin-right: 0.1em;

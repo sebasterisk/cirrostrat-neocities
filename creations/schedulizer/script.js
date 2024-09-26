@@ -22,11 +22,86 @@ const statend = document.getElementById("statend")
 // url parameters
 let here, thisurl, params, data, complete
 
+// json schema validator
+const Ajv = window.ajv7
+const ajv = new Ajv()
+const tt_schema = {
+    "title": "timetable",
+    "type": "object",
+    "properties":{
+        "meta":{
+            "type": "object",
+            "properties": {
+                "name":{
+                    "type":"string"
+                },
+                "uniqueperiods":{
+                    "type":"number"
+                },
+                "periodsaretyped":{
+                    "type":"boolean"
+                },
+                "types":{
+                    "type":"array"
+                }
+            },
+            "required":["name","uniqueperiods","periodsaretyped","types"]
+        },
+        "profiles":{
+            "type": "array",
+            "items":{
+                "type": "object",
+                "properties":{
+                    "attr":{
+                        "type":"object",
+                        "properties":{
+                            "name":{
+                                "type":"string"
+                            },
+                            "len":{
+                                "type":"number"
+                            },
+                            "range":{
+                                "type":"number"
+                            },
+                            "typediff":{
+                                "type":"array",
+                                "items":{
+                                    "type": "number"
+                                }
+                            },
+                            "bounds":{
+                                "type":"array",
+                                "items":{
+                                    "type": "string"
+                                }
+                            },
+                            "sets":{
+                                "type":"object"
+                            }
+                        },
+                        "required":["name","len","range","typediff","bounds","sets"]
+                    },
+                    "times":{
+                        "type":"array"
+                    },
+                    "fixed":{
+                        "type":"array"
+                    },
+                },
+                "required":["attr","times"]
+            }
+        }
+    },
+    "required":["meta","profiles"]
+}
+const validatett = ajv.compile(tt_schema)
+
 // check for data
 if (window.location.search == "") {
     console.error("no data in searchparams!")
     const errtext = document.getElementById("errors")
-    errtext.innerHTML = "no schedule in save. check your url, or select &quot;edit&quot; to begin."
+    errtext.innerHTML = "no schedule in save. check your url, or select &quot;edit&quot; to begin.<br>NOTE: the old system of raw text url params have been replaced with a 64 bit string. if you had that url saved, you will need to setup again!"
 } else {
     here = window.location.href
     thisurl = new URL(here)
@@ -66,10 +141,6 @@ function pixelperminute(rangestart, rangeend){
     return day_len
 }
 function filtercomplete(){
-    //let complete_keys = Object.keys(complete)
-    //let periods_fkeys = complete_keys.filter(v => v.startsWith("periodtx"))
-    //let ctype_fkeys = complete_keys.filter(v => v.startsWith("humsci"))
-    
     for(i in complete.periods){
         console.log(i)
         newcomplete[i] = {
@@ -79,13 +150,20 @@ function filtercomplete(){
     }
     console.log(newcomplete)
 }
+function chatisthisvalid(x){
+    const validity = validatett(x)
+    console.log(validity)
+    if (!validity){
+        cry("JSON timetable does not match schema. The current imported timetable may be invalid! <br>" + JSON.stringify(validate.errors))
+    }
+}
 function getjson(){
     // gets json file
     if(window.localStorage.getItem("sked")){
         fetchres = JSON.parse(window.localStorage.getItem("sked"))
         // handle bad JSON here
         listprofiles()
-
+        chatisthisvalid(fetchres)
         console.log("using custom schedule " + fetchres.meta.name)
         document.getElementById("skedmsg").innerHTML = `current: ${fetchres.meta.name}`
     } else {
@@ -96,6 +174,7 @@ function getjson(){
                 listprofiles()
             })
         console.log("not using save")
+        chatisthisvalid(fetchres)
         document.getElementById("skedmsg").innerHTML = `no custom time order yet`
     }
 }
@@ -134,7 +213,6 @@ function map(map_type, map_day){
 
     const start = map_look.attr.bounds[0]
     const end = map_look.attr.bounds[1]
-    const pd_len = map_look.attr.len
     const ppm = pixelperminute(start, end)
 
     // period selection iteration
@@ -143,6 +221,10 @@ function map(map_type, map_day){
         const v = map_set[i]
         const selectedperiod = newcomplete[v-1]
         const shift = map_shifts.includes(current)
+        let pd_len = map_look.attr.len
+        if (map_look.attr.lenoverride && map_look.attr.lenoverride.find(e => e.for == current)){
+            pd_len = map_look.attr.lenoverride.find(e => e.for == current).to
+        }
         let starttime
         let starttime_px
         
@@ -164,8 +246,8 @@ function map(map_type, map_day){
         }   
     }
 
-    if (map_look.attr.fixed && map_look.attr.fixed[0]){
-        let fixed = map_look.attr.fixed
+    if (map_look.fixed && map_look.fixed[0]){
+        let fixed = map_look.fixed
         for (i in fixed){
             map_totable.push({ 
                 "name": fixed[i].name,
