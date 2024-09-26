@@ -108,7 +108,8 @@ if (window.location.search == "") {
     params = thisurl.searchParams
     data = params.get("data")
     let decomp = LZString.decompressFromEncodedURIComponent(data)
-    decomp = decomp.replace(/\s/g, '')
+    //decomp = decomp.replace(/\s/g, '')
+    decomp = decomp.replace(/\\n/g, '')
     decomp = decomp.replace(/\\/g, '')
     decomp = decomp.replace(/^"/, '')
     decomp = decomp.replace(/"$/, '')
