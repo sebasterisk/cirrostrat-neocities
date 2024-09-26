@@ -247,6 +247,7 @@ function getjson(){
             chatisthisvalid(fetchres,"tt")
         })
         console.log("not using save")
+        chatisthisvalid(fetchres)
         document.getElementById("skedmsg").innerHTML = `no custom time order yet`
     }
 }
