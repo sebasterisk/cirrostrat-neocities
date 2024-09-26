@@ -107,7 +107,13 @@ if (window.location.search == "") {
     thisurl = new URL(here)
     params = thisurl.searchParams
     data = params.get("data")
-    complete = JSON.parse(LZString.decompressFromEncodedURIComponent(data))
+    let decomp = LZString.decompressFromEncodedURIComponent(data)
+    decomp = decomp.replace(/\s/g, '')
+    decomp = decomp.replace(/\\/g, '')
+    decomp = decomp.replace(/^"/, '')
+    decomp = decomp.replace(/"$/, '')
+    console.log(decomp)
+    complete = JSON.parse(decomp)
     console.log(complete)
     filtercomplete()
     getjson()
@@ -154,7 +160,7 @@ function chatisthisvalid(x){
     const validity = validatett(x)
     console.log(validity)
     if (!validity){
-        cry("JSON timetable does not match schema. The current imported timetable may be invalid! <br>" + JSON.stringify(validate.errors))
+        cry("JSON timetable does not match schema. The current imported timetable may be invalid! <br>" + JSON.stringify(validatett.errors))
     }
 }
 function getjson(){
@@ -171,10 +177,10 @@ function getjson(){
             .then((response) => response.json())
             .then((json) => {
                 fetchres = json
+                chatisthisvalid(fetchres)
                 listprofiles()
             })
         console.log("not using save")
-        chatisthisvalid(fetchres)
         document.getElementById("skedmsg").innerHTML = `no custom time order yet`
     }
 }
