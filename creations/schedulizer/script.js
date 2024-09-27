@@ -166,7 +166,7 @@ if (window.location.search == "") {
         chatisthisvalid(complete, "pd")
         console.log(complete)
     } catch {
-        cry("the JSON was unable to be parsed...")
+        cry("class list JSON was unable to be parsed... try setup again")
     }
     
     filtercomplete()
