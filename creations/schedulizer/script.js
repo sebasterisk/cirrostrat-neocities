@@ -42,7 +42,10 @@ const tt_schema = {
                     "type":"boolean"
                 },
                 "types":{
-                    "type":"array"
+                    "type":"array",
+                    "items":{
+                        "type": "string"
+                    }
                 }
             },
             "required":["name","uniqueperiods","periodsaretyped","types"]
@@ -97,6 +100,51 @@ const tt_schema = {
 }
 const validatett = ajv.compile(tt_schema)
 
+const pd_schema = {
+    "title":"classlist",
+    "type":"object",
+    "properties":{
+        "meta":{
+            "type": "object",
+            "properties": {
+                "name":{
+                    "type":"string"
+                },
+                "uniqueperiods":{
+                    "type":"number"
+                },
+                "periodsaretyped":{
+                    "type":"boolean"
+                },
+                "types":{
+                    "type":"array",
+                    "items":{
+                        "type": "string"
+                    }
+                }
+            },
+            "required":["uniqueperiods","periodsaretyped","types"]
+        },
+        "periods":{
+            "type": "array",
+            "items":{
+                "type":"object",
+                "properties":{
+                    "name":{
+                        "type": "string"
+                    },
+                    "type":{
+                        "type": "string"
+                    }
+                },
+                "required":["name", "type"]
+            }
+        }
+    },
+    "required":["meta","periods"]
+}
+const validatepd = ajv.compile(pd_schema)
+
 // check for data
 if (window.location.search == "") {
     console.error("no data in searchparams!")
@@ -108,14 +156,19 @@ if (window.location.search == "") {
     params = thisurl.searchParams
     data = params.get("data")
     let decomp = LZString.decompressFromEncodedURIComponent(data)
-    //decomp = decomp.replace(/\s/g, '')
+    // probably NOT the best way of doing this
     decomp = decomp.replace(/\\n/g, '')
     decomp = decomp.replace(/\\/g, '')
     decomp = decomp.replace(/^"/, '')
     decomp = decomp.replace(/"$/, '')
-    console.log(decomp)
-    complete = JSON.parse(decomp)
-    console.log(complete)
+    try {
+        complete = JSON.parse(decomp)
+        chatisthisvalid(complete, "pd")
+        console.log(complete)
+    } catch {
+        cry("the JSON was unable to be parsed...")
+    }
+    
     filtercomplete()
     getjson()
 
@@ -157,11 +210,23 @@ function filtercomplete(){
     }
     console.log(newcomplete)
 }
-function chatisthisvalid(x){
-    const validity = validatett(x)
-    console.log(validity)
-    if (!validity){
-        cry("JSON timetable does not match schema. The current imported timetable may be invalid! <br>" + JSON.stringify(validatett.errors))
+function chatisthisvalid(x, type){
+    let validity
+    switch (type){
+        case "tt":
+            validity = validatett(x)
+            console.log("timetable valid " + validity)
+            if (!validity){
+                cry("JSON timetabe list does not match schema. The current timetable may be invalid! <br> This was the offense: " + validatett.errors[0].message)
+            }
+            break
+        case "pd":
+            validity = validatepd(x)
+            console.log("class list valid " + validity)
+            if (!validity){
+                cry("JSON class list does not match schema. The current class list may be invalid! <br> This was the offense: " + validatepd.errors[0].message)
+            }
+            break
     }
 }
 function getjson(){
@@ -170,17 +235,17 @@ function getjson(){
         fetchres = JSON.parse(window.localStorage.getItem("sked"))
         // handle bad JSON here
         listprofiles()
-        chatisthisvalid(fetchres)
+        chatisthisvalid(fetchres,"tt")
         console.log("using custom schedule " + fetchres.meta.name)
         document.getElementById("skedmsg").innerHTML = `current: ${fetchres.meta.name}`
     } else {
         fetch('/creations/schedulizer/schedule.json')
-            .then((response) => response.json())
-            .then((json) => {
-                fetchres = json
-                chatisthisvalid(fetchres)
-                listprofiles()
-            })
+        .then((response) => response.json())
+        .then((json) => {
+            fetchres = json
+            listprofiles()
+            chatisthisvalid(fetchres,"tt")
+        })
         console.log("not using save")
         document.getElementById("skedmsg").innerHTML = `no custom time order yet`
     }
