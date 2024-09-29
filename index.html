@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <div class="backbox"></div>
     <div class="cont"></div>
+    <div class="overheadcont"></div>
     <script>
         // background moving thing
         const offset = 100
@@ -19,9 +20,23 @@
             tick++
         }, 50)
     </script>
-    <div id="contall">
-        <h1>cirrostrat</h1>
-        webpage under renovation<br>come back soon
+    <div id="contall" class="contall-mainloc" >
+        <img id="logo" src="/img/drawing-16.png">
+        <header>
+            <h1>cirrostrat</h1>
+            a silly little website for a silly little me
+            <hr>
+            <nav id="headlinks">
+                <ul class="hzlinks">
+                  <li><a href="/index.html" class="hzel">home</a></li>
+                  <li><a href="/tributes/index.html" class="hzel">creations</a></li>
+                  <li><a href="/tributes/index.html" class="hzel">links</a></li>
+                  <li><a href="/aboutself.html" class="hzel">about me</a></li>
+                  <!-- <li><a href="" class="hzel"></a></li> -->
+                </ul>
+            </nav>
+        </header>
+        <img src="/img/phi.png" id="headerimg">
     </div>
 </body>
 </html>
