@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cirrostrat / whoopsie</title>
-    <link href="/newstyle.css" rel="stylesheet" type="text/css" media="all">
-  </head>
-  <body>
-    <div id="containall">
-      <h1>cirrostrat</h1>
-      <hr>
-      <div class="border" style="width: 60%; min-width: 400px; padding: 15px 2px; margin: 40px auto; text-align: center">
-        <img src="/404img.png" alt="man holding map, confused" class="responsive" style='height: 100%; width: 100%; object-fit: contain; opacity: 0.5;'/>
-        <p style="font-size: 20pt; line-height: 25pt;">404</p>
-        <p class="morespace">"i don't know where you want to go,
-          <br>
-          but at least i can take you <span style="background-color: #fff; padding: 0 2px"><a href="/index.html" class="hzel">home</a></span>."
-        </p>
-      </div>
-      <footer style="clear: both">
-        <hr>
-        <aside style="float: right; align-content: right; width: auto;">
-          <img class="crispedge" src="/button.png" style="margin: 0;">
-        </aside>
-        
-        <p> cirrostrat 2024. a neocities website. last updated 24 mar 2024.</p>
-        <p><a href="https://phighting.wiki/wiki/File:Darkageremake11.png" class="nolinkstyle">original banner image</a> / <a href="#top" class="nolinkstyle">head back top</a></p>
-      </footer>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="backbox"></div>
+    <div class="cont"></div>
+    <div class="overheadcont"></div>
+    <script>
+        // background moving thing
+        const offset = 100
+        let tick = 0
+        setInterval(()=>{
+            if (tick >= offset){tick = 0}
+            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
+            tick++
+        }, 50)
+    </script>
+    <div id="contall" class="center ">
+        <img id="logo" src="/img/drawing-16.png">
+
+        <h1>cirrostrat</h1>
+        <img src="/img/404img.png" alt="man holding map, confused" class="responsive transhue" style='height: 100%; width: 100%; object-fit: contain; opacity: 0.2;'/>
+        <div class="leftfloat fourohfour">404</div>
+        <div>i don't know where you want to go <br> but at least i can take you <a href="/index.html" class="hzel">home</a>.</div>
     </div>
-  </body>
+</body>
 </html>
