@@ -94,9 +94,9 @@
 }
 
 .contall-mainloc{
-    top:10vw;
-    left:10vw;
-    width: calc(100% - 20vw);
+    top:10px;
+    left:10px;
+    width: calc(100% - 10px);
 }
 
 .center{
@@ -150,32 +150,15 @@ hr{
 nav {
     color: #0d010b;
     margin: 0;
-    padding: 0;
+    padding-left: 10px;
+
+    float: right;
 }
   
 .hzlinks{
   list-style: none;
   margin: 0px;
   padding: 0;
-}
-
-.hzel:hover{
-  text-decoration: none;
-  color: #d63f74;
-  font-size: 13pt;
-  letter-spacing: 5px;
-  transition: 0.5s
-}
-
-.nolinkstyle{
-  text-decoration: none;
-  color: #e890b0
-}
-
-.hzel:not(:hover){
-  text-decoration: none;
-  letter-spacing: 0px;
-  transition: 0.5s
 }
 
 li{
@@ -192,4 +175,26 @@ li{
 
 .fourohfour{
     font-size: 2rem;
+}
+
+#game{
+    box-sizing: border-box;
+    border: 1px solid white;
+    width: calc(100% - 2vw);
+    height: 95vh;
+    padding: 5px;
+}
+#dealer, #player{
+    display: flex;
+}
+.card{
+    margin: 6px 0px 0px 6px;
+    padding: 5px;
+    border: 1px solid white;
+    width: 80px;
+    height: 120px;
+    font-size: 18pt;
+}
+.covered{
+    background-color: #6a273e;
 }

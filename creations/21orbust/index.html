@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21 or bust!</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="backbox"></div>
+    <div class="cont"></div>
+    <div class="overheadcont"></div>
+    <script>
+        // background moving thing
+        const offset = 100
+        let tick = 0
+        setInterval(()=>{
+            if (tick >= offset){tick = 0}
+            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
+            tick++
+        }, 50)
+    </script>
+    <div id="contall" class="contall-mainloc" >
+        <header>
+            <i><b>21 or bust!</b></i> by cirrostrat (WIP)
+            <nav id="headlinks">
+                <ul class="hzlinks">
+                  <li><a href="/index.html">home</a></li>
+                  <li><a href="/tributes/index.html">creations</a></li>
+                  <li><a href="/tributes/index.html">links</a></li>
+                  <li><a href="/aboutself.html">about me</a></li>
+                  <!-- <li><a href="" class="hzel"></a></li> -->
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div id="game">
+                dealer hand: <div id="dealer"></div><br>
+                your hand: <div id="player"></div>
+                card value: <span id="cardval"></span>
+                <div id="tray">
+                    <button type="button" id="again">again!</button>
+                    <button type="button" id="hit">hit</button>
+                    <button type="button" id="stand">stand</button>
+                </div>
+                
+            </div>
+        </main>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
