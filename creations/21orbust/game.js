@@ -7,13 +7,10 @@ let money = 1000
 let bet = 0
 
 let valueofcards = 0
-let valueofcards_ace11 = 0
-
 let dealervalueofcards = 0
-let dealervalueofcards_ace11 = 0
 
 const suits = ["&hearts;", "&diams;", "&spades;", "&clubs;"]
-const truevalues = [1,2,3,4,5,6,7,8,9,10,10,10,10]
+const truevalues = [11,2,3,4,5,6,7,8,9,10,10,10,10]
 const displayvalues = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
 const dealer_disp = document.getElementById("dealer")
 const player_disp = document.getElementById("player")
@@ -23,6 +20,7 @@ const dealercardval = document.getElementById("dealercardval")
 const hitbtn = document.getElementById("hit")
 const standbtn = document.getElementById("stand")
 const againbtn = document.getElementById("again")
+const statusdiv = document.getElementById("status")
 
 // fisher-yates solution from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
@@ -90,7 +88,12 @@ function listhand(dealer_reveal){
         div.classList.add("card")
         div.innerHTML=`${displayvalues[player_hand[i].val - 1]}${suits[player_hand[i].suit]}`
         player_disp.appendChild(div)
-        valueofcards += player_hand[i].true
+        
+        if(player_hand[i].true == 11 && (valueofcards + player_hand[i].true) > 21){
+            valueofcards += 1
+        } else {
+            valueofcards += player_hand[i].true
+        }
     }
     cardval.innerHTML = valueofcards
 }
@@ -99,6 +102,10 @@ function bust(){
     againbtn.disabled = false
     hitbtn.disabled = true
     standbtn.disabled = true
+    lose()
+}
+function blackjack(){
+    stand(true)
 }
 function hit(){
     let temp = deck.pop()
@@ -109,8 +116,19 @@ function hit(){
         bust()
     }
 }
-
-function stand(){
+function win(blackjack){
+    statusdiv.innerHTML = "WINNER!"
+    if (blackjack){
+        statusdiv.innerHTML = "BLACKJACK!"
+    }
+}
+function lose(){
+    statusdiv.innerHTML = "LOSER!"
+}
+function tie(){
+    statusdiv.innerHTML = "TIE!"
+}
+function stand(blackjack){
     listhand(true)
     while (dealervalueofcards < 17){
         let temp = deck.pop()
@@ -120,8 +138,19 @@ function stand(){
     againbtn.disabled = false
     hitbtn.disabled = true
     standbtn.disabled = true
+
+    if (blackjack){
+        win(true)
+    } else if (dealervalueofcards > 21 || valueofcards > dealervalueofcards){
+        win()
+    } else if (dealervalueofcards > valueofcards || valueofcards > 21) {
+        lose()
+    } else {
+        tie()
+    }
 }
 function init(){
+    statusdiv.innerHTML = ""
     if(deck.length < 20){
         newdeck()
     }
@@ -132,6 +161,10 @@ function init(){
     againbtn.disabled = true
     hitbtn.disabled = false
     standbtn.disabled = false
+
+    if (valueofcards == 21){
+        blackjack()
+    }
 }
 init()
 
@@ -140,7 +173,7 @@ hitbtn.addEventListener("click", ()=>{
 })
 
 standbtn.addEventListener("click", ()=>{
-    stand()
+    stand(false)
 })
 
 againbtn.addEventListener("click", ()=>{
