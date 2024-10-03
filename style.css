@@ -123,6 +123,18 @@ h1{
     padding-left: 5px;
 }
 
+h2{
+    font-weight: normal;
+    font-size: 18pt;
+    font-stretch: semi-condensed;
+    margin: 10px;
+    margin-left: 0;
+    display: block;
+    width: 100%;
+    padding-top: 18px;
+    text-align: center;
+}
+
 #logo{
     position: absolute;
     z-index: 1;
@@ -192,4 +204,26 @@ li{
 
 .fourohfour{
     font-size: 2rem;
+}
+
+.tidbit{
+    padding: 9px;
+    margin-top: 5px;
+    border: 1px solid #6a273e;
+    color: #d89dae;
+    font-stretch: semi-condensed;
+    transition: background-color 0.5s steps(4), color 0.5s steps(4);
+}
+.tidbit:hover{
+    background-color: #84395330;
+    color: #e7cdd5;
+    .tidbithead{
+        letter-spacing: 0.1em;
+    }
+}
+.tidbithead{
+    font-size: 12pt;
+    font-stretch: normal;
+    font-style: italic;
+    transition: letter-spacing 0.5s;
 }

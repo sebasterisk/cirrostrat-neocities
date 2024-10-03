@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
+</head>
+<body>
+    <div class="backbox"></div>
+    <div class="cont"></div>
+    <div class="overheadcont"></div>
+    <script>
+        // background moving thing
+        const offset = 100
+        let tick = 0
+        setInterval(()=>{
+            if (tick >= offset){tick = 0}
+            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
+            tick++
+        }, 50)
+    </script>
+    <div id="contall" class="contall-mainloc" >
+        <img id="logo" src="/img/drawing-16.png">
+        <header>
+            <h1>cirrostrat</h1>
+            a silly little website for a silly little me!
+            <hr>
+            <nav id="headlinks">
+                <ul class="hzlinks">
+                  <li><a href="/index.html" class="hzel">home</a></li>
+                  <li><a href="/tributes/index.html" class="hzel">creations</a></li>
+                  <li><a href="/tributes/index.html" class="hzel">links</a></li>
+                  <li><a href="/aboutself.html" class="hzel">about me</a></li>
+                  <!-- <li><a href="" class="hzel"></a></li> -->
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h2>&#x25b8; creations</h2>
+            this webpage serves as a collection of a few of my projects that
+            i've made over the years. you can also find more coding tidbits over on github
+            <br><br>
+            <a href="/creations/schedulizer/index.html">
+                <div class="tidbit">
+                    <span class="tidbithead"> schedulizer </span><br>
+                    a modular schedule tracker for students
+                </div>
+            </a>
+            <a href="https://www.roblox.com/games/14255397578/BADwars-alpha">
+                <div class="tidbit">
+                    <span class="tidbithead"> badwars! </span><br>
+                    the first, and quite possibly last, game i've made on roblox
+                </div>
+            </a>
+            <a href="/creations/21orbust/index.html">
+                <div class="tidbit">
+                    <span class="tidbithead"> 21 or bust </span><br>
+                    one-deck blackjack against entropy themselves, a work in progress
+                </div>
+            </a>
+            <a href="/tannerAndThames/index.html">
+                <div class="tidbit">
+                    <span class="tidbithead"> tanner and thames </span><br>
+                    sixteen part comic &mdash; if you can even call it that &mdash; about the lives of two brothers
+                </div>
+            </a>
+        </main>
+    </div>
+</body>
+</html>

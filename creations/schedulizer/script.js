@@ -18,6 +18,7 @@ const leanend = document.getElementById("leanend")
 const stathead = document.getElementById("stathead")
 const statmain = document.getElementById("statmain")
 const statend = document.getElementById("statend")
+const statbar = document.getElementById("progress")
 
 // url parameters
 let here, thisurl, params, data, complete
