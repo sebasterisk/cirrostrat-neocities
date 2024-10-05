@@ -86,7 +86,7 @@
 }
 
 #contall{
-    position: fixed;
+    position: absolute;
     z-index: 3;
     color: #d89dae;
     text-shadow: #843953 0 0 10px;
@@ -96,19 +96,41 @@
 .contall-mainloc{
     top:10vw;
     left:10vw;
+    height: fit-content;
     width: calc(100% - 20vw);
+    padding-bottom: 20vw;
 }
 
 .center{
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
+.relcenter{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%)
+}
+
 .txcenter{
     text-align: center;
     font-size: 10pt;
+}
+
+header{
+    width: 100%;
+    overflow: visible;
+    display: block;
+    iframe{
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+    }
 }
 
 h1{
@@ -131,7 +153,6 @@ h2{
     margin-left: 0;
     display: block;
     width: 100%;
-    padding-top: 18px;
     text-align: center;
 }
 
@@ -226,4 +247,40 @@ li{
     font-stretch: normal;
     font-style: italic;
     transition: letter-spacing 0.5s;
+}
+#comictray{
+    font-size: 18px;
+}
+button{
+    font-family: Gotham;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    box-shadow: 2px 2px #6a273e;
+    background-color: #36081a;
+    border: none;
+    color: #d89dae;
+    transition: top 0.5s, left 0.5s, box-shadow 0.5s;
+}
+button:hover{
+    top: 2px;
+    left: 2px;
+    box-shadow: 0px 0px #6a273e, 0px 0px 10px #843953;
+    background-color: #6a273e;
+    border: none;
+    color: #d89dae;
+}
+button:disabled{
+    color: #d89dae4d;
+    box-shadow: 2px 2px #36081a;
+}
+button:hover:disabled{
+    top: 0px;
+    left: 0px;
+    box-shadow: 2px 2px #36081a;
+    background-color: #36081a;
+    border: none;
+}
+#intro{
+    height: 410px;
 }

@@ -1,0 +1,18 @@
+:root{
+    background-color: transparent !important;
+    padding: 0;
+    margin: 0;
+}
+body {
+    background-color: transparent !important;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+#contall{
+    top:0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
