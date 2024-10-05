@@ -185,6 +185,11 @@ nav {
     margin: 0;
     padding: 0;
 }
+
+nav:has(a:hover) a{
+    color: #843953;
+    text-shadow: 0 0;
+}
   
 .hzlinks{
   list-style: none;
@@ -194,7 +199,8 @@ nav {
 
 .hzel:hover{
   text-decoration: none;
-  color: #d63f74;
+  color: #ff84a9;
+  text-shadow: 0 0 7px #ff84a9;
   font-size: 13pt;
   letter-spacing: 5px;
   transition: 0.5s
