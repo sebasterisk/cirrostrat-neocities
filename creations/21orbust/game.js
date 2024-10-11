@@ -139,7 +139,7 @@ function stand(blackjack){
     hitbtn.disabled = true
     standbtn.disabled = true
 
-    if (blackjack){
+    if (blackjack && dealervalueofcards != valueofcards){
         win(true)
     } else if (dealervalueofcards > 21 || valueofcards > dealervalueofcards){
         win()

@@ -39,6 +39,7 @@
 :root{
     font-family: Gotham, Tahoma, Verdana, sans-serif;
     background-color: #21040f;
+    --trans: perspective(50vh) rotate3d(1,0,0,40deg) rotate3d(0,0,1,7deg);
 }
 
 .backbox::before {
@@ -181,12 +182,13 @@ li{
     box-sizing: border-box;
     background-color: #30091888;
     margin: 0 auto;
-    height: 85vh;
+    height: 75vh;
     padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform: perspective(15cm) rotate3d(1,0,0,50deg) rotate3d(0,0,1,10deg);
+    transform: var(--trans);
+    transition: transform 2s;
 }
 #bets{
     flex: 1;
@@ -202,16 +204,76 @@ li{
     bottom: 10px;
     padding: 5px;
     z-index: 5;
+    #status{
+        position: absolute;
+        z-index: 10;
+        left: calc(100% + 5px);
+        top: 0;
+        font-stretch: semi-condensed;
+        font-size: 14pt;
+    }
+}
+#dealerui{
+    position: fixed;
+    background-color: #4d182b;
+    width: max-content;
+    min-width: 120px;
+    text-align: right;
+    top: 25vh;
+    right: 10px;
+    padding: 5px;
+    z-index: 5;
+    img{
+        height: 25vh;
+        max-height: 150px;
+        position: absolute;
+        bottom: 100%;
+        right: 0px;
+        opacity: 30%;
+    }
 }
 .card{
     margin: 6px 0px 0px 6px;
     padding: 5px;
     background-color: #370f1e;
-    width: 80px;
-    height: 120px;
-    font-size: 18pt;
+    width: 90px;
+    height: 140px;
+    font-size: 22pt;
     position: relative;
 }
 .covered{
     background-color: #6a273e;
+}
+.subtlebutton{
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+#persp{
+    position: fixed;
+    display: block;
+    width: min-content;
+    height: min-content;
+    bottom: 10px;
+    right: 10px;
+    margin: 0;
+}
+.uiheader{
+    position: absolute;
+    bottom: -16pt;
+    right: 1px;
+    font-weight: bold;
+    font-size: 16pt;
+    text-shadow: none;
+    opacity: 30%;
+    color: #843953;
+}
+.topuiheader{
+    position: absolute;
+    top: -16pt;
+    left: 1px;
+    font-weight: bold;
+    font-size: 16pt;
+    text-shadow: none;
+    opacity: 30%;
+    color: #843953;
 }
