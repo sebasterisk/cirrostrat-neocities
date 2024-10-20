@@ -39,6 +39,8 @@
 :root{
     font-family: Gotham, Tahoma, Verdana, sans-serif;
     background-color: #21040f;
+    width: 100vw;
+    overflow-x: hidden;
 }
 
 .backbox::before {
@@ -307,4 +309,75 @@ button:hover:disabled{
     margin: 0 auto;
     margin-top: 30px;
     padding: 0 20px;
+}
+.linkpglink{
+    font-size: 14pt;
+    padding-top: 8px;
+}
+
+aside{
+    float: left;
+    margin: 10px;
+    margin-top: 0;
+    margin-left: -20px;
+    width: 200px;
+}
+.focus {
+    --clippath: polygon(0 25%, 100% 0, 100% 95%, 0 100%);
+    font-size: 40pt;
+    font-stretch: condensed;
+    color: #ffe6ee;
+    margin: 0 -10vw;
+    padding: 10vw;
+    padding-top: 80px;
+    padding-bottom: 15px;
+    position: relative;
+}
+.focus::before{
+    content: " ";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  height: 100%;
+  width: 200%;  
+  opacity: .45; 
+  z-index: -1;
+  background: url("/img/phi.png");
+  background-position: 50%;
+  background-size: cover;
+  clip-path: var(--clippath);
+}
+
+.funkygrid .funkyrow{
+    display: flex;
+    flex-direction: row;
+    max-width: 800px;
+    margin: 0 auto;
+    >*{
+        flex:  1;
+        margin: 10px;
+        width: auto;
+        border: 2px solid #36081a;
+        box-shadow: 3px 3px 5px#0d010b;
+        height: 150px;
+        align-items:baseline;
+        position: relative;
+        border-radius: 6px;
+        h2{
+            margin: 0;
+            text-align: left;
+        }
+    }
+}
+.boxhead{
+    padding: 5px;
+    position: absolute;
+    bottom: 0;
+}
+.funkybackg{
+    width: 100%;
+    height: 100%;
+    opacity: 30%;
+    background-size: cover;
+    background-position: 0 5%;
 }
