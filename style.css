@@ -381,3 +381,9 @@ aside{
     background-size: cover;
     background-position: 0 5%;
 }
+
+.image{
+    width: 100%;
+    margin-bottom: 20px;
+    max-width: 600px;
+}
