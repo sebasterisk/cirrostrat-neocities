@@ -299,6 +299,10 @@ function map(map_type, map_day){
         if (map_look.attr.lenoverride && map_look.attr.lenoverride.find(e => e.for == current)){
             pd_len = map_look.attr.lenoverride.find(e => e.for == current).to
         }
+        if (selectedperiod.name == "free"){
+            continue
+        }
+
         let starttime
         let starttime_px
         
@@ -370,6 +374,7 @@ function startcount(){
         const timenow = new Date()
         let next, next_time, now, now_endtime
 
+// all this just checks where we are
         // iterates over each period
         for (i in map_totable){
             const v = map_totable[i]
@@ -407,6 +412,7 @@ function startcount(){
             }
         }
 
+// main logic here:
         if (!next){ // ran at final period
             if ((now) && !(timenow > now_endtime)){
                 const nowdiff = now_endtime - timenow
@@ -415,6 +421,8 @@ function startcount(){
                 const nowdiff_secleft = ("0" + Math.round(nowdiff_sec % 60)).slice(-2)
                 const nowdiff_string = `${nowdiff_min}:${nowdiff_secleft}`
 
+                statbarset(Number(now.time), nowdiff + Number(now.time), Number(new Date(1970,0,1,now_endtime.getHours(), now_endtime.getMinutes())))
+                
                 if (tick <= 50){
                     bannerwrite("now", now.name, "ends in "+  nowdiff_string  )
                 } else if (tick <= 100){
@@ -434,6 +442,8 @@ function startcount(){
             const diff_string = `${diff_min}:${diff_secleft}`
             
             if ((now) && (timenow > now_endtime)){ // in between periods
+                statbarset(0,0,0)
+
                 if (tick <= 100){
                     bannerwrite("now", "in between periods", "" )
                 } else if (tick <= 150) {
@@ -447,7 +457,8 @@ function startcount(){
                 const nowdiff_min = Math.floor(nowdiff_sec / 60)
                 const nowdiff_secleft = ("0" + Math.round(nowdiff_sec % 60)).slice(-2)
                 const nowdiff_string = `${nowdiff_min}:${nowdiff_secleft}`
-            
+                
+                statbarset(Number(now.time), nowdiff + Number(now.time), Number(new Date(1970,0,1,now_endtime.getHours(), now_endtime.getMinutes())))
                 if (tick <= 50){
                     bannerwrite("now", now.name, "ends in "+  nowdiff_string  )
                 } else if (tick <= 100){
@@ -458,6 +469,7 @@ function startcount(){
                     bannerwrite("next", next.name, "at "+ new Date(next_time).toLocaleTimeString("en-US", {"timeStyle":"short"}))
                 }
             } else { // ran before first period
+                statbarset(0, 0, 0)
                 if (tick <= 100){
                     bannerwrite("now", "starting soon...", "" )
                 } else if (tick <= 150) {
@@ -504,6 +516,11 @@ function timelinetick(startbound, endbound){
         }
         hr.style.top = set + "px"
     }, 100)
+}
+function statbarset(min, now, max){
+    console.log(now, max)
+    statbar.value = now-min
+    statbar.max = max-min
 }
 function setmarq(){
     if(statmain.scrollWidth > document.getElementById("statmainw").offsetWidth){
