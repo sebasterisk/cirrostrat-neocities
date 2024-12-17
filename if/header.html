@@ -5,14 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="iframes.css">
+    <link rel="stylesheet" href="/if/iframes.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
 </head>
 <body>
     <div id="contall">
         <header>
             <h1>cirrostrat</h1>
-            a silly little website for a silly little me!
+            <span id="quotes" class="quotein">a silly little website for a silly little me!</span>
+            <script>
+                const quotes = document.getElementById("quotes")
+                const list = [
+                    "if misery loves company than I will forever be alone",
+                    "a silly little website for a silly little me!",
+                    "doing whatever it takes",
+                    "da best",
+                    "accurate and dependable!",
+                    "proud owner of dingusNET",
+                    "lead developer of badwars",
+                    "i mean, i must be doing something right",
+                    "javascript sucks",
+                    "the academic annihilator",
+                    "find it yourself, dumbahh",
+                    "living on the internet",
+                    "and my two sons tanner and thames"
+                ]
+
+                setInterval(()=>{
+                    let num = Math.floor(Math.random()*list.length)
+                    quotes.className = ""
+                    
+                    setTimeout(()=>{
+                        quotes.className = "quotein"
+                        quotes.innerHTML = list[num]
+                    }, 700)
+                },15000)
+            </script>
             <hr>
             <nav id="headlinks">
                 <ul class="hzlinks">
