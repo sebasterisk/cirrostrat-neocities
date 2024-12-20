@@ -19,9 +19,11 @@ body {
 
 #quotes{
     opacity: 0%;
-    transition: all 0.5s;
+    letter-spacing: -0.1em;
+    transition: all 0.75s;
 }
 
 #quotes.quotein{
     opacity: 100%;
+    letter-spacing: normal;
 }
