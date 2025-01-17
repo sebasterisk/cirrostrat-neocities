@@ -1,0 +1,47 @@
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham.otf);
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-b.otf);
+    font-weight: bold;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-i.otf);
+    font-style: italic;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-bi.otf);
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-c.otf);
+    font-stretch: condensed;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-ci.otf);
+    font-stretch: condensed;
+    font-style: italic;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-xc.otf);
+    font-stretch: semi-condensed;
+}
+
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: #818fbe;
+    font-family: Gotham, Verdana, Geneva, Tahoma, sans-serif;
+    margin: 10px;
+    color: white;
+    text-shadow: 2px 2px black;
+}
