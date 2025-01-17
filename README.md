@@ -1,4 +1,2 @@
 # cirrostrat-neocities
-website repo
-
-main branch does not always represent whats on neocities. run ```% neocities push .``` when ready.
+website repo. find it at https://cirrostrat.neocities.org :]
