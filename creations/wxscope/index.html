@@ -10,6 +10,13 @@
     <div id="everything">
         
     </div>
+    <div id="bigtemp">20&deg;</div>
+    <div id="content">
+        winds: <br>
+        humidity: <br>
+        pressure: <br>
+        <hr>
+    </div>
     <script>
         const dump = document.getElementById("everything")
         let observations
@@ -17,7 +24,7 @@
         const need = 3
 
         function ctof(c){ // WHAT THE FUCK IS A KILOMETER
-            return c*(9/5)+32
+            return Math.round( c*(9/5)+32 )
         }
 
         function checkifdone(){
