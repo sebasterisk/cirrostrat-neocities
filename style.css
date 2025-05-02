@@ -351,6 +351,7 @@ aside{
 .funkygrid .funkyrow{
     display: flex;
     flex-direction: row;
+    height: 160px;
     max-width: 800px;
     margin: 0 auto;
     >*{

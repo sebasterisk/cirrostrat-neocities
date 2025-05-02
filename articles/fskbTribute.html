@@ -1,89 +1,43 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tribute to the churro stand</title>
-    <link href="/newstyle.css" rel="stylesheet" type="text/css" media="all">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  </head>
-  <body>
-    <a id="top"></a>
-    <div id="containall" class="simplecentered">
-      <!--<img src="/websiteIcon.png" class="headicon border" alt="cirrostrat Icon" style="float: right; position: relative; bottom: 75px; opacity: 0.25;">-->
-      <header> 
-      <!-- HEADING -->
-        <h1>cirrostrat</h1>
-        <p>my place on the internet, established 2024</p>
-        <!-- NAVBAR -->
-        <nav id="headlinks">
-          <ul class="hzlinks">
-            <li><a href="/index.html" class="hzel">home</a></li>
-            <li><a href="/tributes/index.html" class="hzel">tributes</a></li>
-            <li><a href="/aboutself.html" class="hzel">about me</a></li>
-            <!-- <li><a href="" class="hzel"></a></li> -->
-          </ul>
-        </nav>
-      </header>
-      <marquee style="font-size: 10pt; opacity: 0.25; padding: 0px; margin: 0px; position: sticky; clear: right;">hello peoples of the Internet. this website is very work in progress so this scrolling banner should entertain you.</marquee>
-      
-      <div class="constructionBanner"></div>
-      <p align=center> UNDER CONSTRUCTION! </p>
-      <div class="constructionBanner"></div>
-      
-      <hr style="margin-top: 0;">
-      <div id="containmost">
-      
-        <aside hidden>
-        <!-- SIDEBAR -->
-          <section class="sidebarsect">
-            <marquee vspace=0 style="font-size: 10pt; opacity: 0.25; padding: 0px; margin: 0px; position: sticky;" scrolldelay=90>i am cirrostrat </marquee>
-            <h2> who am i </h2>
-            <p> i'm cirrostrat, and i do cool stuff on the internet. this website is intended to be a home for this stuff <p>
-          </section>
-          
-          <section class="sidebarsect">
-            <marquee vspace=0 style="font-size: 10pt; opacity: 0.25; padding: 0px; margin: 0px; position: sticky;" scrolldelay=90>making sure this website works </marquee>
-            <h2> updates </h2>
-            <p> tbd <p>
-          </section>
-          
-          <hr>
-           <!--script type="text/javascript" src="//counter.websiteout.com/js/7/0/0/0"></script-->
-          <hr>
-        </aside>
-        
+    <title>cirrostrat key bridge tribute</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
+</head>
+<body>
+    <div class="backbox"></div>
+    <div class="cont"></div>
+    <div class="overheadcont"></div>
+    <script>
+        // background moving thing
+        const offset = 100
+        let tick = 0
+        setInterval(()=>{
+            if (tick >= offset){tick = 0}
+            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
+            tick++
+        }, 50)
+    </script>
+    <div id="contall" class="contall-mainloc" >
+        <img id="logo" src="/img/drawing-16.png">
+        <header>
+            <iframe src="/if/header.html" frameborder="0" allowtransparency="true" width="100%" height="100%"></iframe>
+        </header>
         <main>
-        <!-- PRIMARY SECTION -->
-          <section id="intro">
+            <h2>&#x25b8; a tribute to the francis scott key bridge</h2>
             <br>
-            <h2>a tribute to the francis scott key bridge</h2>
-            <br>
-            <img src="/tributes/fskb2.gif" style='height: 100%; width: 100%; object-fit: contain;'> 
+            <img src="fskb2.gif" style='height: 100%; width: 100%; object-fit: contain;'> 
             <p align=right><a class="nolinkstyle" href="https://www.nab.usace.army.mil/Media/Images/igphoto/2003421468/">source</a> / image is in the public domain. </p>
-            <br>
-            <p>on 26 may 2024, at 1:28 am, a cargo ship from the port of baltimore en route to sri lanka lost control and unfortunately rammed into the 1.6 mile long francis scott key bridge, a vital bridge both for commuters as well as the transport of hazmats. six people are proclaimed dead as of midnight mar 27, the time i'm writing this.
-            <br>
+            <p>on 26 mar 2024, at 1:28 am, a cargo ship from the port of baltimore en route to sri lanka lost control and unfortunately rammed into the 1.6 mile long francis scott key bridge, a vital bridge both for commuters as well as the transport of hazmats. six people are proclaimed dead as of midnight mar 27, the time i'm writing this.
             <p>my heart goes out to the people affected. the families that are heartbroken. the rescue workers trying to find them. those on the ship that couldn't regain control. please send prayers. </p>
-            <br>
             <p>the bridge was opened in '77. it celebrated its anniversary just three days before the collapse. </p>
             <p align=center>39.21841° N, 76.52652° W</p>
-            <img src="/tributes/fskb.gif" style='height: 100%; width: 100%; object-fit: contain;'> 
+            <img src="fskb.gif" style='height: 100%; width: 100%; object-fit: contain;'> 
             <p>this is a personal image driving over the bridge taken 24 nov 2022, heading to a party. i have some fond memories riding over this bridge to make it to a few of my friends' houses. guess we're going to need a new route. 
-          </section>
         </main>
-      </div>
-      
-      <footer style="clear: both">
-        <hr>
-        <aside style="float: right; align-content: right; width: auto;">
-          <img class="crispedge" src="/button.png" style="margin: 0;">
-        </aside>
-        
-        <p> cirrostrat 2024. a neocities website. last updated <span id="lastupdated">24 mar 2024.</span></p>
-        <p><a href="https://phighting.wiki/wiki/File:Darkageremake11.png" class="nolinkstyle">original banner image</a> / <a href="#top" class="nolinkstyle">head back top</a></p>
-        
-      </footer>
     </div>
-  </body>
+</body>
 </html>
