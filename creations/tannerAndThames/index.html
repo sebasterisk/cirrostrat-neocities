@@ -28,20 +28,29 @@
         </header>
         <main>
             <div id="containmost">
-                <aside>
+                <div>
                 <!-- SIDEBAR -->
                   <section class="sidebarsect">
-                    <marquee vspace=0 style="font-size: 10pt; opacity: 0.25; padding: 0px; margin: 0px; position: sticky;" scrolldelay=90>cirrostrat comic stripz </marquee>
                     <h2>&#x25b8; tanner and thames </h2>
-                    <p>this is a sixteen-part comic strip not necessarily based on anything. just a random plot i made up. all in glorious 400x400 res. <p>
+                    <p>
+                      Tanner and Thames is a comic created by me through 400x400 pixel doodles.
+                      the first sixteen parts, or volume I, was created in summer of 2023. 
+                      the parts thereafter, volume II, is a work in progress volume started 
+                      in the fall of 2024
+                    </p>
             
                   <noscript>you need javascript for this to work. i'm not gonna steal your info, i swear</noscript>
-                </aside>
+                </div>
+                
+                <div>
+                  <h3 id="titlecomic">Title here</h3>
+                </div>
                 <main>
                 <!-- PRIMARY SECTION -->
                   <section id="intro">
                     <img class="crispedge relcenter" id="stripdisplay" style="margin: 2px 10px;" width=400px height=400px>            
                   </section>
+                
                 </main>
               </div>
               <section class="sidebarsect">
@@ -61,21 +70,43 @@
             const image = document.getElementById("stripdisplay");
             const label = document.getElementById("stripnum");
             const buttons = document.querySelector(".comictraybuttons");
-            const titles = [];
+            const title = document.querySelector("#titlecomic");
+            const titles = [
+              "awake",
+              "midnight salad",
+              "unawareness in action",
+              "grocery run part I",
+              "grocery run part II",
+              "a casa part I",
+              "a casa part II",
+              "a casa part III",
+              "where he was",
+              "a problem pertaining to plates",
+              "leave it behind",
+              "have you seen 'im?",
+              "sleep on it",
+              "for ol' time's sake",
+              "finale part I",
+              "finale part II",
+              "first ad-vices",
+              "dinner with ed part I",
+              "dinner with ed part II"
+            ];
             function updateimage(){
               let trueCurrent = current + 1
               label.innerHTML = trueCurrent;
               image.src = `imgs/${trueCurrent}.gif`
+              title.innerText = titles[current]
             }
             
             function change(skip, backwards){
               if (skip){
                 if (backwards){ current = 0; }
-                else { current = 15; }
+                else { current = 18; }
               } else {
                 if (backwards && (current != 0)){ 
                   current -= 1; 
-                } else if (!(backwards) && current != 15){ 
+                } else if (!(backwards) && current != 18){ 
                   current += 1; 
                 }
               }
