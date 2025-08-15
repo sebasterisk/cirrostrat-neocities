@@ -33,10 +33,12 @@
                   <section class="sidebarsect">
                     <h2>&#x25b8; tanner and thames </h2>
                     <p>
-                      Tanner and Thames is a comic created by me through 400x400 pixel doodles.
-                      the first sixteen parts, or volume I, was created in summer of 2023. 
-                      the parts thereafter, volume II, is a work in progress volume started 
-                      in the fall of 2024
+                      Tanner and Thames is a comic about the lives of two brothers&mdash;at least, that's how it starts.
+                    </p>
+                    <p>
+                      made for fun, expressed using 400x400 pixel doodles. volume I (chapters 1&ndash;16) was drawn
+                      through the summer of 2023. chapters thereafter are part of volume II which began in the fall of 2024,
+                      still a work in progress.
                     </p>
             
                   <noscript>you need javascript for this to work. i'm not gonna steal your info, i swear</noscript>
@@ -90,7 +92,8 @@
               "finale part II",
               "first ad-vices",
               "dinner with ed part I",
-              "dinner with ed part II"
+              "dinner with ed part II",
+              "to know"
             ];
             function updateimage(){
               let trueCurrent = current + 1
@@ -102,11 +105,11 @@
             function change(skip, backwards){
               if (skip){
                 if (backwards){ current = 0; }
-                else { current = 18; }
+                else { current = 19; }
               } else {
                 if (backwards && (current != 0)){ 
                   current -= 1; 
-                } else if (!(backwards) && current != 18){ 
+                } else if (!(backwards) && current != 19){ 
                   current += 1; 
                 }
               }
