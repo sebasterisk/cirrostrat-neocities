@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cirrostrat index</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
+</head>
+<body>
+    <div class="backbox"></div>
+    <script>
+        // background moving thing
+        const offset = 100
+        let tick = 0
+        setInterval(()=>{
+            if (tick >= offset){tick = 0}
+            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick/2}px ${tick/2}px`);
+            tick++            
+        }, 50)
+    </script>
+    <div id="contall" class="contall-mainloc" >
+        <!--img id="logo" src="/img/drawing-16.png">
+        <header>
+            <iframe src="/if/header.html" frameborder="0" allowtransparency="true" width="100%" height="100%"></iframe>
+        </header-->
+        <main style="margin-top: 60px;">
+            <hr>
+            <h1 class="focus txcenter">cirrostrat
+                <br>
+            </h1>
+            <h2 style="text-align: center; margin-top: -20px;">
+                roll with the clouds. they don't wait!
+            </h2>
+            <nav id="headlinks" class="txcenter" style="margin-top: 20px;">
+                    <ul class="hzlinks">
+                    <li><a href="/index.html" class="hzel" target="_top">home</a></li>
+                    <li><a href="/creations/index.html" class="hzel" target="_top">creations</a></li>
+                    <li><a href="/articles/index.html" class="hzel" target="_top">articles</a></li>
+                    <li><a href="/links.html" class="hzel" target="_top">links</a></li>
+                    <li><a href="/aboutself.html" class="hzel" target="_top">about</a></li>
+                    <!-- <li><a href="" class="hzel"></a></li> -->
+                    </ul>
+                </nav>
+            <br><br><br>
+            <h2>perhaps you're here for</h2>
+            <div class="funkygrid">
+                <div class="funkyrow">
+                    <div>
+                        <div class="funkybackg" style="background-image: url(/img/sked.gif); filter: contrast(1.2) brightness(70%) hue-rotate(-0.4turn);"></div>
+                        <div class="boxhead">
+                            <h2><a href="/creations/schedulizer/index.html">schedulizer!</a></h2>
+                            it's about time
+                        </div>
+                    </div>
+                    <div>
+                        <div class="funkybackg" style="background-image: url(/articles/tributeA.png); filter: opacity(50%);"></div>
+                        <div class="boxhead">
+                            <h2><a href="/articles/churroLaments.html">he wasn't there</a></h2>
+                            a lamentation
+                        </div>
+                    </div>
+                    <div>
+                        <div class="funkybackg" style="background-image: url(/creations/tannerAndThames/imgs/19.gif); filter: opacity(50%);"></div>
+                        <div class="boxhead">
+                            <h2><a href="/creations/tannerAndThames/index.html">tanner and thames</a></h2>
+                            a comic about the lives of two brothers...?
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br><hr><br>
+
+            <div style="opacity: 0.5;" class="txcenter">psst. i'm in the process of redoing this page. mind the dust!</div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham.otf);
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-b.otf);
+    font-weight: bold;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-i.otf);
+    font-style: italic;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-bi.otf);
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-c.otf);
+    font-stretch: condensed;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-ci.otf);
+    font-stretch: condensed;
+    font-style: italic;
+}
+@font-face {
+    font-family: Gotham;
+    src: url(/fonts/gotham-xc.otf);
+    font-stretch: semi-condensed;
+}
+
+:root{
+    font-family: Gotham, Tahoma, Verdana, sans-serif;
+    width: 100vw;
+    overflow-x: hidden;
+
+    --color-sat: #f82573;
+    --color-subsat: #ff84a9;
+
+    --color-emph: #f1dde4;
+    --color-norm: #f0d4de;
+    --color-sub: #e7a6be;
+    --color-less-dark: #752d49;
+    --color-content-back: #300716;
+    --color-content-back2: #270411;
+    --color-dark: #140007;
+    --color-background: #0e0005;
+    --color-superbackground: #070003;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    color: var(--color-norm);
+}
+
+._border{
+    border: 1px solid white;
+}
+
+.backbox::before {
+    content: "";
+    position: fixed;
+    width: 600%;
+    height: 400%;
+    top: -200%;
+    left: -200%;
+    z-index: -1;
+    background: url(/img/Tiles3.png) 0 0 repeat;
+    background-size: 128px;
+    background-position: var(--offset);
+    transform: rotate(30deg);
+}
+
+#cont-all{
+    padding: 0 80px;
+}
+
+#shadow{
+    margin: auto;
+    width: 1;
+    max-width: 1300px;
+    box-shadow: 10px 10px 30px #070003;
+}
+
+.content-block{
+    border: 3px solid var(--color-content-back);
+    background: var(--color-background);
+    width: 1;
+    max-width: inherit;
+    padding: 16px;
+    border-top: none;
+}
+
+.content-block:last-child{
+    margin-bottom: 3px;
+}
+
+.spacer {
+    height: 300px;
+}
+#titlebar {
+    background-image: url(/img/clouder.png);
+    background-color: var(--color-background);
+    background-size: 100%;
+    background-position: 0;
+    background-attachment: local;
+    background-size: cover;
+    image-rendering: pixelated;
+}
+
+.deemph{
+    color: var(--color-sub);
+}
+
+.dark{
+    color: var(--color-less-dark);
+}
+
+h1 {
+    color:var( --color-emph);
+    font-stretch: condensed;
+    font-size: 80pt;
+    margin: 0;
+    margin-bottom: -20px;
+}
+
+#navigator{
+    padding: 8px 16px;
+    padding-top: 12px;
+
+    line-height: 14pt;
+    background-color: var(--color-content-back);
+}
+
+nav {
+    color: #0d010b;
+    margin: 0;
+    padding: 0;
+}
+
+nav:has(a:hover) a{
+    color: var(--color-less-dark);
+    text-shadow: 0 0;
+}
+  
+.hzlinks{
+  list-style: none;
+  margin: 0px;
+  padding: 0;
+}
+
+.hzel:hover{
+  text-decoration: none;
+  color: var(--color-subsat);
+  text-shadow: 0 0 20px var(--color-subsat);
+  font-size: 13pt;
+  letter-spacing: 5px;
+  transition: 0.5s
+}
+
+.nolinkstyle{
+  text-decoration: none;
+  color: var(--color-subsat)
+}
+
+.hzel:not(:hover){
+  text-decoration: none;
+  letter-spacing: 0px;
+  transition: 0.5s
+}
+
+li{
+    display: inline-block;
+    margin: auto 10px 0 0;
+}
+
+a{
+    color: #e7cdd5;
+    text-decoration: none;
+}
+
+a.under{
+    color: inherit;
+    text-decoration: underline;
+}
+
+.layout-twocol {
+    display: flex;
+}
+
+.layout-twocol > div {
+    flex:1;
+    padding: 100px 40px 80px;
+    align-content: center;
+}
+
+.text-kicker {
+    font-size: 30pt;
+    font-stretch: semi-condensed;
+    font-weight: bold;
+}
+
+.text-lesserkicker {
+    font-size: 20pt;
+    font-stretch: semi-condensed;
+    font-weight: bold;
+}
+
+.text-subber {
+    font-size: 16pt;
+    color: var(--color-sub);
+}
+
+.text-lessersubber {
+    font-size: 12pt;
+    color: var(--color-sub);
+}
+
+.color-two {
+    background-color: var(--color-content-back);
+}
+
+.less-vertical-padding{
+    padding: 6px 16px;
+}
+
+.smaller {
+    font-size: 10pt;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    gap: 16px;
+    padding: 15px 20px;
+}
+
+.card {
+    border: 3px solid var(--color-content-back2);
+    padding: 10px;
+    background-color: var(--color-content-back2);
+    box-shadow: 0 0 10px var(--color-superbackground);
+}
+
+hr{
+    border: 1px solid var(--color-content-back);
+}
+
+.card-image{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    mix-blend-mode: color-dodge;
+    opacity: 70%;
+    image-rendering: pixelated;
+}
+
+.tape{
+    padding: 0;
+    height: 8px;
+    background-image: url(/img/constructiontape.png);
+}
+
+.saturated{
+    color: var(--color-subsat);
+}
