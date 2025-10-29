@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cirrostrat links</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
+</head>
+<body>
+    <div class="backbox"></div>
+    <div class="cont"></div>
+    <div class="overheadcont"></div>
+    <script>
+        // background moving thing
+        const offset = 100
+        let tick = 0
+        setInterval(()=>{
+            if (tick >= offset){tick = 0}
+            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
+            tick++
+        }, 50)
+    </script>
+    <div id="contall" class="contall-mainloc" >
+        <img id="logo" src="/img/drawing-16.png">
+        <header>
+            <iframe src="/if/header.html" frameborder="0" allowtransparency="true" width="100%" height="100%"></iframe>
+        </header>
+        <main>
+            <h2>&#x25b8; links</h2>
+            <div class="txcenter">as well as handles for other platforms</div>
+            <div class="linkpglink">
+                <a href="https://www.instagram.com/sebasterisk/">instagram</a> <span style="font-size: 10pt;">sebasterisk</span> <br>
+                <a href="https://www.linkedin.com/in/sebastian-rugas-621153375/">linkedin</a><br>
+
+                <a href="https://github.com/sebasterisk">github</a> <span style="font-size: 10pt;">sebasterisk</span> <br>
+                <a href="https://www.roblox.com/users/394796812/profile">roblox</a> <span style="font-size: 10pt;">pichib</span> <br>
+                discord <span style="font-size: 10pt;">cirrostrat</span> <br>
+                minecraft <span style="font-size: 10pt;">cirrostrat</span> <br>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

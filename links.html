@@ -3,42 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cirrostrat links</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>cirrostrat index</title>
+    <link rel="stylesheet" href="/style-3.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
 </head>
 <body>
     <div class="backbox"></div>
-    <div class="cont"></div>
-    <div class="overheadcont"></div>
-    <script>
-        // background moving thing
-        const offset = 100
-        let tick = 0
-        setInterval(()=>{
-            if (tick >= offset){tick = 0}
-            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
-            tick++
-        }, 50)
-    </script>
-    <div id="contall" class="contall-mainloc" >
-        <img id="logo" src="/img/drawing-16.png">
-        <header>
-            <iframe src="/if/header.html" frameborder="0" allowtransparency="true" width="100%" height="100%"></iframe>
-        </header>
-        <main>
-            <h2>&#x25b8; links</h2>
-            <div class="txcenter">as well as handles for other platforms</div>
-            <div class="linkpglink">
-                <a href="https://www.instagram.com/sebasterisk/">instagram</a> <span style="font-size: 10pt;">sebasterisk</span> <br>
-                <a href="https://www.linkedin.com/in/sebastian-rugas-621153375/">linkedin</a><br>
+    <script src="backbox.js"></script>
 
-                <a href="https://github.com/sebasterisk">github</a> <span style="font-size: 10pt;">sebasterisk</span> <br>
-                <a href="https://www.roblox.com/users/394796812/profile">roblox</a> <span style="font-size: 10pt;">pichib</span> <br>
-                discord <span style="font-size: 10pt;">cirrostrat</span> <br>
-                minecraft <span style="font-size: 10pt;">cirrostrat</span> <br>
-            </div>
-        </main>
+    <div id="cont-all">
+    <div id="shadow">
+    <!-- REAL CONTENT BEGINS HERE - - - - - - - - - - -->
+     <div id="titlebar" class="content-block">
+        <div class="lesserspacer"></div>
+        <h1 class="deemph">cirrostrat</h1>
     </div>
+    
+    <div id="navigator" class="content-block">
+        <nav id="headlinks">
+            <ul class="hzlinks">
+                <li><a href="/index.html" class="hzel" target="_top">home</a></li>
+                <li><a href="/creations/index.html" class="hzel" target="_top">creations</a></li>
+                <li><a href="/articles/index.html" class="hzel" target="_top">articles</a></li>
+                <li><a href="/links.html" class="hzel" target="_top">links</a></li>
+                <li><a href="/aboutself.html" class="hzel" target="_top">about</a></li>
+                <!-- <li><a href="" class="hzel"></a></li> -->
+            </ul>
+        </nav>
+    </div>
+    <!-- <div class="content-block tape" id="warningtape"></div>
+    <div class="content-block less-vertical-padding color-two text-center saturated" id="warning">
+        <div><i>
+            This website is under renovation, some things might be broken for the time being.
+        </div></i>
+    </div> -->
+
+    <div class="content-block pageheading supress-bottom-border in-more" id="kicker">
+        <div class="lesserspacer"></div>
+        <div>
+            <h2>links and handles</h2>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="cards-container">
+            <div class="card">
+                <div class="text-lesserkicker"><a href="https://www.linkedin.com/in/sebastian-rugas-621153375/">LinkedIn</a><br></div>
+                <div class="deemph">
+                    let's connect
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="text-lesserkicker"><a href="https://www.instagram.com/sebasterisk/">Instagram</a><br></div>
+                <div class="deemph">
+                    sebasterisk
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="text-lesserkicker"><a href="https://github.com/sebasterisk">Github</a><br></div>
+                <div class="deemph">
+                    sebasterisk
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="text-lesserkicker"><a href="https://github.com/sebasterisk">Roblox</a><br></div>
+                <div class="deemph">
+                    Pichib
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="text-lesserkicker"><a href="https://x.com/@inallcirrusness">X</a><br></div>
+                <div class="deemph">
+                    inallcirrusness (inactive)
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="text-lesserkicker"><a href="https://x.com/@inallcirrusness">Discord</a><br></div>
+                <div class="deemph">
+                    cirrostrat
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="text-lesserkicker"><a href="https://www.youtube.com/@cirrostrat">YouTube</a><br></div>
+                <div class="deemph">
+                    cirrostrat
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block dark less-vertical-padding smaller color-two" id="footer">
+        <div>
+            cirrostrat <i>on</i> neocities.org &mdash; &copy 2024-2025 Sebastian Rugas &mdash; est 23 march 2024 &mdash; no generative AI was used <br>
+            This website, and all work contained herein is licensed openly via <a class="under" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY-NC-SA 4.0</a>.
+        </div>
+    </div>
+    <!-- - - - - - - - - - - -->
+    </div>
+    </div>
+
 </body>
 </html>

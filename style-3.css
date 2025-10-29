@@ -49,8 +49,8 @@
     --color-less-dark: #752d49;
     --color-content-back: #300716;
     --color-content-back2: #270411;
-    --color-dark: #140007;
-    --color-background: #0e0005;
+    --color-dark: #5f1932;
+    --color-background: #150007;
     --color-superbackground: #070003;
 }
 
@@ -58,6 +58,9 @@ body{
     margin: 0;
     padding: 0;
     color: var(--color-norm);
+    background-color: var(--color-background);
+
+    container: body / size;
 }
 
 ._border{
@@ -79,7 +82,19 @@ body{
 }
 
 #cont-all{
-    padding: 0 80px;
+    padding: 0 10%;
+}
+
+@container body (width < 500px){
+    #cont-all{
+        padding: 0;
+    }
+}
+
+@container body (width < 800px){
+    .layout-twocol{
+        flex-direction: column;
+    }
 }
 
 #shadow{
@@ -105,6 +120,15 @@ body{
 .spacer {
     height: 300px;
 }
+
+.lessspacer {
+    height: 100px;
+}
+
+.lesserspacer {
+    height: 33px;
+}
+
 #titlebar {
     background-image: url(/img/clouder.png);
     background-color: var(--color-background);
@@ -131,10 +155,20 @@ h1 {
     margin-bottom: -20px;
 }
 
+h1.deemph {
+    color:var( --color-emph);
+    font-stretch: condensed;
+    font-size: 60pt;
+    margin: 0;
+    margin-bottom: -15px;
+}
+
 #navigator{
     padding: 8px 16px;
     padding-top: 12px;
-
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     line-height: 14pt;
     background-color: var(--color-content-back);
 }
@@ -241,7 +275,7 @@ a.under{
 
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
     gap: 16px;
     padding: 15px 20px;
 }
@@ -251,7 +285,19 @@ a.under{
     padding: 10px;
     background-color: var(--color-content-back2);
     box-shadow: 0 0 10px var(--color-superbackground);
+    transition: border 0.5s, transform 0.5s;
 }
+
+.card:hover {
+    border: 3px solid var(--color-sat);
+    padding: 10px;
+    background-color: var(--color-content-back2);
+    box-shadow: 0 0 10px var(--color-superbackground);
+
+    transform: scale(1.05);
+    transition: border 0.5s, transform 0.5s;
+}
+
 
 hr{
     border: 1px solid var(--color-content-back);
@@ -274,4 +320,34 @@ hr{
 
 .saturated{
     color: var(--color-subsat);
+}
+
+.pageheading{
+    background-image: linear-gradient(to top, var(--color-content-back2),var(--color-background));
+}
+
+h2{
+    color:var( --color-emph);
+    font-stretch: semi-condensed;
+    font-size: 40pt;
+    margin: 0;
+    margin-bottom: -10px;
+}
+
+.supress-bottom-border {
+    border-bottom: none;
+}
+
+.page{
+    line-height: 1.5rem;
+}
+
+.in-more{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+p{
+    margin-top: 0;
+    margin-bottom: 0.75rem;
 }
