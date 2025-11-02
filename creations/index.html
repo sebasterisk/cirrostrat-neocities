@@ -3,71 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cirrostrat - creations</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>cirrostrat/creations</title>
+    <link rel="stylesheet" href="/style-3.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
 </head>
 <body>
     <div class="backbox"></div>
-    <div class="cont"></div>
-    <div class="overheadcont"></div>
-    <script>
-        // background moving thing
-        const offset = 100
-        let tick = 0
-        setInterval(()=>{
-            if (tick >= offset){tick = 0}
-            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
-            tick++
-        }, 50)
-    </script>
-    <div id="contall" class="contall-mainloc" >
-        <img id="logo" src="/img/drawing-16.png">
-        <header>
-            <iframe src="/if/header.html" frameborder="0" allowtransparency="true" width="100%" height="100%"></iframe>
-        </header>
-        <main>
-            <h2>&#x25b8; creations</h2>
-            this webpage serves as a collection of a few of my projects that
-            i've made over the years. you can also find more coding tidbits over on github
-            <br><br>
-            <a href="/creations/schedulizer/index.html">
-                <div class="tidbit">
-                    <span class="tidbithead"> schedulizer </span><br>
-                    a modular schedule tracker for students
-                </div>
-            </a>
-            <a href="https://www.roblox.com/games/14255397578/BADwars-alpha">
-                <div class="tidbit">
-                    <span class="tidbithead"> badwars! </span><br>
-                    the first, and quite possibly last, game i've made on roblox
-                </div>
-            </a>
-            <a href="/creations/21orbust/index.html">
-                <div class="tidbit">
-                    <span class="tidbithead"> 21 or bust </span><br>
-                    one-deck blackjack against entropy themselves. kinda broken rn
-                </div>
-            </a>
-            <a href="/creations/tannerAndThames/index.html">
-                <div class="tidbit">
-                    <span class="tidbithead"> tanner and thames </span><br>
-                    a "comic" about the lives of two brothers...?
-                </div>
-            </a>
-            <a href="/creations/robo-propo.html">
-                <div class="tidbit">
-                    <span class="tidbithead"> robotics propaganda </span><br>
-                    team posters and all that, because we are indeed the best team in all of V5RC
-                </div>
-            </a>
-            <a href="/creations/minecraft.html">
-                <div class="tidbit">
-                    <span class="tidbithead"> minecraft downloads </span><br>
-                    download the worlds of now concluded seasons of the "FLRA SMP"
-                </div>
-            </a>
-        </main>
+    <script src="/backbox.js"></script>
+
+    <div id="cont-all">
+    <div id="shadow">
+    <!-- REAL CONTENT BEGINS HERE - - - - - - - - - - -->
+     <div id="titlebar" class="content-block">
+        <div class="lesserspacer"></div>
+        <h1 class="deemph">cirrostrat</h1>
     </div>
+    
+    <div id="navigator" class="content-block">
+        <nav id="headlinks">
+            <ul class="hzlinks">
+                <li><a href="/index.html" class="hzel" target="_top">home</a></li>
+                <li><a href="/creations/index.html" class="hzel" target="_top">creations</a></li>
+                <li><a href="/articles/index.html" class="hzel" target="_top">articles</a></li>
+                <li><a href="/links.html" class="hzel" target="_top">links</a></li>
+                <li><a href="/aboutself.html" class="hzel" target="_top">about</a></li>
+                <!-- <li><a href="" class="hzel"></a></li> -->
+            </ul>
+        </nav>
+    </div>
+    <!-- <div class="content-block tape" id="warningtape"></div>
+    <div class="content-block less-vertical-padding color-two text-center saturated" id="warning">
+        <div><i>
+            This website is under renovation, some things might be broken for the time being.
+        </div></i>
+    </div> -->
+
+    <div class="content-block pageheading supress-bottom-border in-more" id="kicker">
+        <div class="lesserspacer"></div>
+        <div>
+            <h2>creations</h2>
+            some of the things I made, enjoy
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="text-lesserkicker text-center">tools</div>
+
+        <div class="cards-container">
+            <div class="card">
+                <div class="text-lesserkicker"><a href="/creations/schedulizer/">schedulizer!</a></div>
+                <div class="deemph">
+                    a modular schedule tracker, specifically one for my high school
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="text-lesserkicker"><a href="https://github.com/sebasterisk/linuxscorer">linuxscorer</a></div>
+                <div class="deemph">
+                    a Linux scoring engine template designed for cybersecurity training
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="text-lesserkicker text-center">art</div>
+
+        <div class="cards-container">
+            <div class="card">
+                <div class="text-lesserkicker"><a href="/creations/tannerAndThames/">tanner & thames</a></div>
+                <div class="deemph">
+                    a comic about the lives of two brothers...?
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="text-lesserkicker"><a href="/creations/robo-propo/">robotics propoganda</a></div>
+                <div class="deemph">
+                    promotional art made for my robotics team
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="text-lesserkicker"><a href="/creations/theglitchingoutcome.pdf">the glitching outcome</a></div>
+                <div class="deemph">
+                    a goofy story me and a few of my friends attempted to write
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="text-lesserkicker text-center">games</div>
+
+        <div class="cards-container">
+            <div class="card">
+                <div class="text-lesserkicker"><a href="/creations/21orbust/">21 or bust</a></div>
+                <div class="deemph">
+                    bad buggy blackjack
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="text-lesserkicker"><a href="https://www.roblox.com/games/14255397578/BADwars">badwars</a></div>
+                <div class="deemph">
+                    a BedWars recreation on Roblox
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="text-lesserkicker"><a href="/creations/minecraft.html">minecraft worlds</a></div>
+                <div class="deemph">
+                    download old FLRA SMP worlds 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="content-block dark less-vertical-padding smaller color-two" id="footer">
+        <div>
+            cirrostrat <i>on</i> neocities.org &mdash; &copy 2024-2025 Sebastian Rugas &mdash; est 23 march 2024 &mdash; no generative AI was used <br>
+            This website, and all work contained herein is licensed openly via <a class="under" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY-NC-SA 4.0</a>.
+        </div>
+    </div>
+    <!-- - - - - - - - - - - -->
+    </div>
+    </div>
+
 </body>
 </html>

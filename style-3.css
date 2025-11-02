@@ -45,13 +45,17 @@
 
     --color-emph: #f1dde4;
     --color-norm: #f0d4de;
-    --color-sub: #e7a6be;
+    --color-sub: #b37188;
     --color-less-dark: #752d49;
     --color-content-back: #300716;
     --color-content-back2: #270411;
     --color-dark: #5f1932;
     --color-background: #150007;
     --color-superbackground: #070003;
+}
+
+*{
+    box-sizing: border-box;
 }
 
 body{
@@ -347,7 +351,23 @@ h2{
     padding-right: 10%;
 }
 
+.no-padding{
+    padding: 0;
+}
+
+.img-shrink-only{
+    max-width: 100%;
+}
+
 p{
     margin-top: 0;
     margin-bottom: 0.75rem;
+}
+
+.img-pixel-rendering {
+    image-rendering: crisp-edges;
+}
+
+.shadow{
+    filter: drop-shadow(2px 2px 6px black);
 }
