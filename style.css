@@ -122,6 +122,10 @@
     font-size: 10pt;
 }
 
+.border {
+    border: 1px solid white;
+}
+
 header{
     width: 100%;
     overflow: visible;
@@ -172,6 +176,12 @@ h2{
 a{
     color: #e7cdd5;
     text-decoration: none;
+}
+
+.badge a{
+    color: #843953;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 hr{
@@ -260,6 +270,7 @@ li{
 }
 #comictray{
     font-size: 18px;
+    margin-bottom: 20px;
 }
 button{
     font-family: Gotham;
@@ -321,6 +332,10 @@ aside{
     margin-top: 0;
     margin-left: -20px;
     width: 200px;
+}
+
+.clear{
+    clear: both;
 }
 .focus {
     --clippath: polygon(0 25%, 100% 0, 100% 95%, 0 100%);
@@ -392,4 +407,38 @@ aside{
     display: block;
     opacity: 40%;
     font-style: italic;
+}
+
+#titlecomic{
+    text-align: center;
+    font-size: 22px;
+    font-stretch: semi-condensed;
+    margin-bottom: 0;
+    text-shadow: none;
+}
+
+.badge{
+    background-image: linear-gradient(to right, #fff0, #ffff 15%, #ffff 85%, #fff0);
+    padding: 10px;
+    display: flex;
+}
+#badgeimg{
+    height: 1in;
+    margin-left: calc(100% - 1in);
+    
+}
+.badgeimgcontainer{
+    flex:1
+}
+.badgetextcontainer{
+    flex:1.5;
+    color: #21040f;
+    text-shadow: none;
+    text-shadow: 1px 1px 2px #e7cdd5;
+    padding-top: 20px;
+}
+.badge-head{
+    font-size: 22px;
+    font-stretch: semi-condensed;
+    color: #21040f;
 }

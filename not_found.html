@@ -3,30 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cirrostrat 404</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>cirrostrat/404</title>
+    <link rel="stylesheet" href="/style-3.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
 </head>
 <body>
     <div class="backbox"></div>
-    <div class="cont"></div>
-    <div class="overheadcont"></div>
-    <script>
-        // background moving thing
-        const offset = 100
-        let tick = 0
-        setInterval(()=>{
-            if (tick >= offset){tick = 0}
-            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
-            tick++
-        }, 50)
-    </script>
-    <div id="contall" class="center">
-        <img id="logo" src="/img/drawing-16.png">
+    <script src="backbox.js"></script>
 
-        <h1>cirrostrat</h1>
-        <img src="/img/404img.png" alt="man holding map, confused" class="responsive transhue" style='height: 100%; width: 100%; object-fit: contain; opacity: 0.2;'/>
-        <div class="leftfloat fourohfour">404</div>
-        <div>i don't know where you want to go <br> but at least i can take you <a href="/index.html" class="hzel">home</a>.</div>
+    <div id="cont-all">
+    <div id="shadow">
+    <!-- REAL CONTENT BEGINS HERE - - - - - - - - - - -->
+     <div id="titlebar" class="content-block">
+        <div class="lesserspacer"></div>
+        <h1 class="deemph">cirrostrat</h1>
     </div>
+
+    <div class="content-block no-padding supress-bottom-border">
+        <div class="lessspacer"></div> 
+        <img src="/img/404img2.png" class="img-shrink-only img-pixel-rendering shadow">
+    </div>
+
+    <div class="content-block">
+        <div class="in-more">
+            
+            <h2>404</h2>
+            the page that you might be looking for isn't here.
+            <br>
+            at least I can take you
+            <a href="/" class="nolinkstyle hzel">home?</a>
+        </div> 
+        <div class="lessspacer"></div>       
+    </div>
+
+    
+    <div class="content-block dark less-vertical-padding smaller color-two" id="footer">
+        <div>
+            cirrostrat <i>on</i> neocities.org &mdash; &copy 2024-2025 Sebastian Rugas &mdash; est 23 march 2024 &mdash; no generative AI was used <br>
+            This website, and all work contained herein is licensed openly via <a class="under" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY-NC-SA 4.0</a>.
+        </div>
+    </div>
+    <!-- - - - - - - - - - - -->
+    </div>
+    </div>
+
 </body>
 </html>

@@ -3,68 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cirrostrat about self</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>cirrostrat/about me</title>
+    <link rel="stylesheet" href="/style-3.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
 </head>
 <body>
     <div class="backbox"></div>
-    <div class="cont"></div>
-    <div class="overheadcont"></div>
-    <script>
-        // background moving thing
-        const offset = 100
-        let tick = 0
-        setInterval(()=>{
-            if (tick >= offset){tick = 0}
-            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
-            tick++
-        }, 50)
-    </script>
-    <div id="contall" class="contall-mainloc" >
-        <img id="logo" src="/img/drawing-16.png">
-        <header>
-            <iframe src="/if/header.html" frameborder="0" allowtransparency="true" width="100%" height="100%"></iframe>
-        </header>
-        <main>
-            <h2>&#x25b8; about me</h2>
-            <div>
-                <aside style="color: #6a273e; text-shadow: none;">
-                    <img src="/img/looking-on.png" alt="man behind a window of a house looking out while the roof is hit with freezing rain" class="transhue" style="opacity: 40%;">
-                    <br> this image is not representative of me at all lol
-                </aside>
-                
-                i am a man of simple interests,<br>
-                &emsp; of simple ideals,<br>
-                &emsp;&emsp; of simple desires.<br>
-                <br>
-                take some notes. <br>
-                <br> 
-                i am a so-called "weather enthusiast" and the founder of a
-                meteorology club in middle school. from a certain standpoint,
-                one could possibly say that "i peaked in middle school" because of this but
-                i wouldn't say that myself.
-                <br><br>
-                i also dabble in linux and cybersecurity, and i'd say i'm pretty good at it. i mean,
-                not many people would know what the "touch" command would do when asked so i already
-                have a leg up over 90% of the population. presumably
-                <br><br>
-                i also do robotics. 7135E for the win! we will go to worlds! someday, at least...
-                <br><br>
-                <div style="clear: both;"></div>
-            </div>
-            <hr>
-            <br>
-            <h2>&#x25b8; about this website</h2>
-            proudly serving internet patrons since march 23rd, 2024.
-            this is the second version of this website. an old version of index.html can be found
-            <a href="/index-old.html">here.</a><br><br>
-            this website adheres to the nine principles of <i>Web Design for the Future</i> by 7 sisters productions, Erik Max Francis.
-            <br><br>
-            i encourage you to take a look around and inside the website for you to 
-            learn a bit about web design. but please be considerate: do not steal
-            or otherwise take designs without attribution without express permission.
-        </main>
+    <script src="backbox.js"></script>
+
+    <div id="cont-all">
+    <div id="shadow">
+    <!-- REAL CONTENT BEGINS HERE - - - - - - - - - - -->
+    <div id="titlebar" class="content-block">
+        <div class="lesserspacer"></div>
+        <h1 class="deemph">cirrostrat</h1>
     </div>
+    
+    <div id="navigator" class="content-block">
+        <nav id="headlinks">
+            <ul class="hzlinks">
+                <li><a href="/index.html" class="hzel" target="_top">home</a></li>
+                <li><a href="/creations/index.html" class="hzel" target="_top">creations</a></li>
+                <li><a href="/articles/index.html" class="hzel" target="_top">articles</a></li>
+                <li><a href="/links.html" class="hzel" target="_top">links</a></li>
+                <li><a href="/aboutself.html" class="hzel" target="_top">about</a></li>
+                <!-- <li><a href="" class="hzel"></a></li> -->
+            </ul>
+        </nav>
+    </div>
+    <!-- <div class="content-block tape" id="warningtape"></div>
+    <div class="content-block less-vertical-padding color-two text-center saturated" id="warning">
+        <div><i>
+            This website is under renovation, some things might be broken for the time being.
+        </div></i>
+    </div> -->
+
+    <div class="content-block pageheading supress-bottom-border in-more" id="kicker">
+        <div class="lesserspacer"></div>
+        <div>
+            <h2>about me</h2>
+        </div>
+    </div>
+
+    <div class="content-block page supress-bottom-border in-more" id="kicker">
+        <div>
+            <p>
+                Hi! I'm <i>cirrostrat</i> (he/any). I also go by <i>pichib</i> or <i>sebasterisk</i> depending on 
+                where else you find me on the Internet. Welcome to my website! 
+            </p>
+            <p>
+                I'm a student working on various programming, engineering, and cybersecurity projects. I've been coding
+                stuff like this website ever since I was a wee little lad. Now, I get to do a bunch of cool stuff 
+                now because of that. I now work on cybersecurity training surrounding the Linux operating system as well
+                as competing in various competitions surrounding cyber and robotics.  
+            </p>
+            <p>
+                I also dabble in various weather-related hobbies, and track the skies in my spare time. I advocate for
+                transit wherever possible, and look towards a future where we can all get around without getting stuck.
+            </p>
+            <p>
+                Yeah, that's me. Find me elsewhere on the internet via my <a href="links.html" class="nolinkstyle">links</a> page.
+            </p>
+        </div>
+    </div>
+
+    <div class="content-block pageheading supress-bottom-border in-more" id="kicker">
+        <div class="lesserspacer"></div>
+        <div>
+            <h2>about this website</h2>
+        </div>
+    </div>
+
+    <div class="content-block page supress-bottom-border in-more" id="kicker">
+        <div>
+            <p>
+                This is the third revision of this website, originally created 23 March 2024. 
+                Hosted on <a href="//neocities.org" class="nolinkstyle">Neocities</a>, a free
+                static website builder and host platform. The repository of this
+                website is on <a href="//github.com/sebasterisk/cirrostrat-neocities" class="nolinkstyle">Github</a>. 
+            </p>
+            <p>
+                This website and all work contained herein is openly licensed via 
+                <a class="nolinkstyle" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY-NC-SA 4.0</a>.
+            </p>
+            <p>
+                Fruit of the mind, work of human hands. I value the integrity of human work and creativity. As such, <i>No generative AI tools were used.</i>
+            </p>
+        </div>
+        <div class="lesserspacer"></div>
+    </div>
+
+
+    <div class="content-block dark less-vertical-padding smaller color-two" id="footer">
+        <div>
+            cirrostrat <i>on</i> neocities.org &mdash; &copy 2024-2025 Sebastian Rugas &mdash; est 23 march 2024 &mdash; no generative AI was used <br>
+            This website, and all work contained herein is licensed openly via <a class="under" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY-NC-SA 4.0</a>.
+        </div>
+    </div>
+    <!-- - - - - - - - - - - -->
+    </div>
+    </div>
+
 </body>
 </html>

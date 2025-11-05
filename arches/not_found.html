@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cirrostrat 404</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="backbox"></div>
+    <div class="cont"></div>
+    <div class="overheadcont"></div>
+    <script>
+        // background moving thing
+        const offset = 100
+        let tick = 0
+        setInterval(()=>{
+            if (tick >= offset){tick = 0}
+            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
+            tick++
+        }, 50)
+    </script>
+    <div id="contall" class="center">
+        <img id="logo" src="/img/drawing-16.png">
+
+        <h1>cirrostrat</h1>
+        <img src="/img/404img.png" alt="man holding map, confused" class="responsive transhue" style='height: 100%; width: 100%; object-fit: contain; opacity: 0.2;'/>
+        <div class="leftfloat fourohfour">404</div>
+        <div>i don't know where you want to go <br> but at least i can take you <a href="/index.html" class="hzel">home</a>.</div>
+    </div>
+</body>
+</html>

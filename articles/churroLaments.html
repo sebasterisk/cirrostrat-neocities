@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cirrostrat churro tribute</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
+</head>
+<body>
+    <div class="backbox"></div>
+    <div class="cont"></div>
+    <div class="overheadcont"></div>
+    <script>
+        // background moving thing
+        const offset = 100
+        let tick = 0
+        setInterval(()=>{
+            if (tick >= offset){tick = 0}
+            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
+            tick++
+        }, 50)
+    </script>
+    <div id="contall" class="contall-mainloc" >
+        <img id="logo" src="/img/drawing-16.png">
+        <header>
+            <iframe src="/if/header.html" frameborder="0" allowtransparency="true" width="100%" height="100%"></iframe>
+        </header>
+        <main>
+            <h2>&#x25b8; a lamentation to the churro stand</h2>
+            <p>I thought he would be there for us.</p>
+            <p>It was June 12th, 2025. A perfect, sunny Tuesday evening. Following
+                some finangling with the virtual ticketing agent for the trip we 
+                had laid out that next day, we had decided to return to our beloved
+                churro stand. It had been a little over two years since we last paid him
+                a visit. The rails have changed since then. The same trains don't go there 
+                anymore. The station, though, is still in its slightly decrepit status. From the bustling 
+                mainline station of Atocha, we went to where our savior resided. Four zone ticket, 
+                Two euro sixty. 
+            </p>
+            <p>There was a slight feeling of hope and excitement on that train that couldn't be
+                described discretely. Stop after stop, we continued to draw nearer and nearer.
+            </p>
+            <p>Las Matas. In English, "The Bushes." That was our stop. The faregates unforgivingly released 
+                us into the open. Climbing up the parking lot, into the street, we saw his stand.
+            </p>
+            <p>We saw the shutters.</p>
+            <p>We thought he was just done for the day. We thought we could come back tomorrow.</p>
+            <p>But then we read the sign.</p>
+            <p>"Cerrado por temporada hasta septiembre."</p>
+            <p>Closed temporarily until September.</p>
+            
+            <p>Churro guy, as we affectionately call you,<br>
+                why did you leave when you did. <br>
+                When we came back for you <br>
+                you had already decided to leave us. <br>
+                We didn't have until September to wait for you. <br>
+                And now, I don't know if I'll be back again, <br>
+                if you might not be there too.
+            </p>
+            <img src="/img/lament.png" style='height: 100%; width: 100%; object-fit: contain;'> 
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cirrostrat - robotics</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
+</head>
+<body>
+    <div class="backbox"></div>
+    <div class="cont"></div>
+    <div class="overheadcont"></div>
+    <script>
+        // background moving thing
+        const offset = 100
+        let tick = 0
+        setInterval(()=>{
+            if (tick >= offset){tick = 0}
+            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
+            tick++
+        }, 50)
+    </script>
+    <div id="contall" class="contall-mainloc" >
+        <img id="logo" src="/img/drawing-16.png">
+        <header>
+            <iframe src="/if/header.html" frameborder="0" allowtransparency="true" width="100%" height="100%"></iframe>
+        </header>
+        <main>
+          <div id="containmost">
+
+            <div>
+              <section class="sidebarsect">
+                <h2>&#x25b8; robotics propaganda </h2>
+                <p>these are posters specifically created for my (former) vex v5 robotics team, 7135E. enjoy! </p>
+              </section>
+            </div>
+            
+            <div id="comictray"> 
+              <button class="comictraybuttons" id="stripfirst" onclick="change(true, true)">&larrfs;</button>
+              <button class="comictraybuttons" id="stripback" onclick="change(false, true)">&larr;</button>
+              <span id="stripnum">x</span>
+              <button class="comictraybuttons" id="stripnext" onclick="change(false, false)">&rarr;</button>
+              <button class="comictraybuttons" id="striplast" onclick="change(true, false)">&rarrfs;</button>
+            </div>
+
+            <div>
+              <img class="crispedge" id="stripdisplay" width="100%">            
+            </div>
+
+          </div>
+        </main>
+
+        <script>
+            let current = 0;
+            const image = document.getElementById("stripdisplay");
+            const label = document.getElementById("stripnum");
+            const buttons = document.querySelector(".comictraybuttons");
+            const titles = [
+              "imgs/drawing-7artonly.jpg",
+              "imgs/histak.jpeg",
+              "imgs/last_stand.jpg",
+              "imgs/lb7135e-poster.png",
+              "imgs/over-under.jpg",
+              "imgs/spiritofthescarf-textless.jpeg",
+              "imgs/states1.jpeg"
+            ];
+            function updateimage(){
+              let trueCurrent = current + 1
+              label.innerHTML = trueCurrent;
+              image.src = titles[current]
+            }
+            
+            function change(skip, backwards){
+              if (skip){
+                if (backwards){ current = 0; }
+                else { current = titles.length - 1; }
+              } else {
+                if (backwards && (current != 0)){ 
+                  current -= 1; 
+                } else if (!(backwards) && current != titles.length - 1){ 
+                  current += 1; 
+                }
+              }
+              // might wanna dim control buttons at end
+              updateimage();
+            }
+            
+            updateimage();
+            
+          </script>
+    </div>
+</body>
+</html>
