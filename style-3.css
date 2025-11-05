@@ -371,3 +371,26 @@ p{
 .shadow{
     filter: drop-shadow(2px 2px 6px black);
 }
+
+div:has(.behind){
+    position: relative;
+}
+
+.behind{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.img-header{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 75%;
+}
+
+.bring-forth{
+    position: relative;
+    z-index: 20;
+}
