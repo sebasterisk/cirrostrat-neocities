@@ -302,6 +302,19 @@ a.under{
     transition: border 0.5s, transform 0.5s;
 }
 
+.card.disabled, .card.disabled:hover {
+    border: 3px solid var(--color-content-back2);
+    padding: 10px;
+    background-color: var(--color-background);
+    box-shadow: 0 0 10px var(--color-superbackground);
+    
+    transform: scale(1);
+    transition: none;
+    * {
+        color: var(--color-dark);
+    }
+}
+
 
 hr{
     border: 1px solid var(--color-content-back);
