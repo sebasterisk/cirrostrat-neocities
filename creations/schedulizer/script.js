@@ -523,7 +523,7 @@ function timelinetick(startbound, endbound){
         if (document.querySelector("body.screensaver") != null){
             hr.style.left = set + "px" 
 
-            if (set <= 0 || set >= finaltable_new.offsetHeight){
+            if (set <= 0 || set >= finaltable_new.offsetWidth){
                 hr.style.visibility = "hidden"
                 hr.style.display = "none"
                 hr.visibility = false
@@ -535,7 +535,7 @@ function timelinetick(startbound, endbound){
         } else {
             hr.style.top = set + "px"   
             
-            if (set <= 0 || set >= finaltable_new.offsetWidth){
+            if (set <= 0 || set >= finaltable_new.offsetHeight){
                 hr.style.visibility = "hidden"
                 hr.style.display = "none"
                 hr.visibility = false
