@@ -43,7 +43,7 @@
 body{
     container-name: body;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: #181a1d;
     height: 100vh;
     width: 100vw;
@@ -131,15 +131,13 @@ body, h1, select, option{
 }
 
 #options{
-    display: none !important;
     color: rgb(255, 255, 255);
     background-color: #2b3237;
     padding: 4px 0.25em; 
-    width: 100%;
+    width: 1;
     display: inline-block;
 }
 #buttontray{
-    display: none;
     display: inline-block;
 }
 

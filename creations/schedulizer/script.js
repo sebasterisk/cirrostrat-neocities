@@ -198,7 +198,13 @@ function pixelperminute(rangestart, rangeend){
     // pass strings formatted as "00:00", "23:00"
     const start_time = new Date("1970-01-01T"+rangestart+":00")
     const end_time = new Date("1970-01-01T"+rangeend+":00")
-    const day_len = finaltable_new.offsetHeight /(((end_time - start_time) / 1000)/60)
+
+    let day_len
+    if (document.querySelector("body.screensaver") != null){
+        day_len = finaltable_new.offsetWidth /(((end_time - start_time) / 1000)/60)
+    } else {
+        day_len = finaltable_new.offsetHeight /(((end_time - start_time) / 1000)/60)
+    }
     return day_len
 }
 function filtercomplete(){
@@ -346,8 +352,16 @@ function map(map_type, map_day){
         let nowbox = document.createElement('div')
         nowbox.innerHTML = `<span class="starttime">${map_totable[i].time.toLocaleTimeString("en-US",{"timeStyle":"short"})}</span><br><span class="cname">${map_totable[i].name}</span>`
         nowbox.classList.add("scheduleelement")
-        nowbox.style.top = map_totable[i].table_offset + "px"
-        nowbox.style.height = map_totable[i].table_len + "px"
+
+        if (document.querySelector("body.screensaver") != null){
+            nowbox.style.left = map_totable[i].table_offset + "px"
+            nowbox.style.width = map_totable[i].table_len + "px"
+        } else {
+            nowbox.style.top = map_totable[i].table_offset + "px"
+            nowbox.style.height = map_totable[i].table_len + "px"   
+        }
+
+        
         if (map_totable[i].name == "free"){
             nowbox.style.visibility = "hidden"
         }
@@ -514,7 +528,14 @@ function timelinetick(startbound, endbound){
             hr.style.display = "block"
             hr.visibility = true
         }
-        hr.style.top = set + "px"
+
+        if (document.querySelector("body.screensaver") != null){
+            hr.style.left = set + "px" 
+        } else {
+            hr.style.top = set + "px"        
+        }
+
+        
     }, 100)
 }
 function statbarset(min, now, max){
@@ -529,3 +550,10 @@ function setmarq(){
         statmain.classList.remove("marquee")
     }
 }
+
+document.querySelector("body").addEventListener("keydown", (event) => {
+    if (event.key == "x"){
+        document.querySelector("body").classList.toggle("screensaver")
+        update()
+    }
+})

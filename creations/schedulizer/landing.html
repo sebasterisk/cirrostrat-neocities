@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>your schedulizer</title>
     <link rel="stylesheet" href="/creations/schedulizer/style.css">
+    <link rel="stylesheet" href="/creations/schedulizer/screensaver-mode.css">
+
     <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
 </head>
 <body>
@@ -27,6 +29,7 @@
 
     <div id="tracker">
         <div id="clock">
+            <div class="flexspacer"></div>
             <span id="timenow"></span><br>
             <span id="date"></span>
         </div>
@@ -178,8 +181,8 @@
             <button id="calendarbutton">calendar</button>
             <!--button id="leanbutton" class="button">banner mode</button-->
             <a href="./index.html"> <button id="edit" class="button">edit</button> </a>
+            <button id="importbutton" class="button">import</button>
         </div>
-        <button id="importbutton" class="button">import</button>
     </div>
 
     <script src="https://unpkg.com/lz-string"></script>
@@ -244,6 +247,7 @@
             }
         }
     </script>
+
 
     <footer hidden><hr>
         bookmark this link to save it! - part of the cirrostrat neocities website. <br> last updated: 29 apr 2024 / <a href="./index.html">edit schedule</a> - <a href="/index.html">go home</a>
