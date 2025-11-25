@@ -519,20 +519,31 @@ function timelinetick(startbound, endbound){
         const ppm = pixelperminute(startbound, endbound)
         const now = new Date().toLocaleTimeString("en-US",{"timeStyle":"short", "hourCycle":"h23"})
         const set = ppm * timediff_mins(startbound, now)
-        if (set <= 0 || set >= finaltable_new.offsetHeight){
-            hr.style.visibility = "hidden"
-            hr.style.display = "none"
-            hr.visibility = false
-        } else {
-            hr.style.visibility = "visible"
-            hr.style.display = "block"
-            hr.visibility = true
-        }
 
         if (document.querySelector("body.screensaver") != null){
             hr.style.left = set + "px" 
+
+            if (set <= 0 || set >= finaltable_new.offsetHeight){
+                hr.style.visibility = "hidden"
+                hr.style.display = "none"
+                hr.visibility = false
+            } else {
+                hr.style.visibility = "visible"
+                hr.style.display = "block"
+                hr.visibility = true
+            }
         } else {
-            hr.style.top = set + "px"        
+            hr.style.top = set + "px"   
+            
+            if (set <= 0 || set >= finaltable_new.offsetWidth){
+                hr.style.visibility = "hidden"
+                hr.style.display = "none"
+                hr.visibility = false
+            } else {
+                hr.style.visibility = "visible"
+                hr.style.display = "block"
+                hr.visibility = true
+            }
         }
 
         
