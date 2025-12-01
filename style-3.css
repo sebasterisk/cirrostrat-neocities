@@ -51,6 +51,7 @@
     --color-content-back2: #270411;
     --color-dark: #5f1932;
     --color-background: #150007;
+    --color-darkbackground: #0e0005;
     --color-superbackground: #070003;
 }
 
@@ -381,6 +382,10 @@ p{
     image-rendering: crisp-edges;
 }
 
+.img-pixel-rendering-2 {
+    image-rendering: pixelated;
+}
+
 .shadow{
     filter: drop-shadow(2px 2px 6px black);
 }
@@ -406,4 +411,74 @@ div:has(.behind){
 .bring-forth{
     position: relative;
     z-index: 20;
+}
+
+.image-viewer{
+    display: flex;
+    flex-direction: row;
+}
+
+.image-viewer #sidebar{
+    max-width: 200px;
+    width: 33%;
+    background-color: var(--color-darkbackground) ;
+    padding: 10px;
+}
+
+.image-viewer #nav{
+    width: 50px;
+    background-color: var(--color-background);
+    padding: 5px;
+    padding-right: 0px;
+    align-content: center;
+    line-height: 20pt;
+    text-align: center;
+}
+
+.image-viewer #viewer-container {
+    padding: 10px;
+    flex: 1;
+    text-align: center;
+}
+
+.image-viewer #stripnum {
+    font-stretch: semi-condensed;
+    font-weight: bold;
+    font-size: 16pt;
+    padding: 10px 0px 8px;
+}
+
+.image-viewer #stripdisplay {
+    width: 100%;
+    background-color: #070003;
+}
+
+button{
+    background-color: var(--color-content-back);
+    border: 2px solid var(--color-content-back);
+    
+    box-shadow: 2px 2px 2px var(--color-superbackground);
+    padding: 2px 6px;
+    color: var(--color-norm);
+    font-family: Gotham, Verdana, Geneva, Tahoma, sans-serif;
+    transition: all 0.2s;
+}
+
+button:hover{
+    background-color: var(--color-dark);
+    border: 2px solid var(--color-less-dark);
+    box-shadow: 2px 2px 2px var(--color-superbackground);
+}
+
+button:active{
+    background-color: var(--color-subsat);
+    border: 2px solid var(--color-subsat);
+    box-shadow: 0px 0px 2px var(--color-subsat);
+    transform: scale(0.8);
+    transition: all 0.1s;
+}
+
+p:first-of-type{
+    padding-top: 15px;
+    padding-bottom: 0px;
 }

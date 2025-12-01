@@ -3,63 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>cirrostrat/creations</title>
+    <link rel="stylesheet" href="/style-3.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
 </head>
 <body>
     <div class="backbox"></div>
-    <div class="cont"></div>
-    <div class="overheadcont"></div>
-    <script>
-        // background moving thing
-        const offset = 100
-        let tick = 0
-        setInterval(()=>{
-            if (tick >= offset){tick = 0}
-            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
-            tick++
-        }, 50)
-    </script>
-    <div id="contall" class="contall-mainloc" >
-        <img id="logo" src="/img/drawing-16.png">
-        <header>
-            <iframe src="/if/header.html" frameborder="0" allowtransparency="true" width="100%" height="100%"></iframe>
-        </header>
-        <main>
-            <h2>&#x25b8; articles</h2>
-            never let me pick up a pen again 
-            <a href="/articles/attractions.html">
-                <div class="tidbit">
-                    <span class="tidbithead"> attractions </span><br>
-                    who I fancy and how I fancy! 
-                </div>
-            </a>
-            <a href="/articles/churroLaments.html">
-                <div class="tidbit">
-                    <span class="tidbithead"> a lamentation to the spanish churro stand </span><br>
-                    when we returned, he didn't
-                </div>
-            </a>
-            <a href="/articles/election2024.html">
-                <div class="tidbit">
-                    <span class="tidbithead"> quick political ramblings... etcetera </span><br>
-                    my take on the 2024 election... 
-                </div>
-            </a>
-            <a href="/articles/fskbTribute.html">
-                <div class="tidbit">
-                    <span class="tidbithead"> a trubute to the francis scott key bridge </span><br>
-                    often overlooked by locals, now stared at by the world
-                </div>
-            </a>
-            <a href="/articles/churroTribute.html">
-                <div class="tidbit">
-                    <span class="tidbithead"> a tribute to the spanish churro stand </span><br>
-                    where the legendary churros live
-                </div>
-            </a>
-        </main>
+    <script src="/backbox.js"></script>
+
+    <div id="cont-all">
+    <div id="shadow">
+    <!-- REAL CONTENT BEGINS HERE - - - - - - - - - - -->
+     <div id="titlebar" class="content-block">
+        <div class="lesserspacer"></div>
+        <h1 class="deemph">cirrostrat</h1>
     </div>
+    
+    <div id="navigator" class="content-block">
+        <nav id="headlinks">
+            <ul class="hzlinks">
+                <li><a href="/index.html" class="hzel" target="_top">home</a></li>
+                <li><a href="/creations/index.html" class="hzel" target="_top">creations</a></li>
+                <li><a href="/articles/index.html" class="hzel" target="_top">articles</a></li>
+                <li><a href="/links.html" class="hzel" target="_top">links</a></li>
+                <li><a href="/aboutself.html" class="hzel" target="_top">about</a></li>
+                <!-- <li><a href="" class="hzel"></a></li> -->
+            </ul>
+        </nav>
+    </div>
+    <!-- <div class="content-block tape" id="warningtape"></div>
+    <div class="content-block less-vertical-padding color-two text-center saturated" id="warning">
+        <div><i>
+            This website is under renovation, some things might be broken for the time being.
+        </div></i>
+    </div> -->
+
+    <div class="content-block pageheading supress-bottom-border in-more" id="kicker">
+        <div class="lesserspacer"></div>
+        <div>
+            <h2>articles</h2>
+            a few random writings from me
+        </div>
+    </div>
+
+    <div class="content-block">
+        
+    </div>
+
+    <div class="content-block dark less-vertical-padding smaller color-two" id="footer">
+        <div>
+            cirrostrat <i>on</i> neocities.org &mdash; &copy 2024-2025 Sebastian Rugas &mdash; est 23 march 2024 &mdash; no generative AI was used <br>
+            This website, and all work contained herein is licensed openly via <a class="under" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY-NC-SA 4.0</a>.
+        </div>
+    </div>
+    <!-- - - - - - - - - - - -->
+    </div>
+    </div>
+
 </body>
 </html>

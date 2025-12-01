@@ -3,68 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>cirrostrat/creations</title>
+    <link rel="stylesheet" href="/style-3.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
 </head>
 <body>
     <div class="backbox"></div>
-    <div class="cont"></div>
-    <div class="overheadcont"></div>
-    <script>
-        // background moving thing
-        const offset = 100
-        let tick = 0
-        setInterval(()=>{
-            if (tick >= offset){tick = 0}
-            document.querySelectorAll('.backbox')[0].style.setProperty("--offset", `${tick}px ${tick}px`);
-            tick++
-        }, 50)
-    </script>
-    <div id="contall" class="contall-mainloc" >
-        <img id="logo" src="/img/drawing-16.png">
-        <header>
-            <iframe src="/if/header.html" frameborder="0" allowtransparency="true" width="100%" height="100%"></iframe>
-        </header>
-        <main>
-            <div id="containmost">
-                <div>
-                <!-- SIDEBAR -->
-                  <section class="sidebarsect">
-                    <h2>&#x25b8; tanner and thames </h2>
-                    <p>
-                      Tanner and Thames is a comic about the lives of two brothers&mdash;at least, that's how it starts.
-                    </p>
-                    <p>
-                      made for fun, expressed using 400x400 pixel doodles. volume I (chapters 1&ndash;16) was drawn
-                      through the summer of 2023. chapters thereafter are part of volume II which began in the fall of 2024,
-                      still a work in progress.
-                    </p>
+    <script src="/backbox.js"></script>
+
+    <div id="cont-all">
+    <div id="shadow">
+    <!-- REAL CONTENT BEGINS HERE - - - - - - - - - - -->
+     <div id="titlebar" class="content-block">
+        <div class="lesserspacer"></div>
+        <h1 class="deemph">cirrostrat</h1>
+    </div>
+    
+    <div id="navigator" class="content-block">
+        <nav id="headlinks">
+            <ul class="hzlinks">
+                <li><a href="/index.html" class="hzel" target="_top">home</a></li>
+                <li><a href="/creations/index.html" class="hzel" target="_top">creations</a></li>
+                <li><a href="/articles/index.html" class="hzel" target="_top">articles</a></li>
+                <li><a href="/links.html" class="hzel" target="_top">links</a></li>
+                <li><a href="/aboutself.html" class="hzel" target="_top">about</a></li>
+                <!-- <li><a href="" class="hzel"></a></li> -->
+            </ul>
+        </nav>
+    </div>
+    <!-- <div class="content-block tape" id="warningtape"></div>
+    <div class="content-block less-vertical-padding color-two text-center saturated" id="warning">
+        <div><i>
+            This website is under renovation, some things might be broken for the time being.
+        </div></i>
+    </div> -->
+
+    <div class="content-block pageheading supress-bottom-border in-more" id="kicker">
+        <div class="lessspacer"></div>
+        <!-- <img src="/img/linuxheader.png" class="behind img-header img-shrink-only img-pixel-rendering"> -->
+        <div class="bring-forth">
+            <h2>tanner and thames</h2>
+            creations/tannerAndThames/
+        </div>
+    </div>
+
+    <div class="content-block image-viewer no-padding">
+        <div id="nav">
+            <button onclick="change(false,false)"> &uparrow; </button> <br>
+            <div id="stripnum"> 10 </div>
+            <button onclick="change(false,true)"> &downarrow; </button>
+        </div>
+
+        <div id="viewer-container">
+            <main>
+            <!-- PRIMARY SECTION -->
+                <section id="intro">
+                <img class="img-pixel-rendering-2" id="stripdisplay" style="max-width: 400px;" src="imgs/1.gif">            
+                </section>
             
-                  <noscript>you need javascript for this to work. i'm not gonna steal your info, i swear</noscript>
-                </div>
-                
-                <div>
-                  <h3 id="titlecomic">Title here</h3>
-                </div>
-                <main>
-                <!-- PRIMARY SECTION -->
-                  <section id="intro">
-                    <img class="crispedge relcenter" id="stripdisplay" style="margin: 2px 10px;" width=400px height=400px>            
-                  </section>
-                
-                </main>
-              </div>
-              <section class="sidebarsect">
-                <div id="comictray" class="relcenter"> 
-                  <button class="comictraybuttons" id="stripfirst" onclick="change(true, true)">&larrfs;</button>
-                  <button class="comictraybuttons" id="stripback" onclick="change(false, true)">&larr;</button>
-                  <span id="stripnum">x</span>
-                  <button class="comictraybuttons" id="stripnext" onclick="change(false, false)">&rarr;</button>
-                  <button class="comictraybuttons" id="striplast" onclick="change(true, false)">&rarrfs;</button>
-                </div>
-              </section>
-        </main>
+            </main>
+        </div>
 
         <script>
     
@@ -119,7 +117,32 @@
             
             updateimage();
             
-          </script>
+        </script>
+
+        
     </div>
+
+    <div class="content-block page in-more">
+        <div class="text-lesserkicker text-center">about</div>
+        <p>
+        Tanner and Thames is a comic about the lives of two brothers... at least, that's how it starts.
+        </p>
+        <p>
+        made for fun, expressed using 400x400 pixel doodles. volume I (chapters 1&ndash;16) was drawn
+        through the summer of 2023. chapters thereafter are part of volume II which began in the fall of 2024,
+        still a work in progress.
+        </p>
+    </div>
+
+    <div class="content-block dark less-vertical-padding smaller color-two" id="footer">
+        <div>
+            cirrostrat <i>on</i> neocities.org &mdash; &copy 2024-2025 Sebastian Rugas &mdash; est 23 march 2024 &mdash; no generative AI was used <br>
+            This website, and all work contained herein is licensed openly via <a class="under" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY-NC-SA 4.0</a>.
+        </div>
+    </div>
+    <!-- - - - - - - - - - - -->
+    </div>
+    </div>
+
 </body>
 </html>
