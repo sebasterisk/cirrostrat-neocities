@@ -456,7 +456,8 @@ div:has(.behind){
 button{
     background-color: var(--color-content-back);
     border: 2px solid var(--color-content-back);
-    
+    position: relative;
+
     box-shadow: 2px 2px 2px var(--color-superbackground);
     padding: 2px 6px;
     color: var(--color-norm);
