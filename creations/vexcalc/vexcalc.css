@@ -1,0 +1,135 @@
+.long-goal-contain{
+    background-image: url("/creations/vexcalc/img/longgoal.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 500px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.long-goal-spacer{
+    flex: 1;
+}
+
+.score{
+    font-size: 29pt;
+}
+
+.long-scoring{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #0e0005ee;
+    padding: 10px;
+    min-width: 20%;
+    margin: 0;
+    height: inherit;
+    width: max-content;
+    backdrop-filter: blur(4px);
+    flex-direction: column;
+    justify-content: center;
+}
+
+.red-long > button, .red-center > button {
+    background-color: #ab1d0c;
+    border-color: #cf4737;
+}
+
+.blue-long button, .blue-center > button {
+    background-color: #4a6dad;
+    border-color: #6e8cc4;
+}
+
+.control-zone{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-zone button {
+    font-size: 20pt;
+    opacity: 50%;
+    width: 90px;
+    height: 40px;
+    background-color: #7e2e5d;
+    border-color: transparent;
+    transition: none;
+    box-shadow: none;
+}
+
+.control-zone button:active {
+    transition: none;
+    transform: none;
+}
+
+.control-zone button .red-control {
+    background-color: #ab1d0c;
+}
+
+.control-zone button .blue-control {
+    background-color: #4a6dad;
+}
+
+.center-goal-contain {
+    background-image: url("/creations/vexcalc/img/centergoal.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.center-scoring{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #0e0005ee;
+    min-width: 20%;
+    margin: 0;
+    height: inherit;
+    width: max-content;
+    backdrop-filter: blur(4px);
+    flex-direction: column;
+    justify-content: center;
+}
+
+.center-scoring-inner{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #0e0005ee;
+    padding: 10px;
+    min-width: 20%;
+    margin: 0;
+    height: inherit;
+    width: max-content;
+    backdrop-filter: blur(4px);
+    flex-direction: row;
+    justify-content: center;
+}
+
+@container (width < 500px){
+    .long-goal-contain {
+        background-size: 350px;
+    }
+
+    .long-scoring {
+        height: auto;
+        min-width: 10%;
+    }
+
+    .center-goal-contain {
+        background-size: 175px;
+        height: 150px;
+    }
+
+    .center-scoring {
+        min-width: 10%;
+    }
+}
