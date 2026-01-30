@@ -45,32 +45,32 @@
 
     <div class="content-block long-goal-contain" id="north-long-goal">
         <div class="red-long long-scoring" id="red-long-north">
-            <button>&minus;</button>
-            <span class="score">1</span>
-            <button>&plus;</button>
+            <button onclick="updBlockScoring('red', false, 'north')">&minus;</button>
+            <span class="score">0</span>
+            <button onclick="updBlockScoring('red', true, 'north')">&plus;</button>
         </div>
         <div class="control-zone long-goal-spacer"> 
             <button></button>
         </div>
         <div class="blue-long long-scoring" id="blue-long-north">
-            <button>&minus;</button>
-            <span class="score">1</span>
-            <button>&plus;</button>
+            <button onclick="updBlockScoring('blue', false, 'north')">&minus;</button>
+            <span class="score">0</span>
+            <button onclick="updBlockScoring('blue', true, 'north')">&plus;</button>
         </div>
     </div>
 
     <div class="content-block center-goal-contain" id="center-goals">
         <div class="center-scoring">
             <div class="red-center center-scoring-inner" id="red-center-upper">
-                <button>&minus;</button>
-                <span class="score">1</span>
-                <button>&plus;</button>
+                <button onclick="updBlockScoring('red', false, 'centerup')">&minus;</button>
+                <span class="score">0</span>
+                <button onclick="updBlockScoring('red', true, 'centerup')">&plus;</button>
             </div>
 
             <div class="red-center center-scoring-inner" id="red-center-lower">
-                <button>&minus;</button>
-                <span class="score">1</span>
-                <button>&plus;</button>
+                <button onclick="updBlockScoring('red', false, 'centerlow')">&minus;</button>
+                <span class="score">0</span>
+                <button onclick="updBlockScoring('red', true, 'centerlow')">&plus;</button>
             </div>
         </div>
 
@@ -80,33 +80,45 @@
 
         <div class="center-scoring">
             <div class="blue-center center-scoring-inner" id="blue-center-upper">
-                <button>&minus;</button>
-                <span class="score">1</span>
-                <button>&plus;</button>
+                <button onclick="updBlockScoring('blue', false, 'centerup')">&minus;</button>
+                <span class="score">0</span>
+                <button onclick="updBlockScoring('blue', true, 'centerup')">&plus;</button>
             </div>
 
             <div class="blue-center center-scoring-inner" id="blue-center-lower">
-                <button>&minus;</button>
-                <span class="score">1</span>
-                <button>&plus;</button>
+                <button onclick="updBlockScoring('blue', false, 'centerlow')">&minus;</button>
+                <span class="score">0</span>
+                <button onclick="updBlockScoring('blue', true, 'centerlow')">&plus;</button>
             </div>
         </div>
         
     </div>
 
     <div class="content-block long-goal-contain" id="south-long-goal">
-        <div class="red-long long-scoring" id="red-long-north">
-            <button>&minus;</button>
-            <span class="score">1</span>
-            <button>&plus;</button>
+        <div class="red-long long-scoring" id="red-long-south">
+            <button onclick="updBlockScoring('red', false, 'south')">&minus;</button>
+            <span class="score">0</span>
+            <button onclick="updBlockScoring('red', true, 'south')">&plus;</button>
         </div>
         <div class="control-zone long-goal-spacer"> 
             <button></button>
         </div>
-        <div class="blue-long long-scoring" id="blue-long-north">
-            <button>&minus;</button>
-            <span class="score">1</span>
-            <button>&plus;</button>
+        <div class="blue-long long-scoring" id="blue-long-south">
+            <button onclick="updBlockScoring('blue', false, 'south')">&minus;</button>
+            <span class="score">0</span>
+            <button onclick="updBlockScoring('blue', true, 'south')">&plus;</button>
+        </div>
+    </div>
+
+    <div class="content-block etc-contain" id="south-long-goal">
+        <div class="red-park park" id="red-park">
+            <button class="dis">0</button>
+        </div>
+        <div class="control-zone"> 
+            <button>AUTO BONUS</button>
+        </div>
+        <div class="blue-park park" id="blue-park">
+            <button class="dis">0</button>
         </div>
     </div>
 
@@ -124,6 +136,73 @@
     <!-- - - - - - - - - - - -->
     </div>
     </div>
+
+    <script>
+        let labels = {
+            red: {
+                north: document.querySelector("#red-long-north > .score"),
+                centerup: document.querySelector("#red-center-upper > .score"),
+                centerlow: document.querySelector("#red-center-lower > .score"),
+                south: document.querySelector("#red-long-south > .score"),
+                park: document.querySelector("#red-park > button"),
+            },
+
+            blue: {
+                north: document.querySelector("#blue-long-north > .score"),
+                centerup: document.querySelector("#blue-center-upper > .score"),
+                centerlow: document.querySelector("#blue-center-lower > .score"),
+                south: document.querySelector("#blue-long-south > .score"),
+                park: document.querySelector("#red-park > button"),
+            },
+
+            auto: document.querySelector(".etc-contain > .control-zone > button")
+        }
+
+        let scoreparts = {
+            north: {
+                red: 0,
+                blue: 0,
+                control: 0,
+            },
+
+            south: {
+                red: 0,
+                blue: 0,
+                control: 0,
+            },
+
+            centerup: {
+                red: 0,
+                blue: 0,
+            },
+
+            centerlow: {
+                red: 0,
+                blue: 0,
+            },
+
+            park: {
+                red: 0,
+                blue: 0,
+            },
+
+            autobonus: {
+                red: 0,
+                blue: 0,
+            }
+        }
+
+        function updBlockScoring(color, add, loc){
+            let x = add ? 1 : -1
+            if (scoreparts[loc][color] <= 0 && x < 0){
+                return
+            }
+            scoreparts[loc][color] += x;
+            console.log(scoreparts);
+
+            labels[color][loc].innerHTML = scoreparts[loc][color]
+        }
+    </script>
 
 </body>
 </html>

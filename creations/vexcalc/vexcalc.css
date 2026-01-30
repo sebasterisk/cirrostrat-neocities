@@ -1,3 +1,7 @@
+.content-block{
+    box-sizing: content-box ;
+}
+
 .long-goal-contain{
     background-image: url("/creations/vexcalc/img/longgoal.png");
     background-repeat: no-repeat;
@@ -16,6 +20,9 @@
 
 .score{
     font-size: 29pt;
+    width: 50px;
+    text-align: center;
+    display: block
 }
 
 .long-scoring{
@@ -33,14 +40,18 @@
     justify-content: center;
 }
 
-.red-long > button, .red-center > button {
+.red-long > button, .red-center > button, .red-park > button, .red-auto {
     background-color: #ab1d0c;
     border-color: #cf4737;
+    width: 25px;
+    height: 25px;
 }
 
-.blue-long button, .blue-center > button {
+.blue-long button, .blue-center > button, .blue-park > button, .blue-auto {
     background-color: #4a6dad;
     border-color: #6e8cc4;
+    width: 25px;
+    height: 25px;
 }
 
 .control-zone{
@@ -50,8 +61,7 @@
 }
 
 .control-zone button {
-    font-size: 20pt;
-    opacity: 50%;
+    font-size: 10pt;
     width: 90px;
     height: 40px;
     background-color: #7e2e5d;
@@ -133,3 +143,39 @@
         min-width: 10%;
     }
 }
+
+.etc-contain {
+    display: flex;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 200px;
+    align-items: center;
+    justify-items: center;
+}
+
+.park{
+    flex:1;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 120px;
+    background-position: 50% 50%;
+}
+
+.red-park {
+    background-image: url(img/redpark.png);
+}
+
+.blue-park{
+    background-image: url(img/bluepark.png);
+}
+
+button.dis {
+    background-color: #5f1932;
+    border-color: #752d49;
+}
+
