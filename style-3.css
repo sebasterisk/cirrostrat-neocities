@@ -104,6 +104,7 @@ body{
     .layout-twocol{
         flex-direction: column;
     }
+
 }
 
 #shadow{
@@ -244,6 +245,21 @@ a.under{
     align-content: center;
 }
 
+.noflex{
+    flex: none !important;
+}
+
+.layout-twocol > div.padless {
+    flex:1;
+    padding: 40px 40px 30px;
+    align-content: center;
+}
+
+.layout-twocol .kicker-img{
+    flex:1;
+    max-width: 400px;
+}
+
 .text-kicker {
     font-size: 30pt;
     font-stretch: semi-condensed;
@@ -289,12 +305,20 @@ a.under{
     padding: 15px 20px;
 }
 
+.cards-list-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 15px 20px;
+}
+
 .card {
     border: 3px solid var(--color-content-back2);
     padding: 10px;
     background-color: var(--color-content-back2);
     box-shadow: 0 0 10px var(--color-superbackground);
     transition: border 0.5s, transform 0.5s;
+    min-height: fit-content;
 }
 
 .card:hover {
@@ -320,6 +344,11 @@ a.under{
     }
 }
 
+.card.card-horizontal>img {
+    width: 33%;
+    float: left;
+    margin-right: 16px;
+}
 
 hr{
     border: 1px solid var(--color-content-back);
