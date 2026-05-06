@@ -104,7 +104,11 @@ body{
     .layout-twocol{
         flex-direction: column;
     }
-
+    .cards-list-container .card.card-horizontal img {
+        float: none;
+        min-width: none;
+        width: 100% !important;
+    }
 }
 
 #shadow{
@@ -348,10 +352,18 @@ a.under{
     width: 33%;
     float: left;
     margin-right: 16px;
+    height: inherit;
+    max-height: 150px;
+}
+
+.card.card-horizontal>img.thin {
+    max-height: 70px;
+    width: 25%;
 }
 
 hr{
-    border: 1px solid var(--color-content-back);
+    border: 1px solid var(--color-dark);
+    width: 100%;
 }
 
 .card-image{
@@ -515,4 +527,22 @@ button:active{
 p:first-of-type{
     padding-top: 15px;
     padding-bottom: 0px;
+}
+
+#special-aip-banner{
+    color: #ff8276;
+    text-shadow: -3px 4px 0px #0004;
+    animation: aip 8s ease-in-out infinite alternate;
+}
+
+@keyframes aip {
+    from {
+        background-color: #8a3535;
+    }
+    to {
+        background-color: #862247;
+    }
+}
+#special-aip-banner .text-subber{
+    color: #e7cdd5;
 }
