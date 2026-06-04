@@ -154,7 +154,7 @@ h1.deemph {
     font-stretch: condensed;
     font-size: 60pt;
     margin: 0;
-    margin-bottom: -15px;
+    margin-bottom: -5px;
 }
 
 #navigator{
@@ -285,7 +285,7 @@ a.under{
 
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
     gap: 16px;
     padding: 15px 20px;
 }
@@ -537,4 +537,18 @@ p:first-of-type{
 .if{
     width: 100%;
     aspect-ratio: 16 / 9;
+}
+
+.tags ul{
+    padding: 10px 0 0;
+    margin: 0;
+}
+
+.tags>ul>li {
+    display: inline-block;
+    background-color: var(--color-sub);
+    padding: 4px 20px;
+    margin: 0;
+    color: var(--color-background);
+    font-weight: 800;
 }
