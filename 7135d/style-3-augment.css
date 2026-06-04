@@ -125,7 +125,7 @@ body{
     background-image: url(/7135d/7135d.png);
     background-color: var(--color-background);
     background-size: 100%;
-    background-position: 50% 0;
+    background-position: 50% 50%;
     background-attachment: local;
     background-size: cover;
     image-rendering: pixelated;
