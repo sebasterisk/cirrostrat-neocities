@@ -271,6 +271,12 @@ a.under{
     background-color: var(--color-content-back);
 }
 
+.twocol-img{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
 .less-vertical-padding{
     padding: 6px 16px;
 }
@@ -493,8 +499,20 @@ button{
     box-shadow: 2px 2px 2px var(--color-superbackground);
     padding: 2px 6px;
     color: var(--color-norm);
-    font-family: Gotham, Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Source Code Pro", Verdana, Geneva, Tahoma, sans-serif;
     transition: all 0.2s;
+    font-size: 14pt;
+}
+
+button.kicker-button {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 16pt;
+}
+
+.fill button {
+    background-color: var(--color-content-back2);
+    border: 2px solid var(--color-content-back2);
 }
 
 button:hover{
