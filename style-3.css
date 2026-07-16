@@ -394,9 +394,19 @@ h2{
     font-stretch: semi-condensed;
     font-size: 40pt;
     margin: 0;
-    margin-bottom: -10px;
+    margin-bottom: 0px;
+    line-height: 100%;
 }
 
+h3{
+    color:var( --color-emph);
+    font-stretch: semi-condensed;
+    font-size: 30pt;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    line-height: 100%;
+    border-bottom: 2px solid var(--color-less-dark);
+}
 .supress-bottom-border {
     border-bottom: none;
 }
@@ -545,4 +555,19 @@ p:first-of-type{
 }
 #special-aip-banner .text-subber{
     color: #e7cdd5;
+}
+
+.excerpt{
+    background-color: var(--color-content-back2);
+    padding: 18px;
+    border-left: 3px solid var(--color-dark);
+    color: var(--color-sub);
+}
+
+.codeblock{
+    font-size: 12pt;
+}
+
+code{
+    font-size: 12pt;
 }

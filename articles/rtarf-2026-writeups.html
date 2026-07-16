@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cirrostrat/creations</title>
+    <link rel="stylesheet" href="/style-3.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon2.png">
+</head>
+<body>
+    <div class="backbox"></div>
+    <script src="/backbox.js"></script>
+
+    <div id="cont-all">
+    <div id="shadow">
+    <!-- REAL CONTENT BEGINS HERE - - - - - - - - - - -->
+     <div id="titlebar" class="content-block">
+        <div class="lesserspacer"></div>
+        <h1 class="deemph">cirrostrat</h1>
+    </div>
+    
+    <div id="navigator" class="content-block">
+        <nav id="headlinks">
+            <ul class="hzlinks">
+                <li><a href="/index.html" class="hzel" target="_top">home</a></li>
+                <li><a href="/creations/index.html" class="hzel" target="_top">creations</a></li>
+                <li><a href="/articles/index.html" class="hzel" target="_top">articles</a></li>
+                <li><a href="/links.html" class="hzel" target="_top">links</a></li>
+                <li><a href="/aboutself.html" class="hzel" target="_top">about</a></li>
+                <!-- <li><a href="" class="hzel"></a></li> -->
+            </ul>
+        </nav>
+    </div>
+    
+
+    <div class="content-block pageheading supress-bottom-border in-more" id="kicker">
+        <div class="lesserspacer"></div>
+        <div>
+            <h2>RTARF cyber warrior 2026 writeups</h2>
+            articles/15 jul 2026
+        </div>
+    </div>
+
+    <div class="content-block">
+        <img src="/img/rtarf/rtarf1.jpg" class="behind img-header img-shrink-only">
+        <div class="spacer"></div>
+    </div>
+    <div class="content-block in-more">
+        <p> Hi! Recently, I was part of a delegation to Thailand affiliated by
+        the Loyola Blakefield Cyber Science and Informatics program to attend
+        the Royal Thai Armed Forces <b>Cyber Warrior Contest 2026</b>. This was
+        pretty much my first major CTF that I competed in. Alongside me were 
+        Aidan B. '27 and Teddy M '28. </p>
+        
+        <p>Anyways, there are a handful of challenges I found interesting enough
+            to write up about. Here's how I found a couple of the flags.
+            Keep in mind that AI was prohibited during this competition.
+        </p>
+    </div>
+
+    <div class="content-block in-more">
+        <h3>artemis orbital resonance check</h3>
+        <p><i>&rarr; a "medium" programming challenge</i></p>
+        <p>Here's the scenario. The document was originally provided in
+            Thai, but has been translated here.
+        </p>
+
+        <div class="excerpt">
+            <p>
+                Mission Control detected multiple satellites orbiting the Earth before Artemis II launched.
+                The engineering team had to check the orbital resonance between each pair of satellites for the safety of their trajectory.
+            </p> 
+            <p>
+                Each satellite has an orbital period <i>T</i> seconds and an initial phase <i>&phi;</i> degrees.
+                The phase of the satellite at time t is:
+            </p>
+            <p class="text-center">
+                p(t) = (φ + 360 &times; t / T) mod 360
+            </p>
+            <p>
+                A pair of satellites experiences an "orbital resonance" when their phases are separated by "less than 1 degree" (measured circularly on a 360° circle) for the first time.
+            </p>
+            <p>
+                Count the number of pairs of satellites that experience orbital resonance within the first 10,000 seconds.
+                (Consider the time as integers t = 0, 1, 2, ... 10,000)
+            </p>
+        </div>
+        <br>
+        <p>
+            We are then provided with the orbital period <i>T</i> and initial phase <i>&phi;</i> for 17 satellites labeled 'A' through 'R'. 
+            These are all seemingly arbitrary positive integers. 
+        </p>
+
+        <p>The flag is the MD5 value of the resulting number (i.e., the amount of satellites that experience resonance).</p>
+        <p>As this is a programming challenge, my eyes are drawn specifically to the provided function p(t), a very simple function that
+            can be implemented very easily. I open a new Python file and implement the function.
+        </p>
+
+        <div class="codeblock">
+        <!--CODE BLOCK -->
+<!-- HTML generated using hilite.me --><div style="background: #242933; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.4em .6em;"><table><tr><td><pre style="margin: 0; margin-right: 16px; line-height: 125%; color: #484f5c;">1
+2
+3
+4
+5</pre></td><td><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #D8DEE9">T_arr</span> <span style="color: #81A1C1; font-weight: bold">=</span>   <span style="color: #ECEFF4">[</span><span style="color: #B48EAD">331</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">359</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">251</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">283</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">89</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">269</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">211</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">347</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">181</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">307</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">37</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">71</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">197</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">113</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">53</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">163</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">233</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">149</span><span style="color: #ECEFF4">]</span>
+<span style="color: #D8DEE9">phi_arr</span> <span style="color: #81A1C1; font-weight: bold">=</span> <span style="color: #ECEFF4">[</span><span style="color: #B48EAD">30</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">100</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">76</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">48</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">187</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">354</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">140</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">284</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">205</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">327</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">38</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">359</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">91</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">312</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">31</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">246</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">72</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">59</span> <span style="color: #ECEFF4">]</span>
+
+<span style="color: #81A1C1; font-weight: bold">def</span><span style="color: #D8DEE9"> </span><span style="color: #88C0D0">p</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">phi</span><span style="color: #ECEFF4">,</span> <span style="color: #D8DEE9">T</span><span style="color: #ECEFF4">,</span> <span style="color: #D8DEE9">t</span><span style="color: #ECEFF4">):</span>
+    <span style="color: #81A1C1; font-weight: bold">return</span> <span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">phi</span> <span style="color: #81A1C1; font-weight: bold">+</span> <span style="color: #B48EAD">360</span> <span style="color: #81A1C1; font-weight: bold">*</span> <span style="color: #D8DEE9">t</span> <span style="color: #81A1C1; font-weight: bold">/</span> <span style="color: #D8DEE9">T</span><span style="color: #ECEFF4">)</span> <span style="color: #81A1C1; font-weight: bold">%</span> <span style="color: #B48EAD">360</span>
+</pre></td></tr></table></div>
+        <!--END CODE BLOCK -->
+        </div>
+
+        <br>
+        <p>The three parameters correspond to the three variables inside the function; it is a direct, 1-to-1 translation
+            of the mathematical form of p(t) that is given.
+        </p>
+        <p>What is also given is the list of <i>T</i> and <i>&phi;</i> values for the 17 different satellites. 
+            I could make a class or similar to represent a satellite, but because we just need to crunch numbers quickly,
+            I simply use two lists.
+        </p>
+        <p>Ok, we have what we know. Now, what do we actually have to do with these things?
+            We need to count the number of occurences that the values of p(t) for a pair of 
+            two satellites have a difference of less than 1 degree in the first 10,000 seconds.
+            Also important: we're only counting pairs for which this happens "for the first time." 
+        </p>
+        <p>
+            With that in mind, we'll need to program the following:
+            calculate the phase value for each satellite,
+            check if there are any pairs in resonance (phases with a difference of less than 1 degree),
+            write that pair down,
+            then count the number of unique pairs at the end &mdash; so that repeat pairs are not counted (remember "for the first time").
+        </p>
+
+        <div class="codeblock">
+            <!-- HTML generated using hilite.me --><div style="background: #242933; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.4em .6em;"><table><tr><td><pre style="margin: 0; margin-right: 16px; line-height: 125%; color: #484f5c;"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></td><td><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #D8DEE9">T_arr</span> <span style="color: #81A1C1; font-weight: bold">=</span>   <span style="color: #ECEFF4">[</span><span style="color: #B48EAD">331</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">359</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">251</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">283</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">89</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">269</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">211</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">347</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">181</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">307</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">37</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">71</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">197</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">113</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">53</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">163</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">233</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">149</span><span style="color: #ECEFF4">]</span>
+<span style="color: #D8DEE9">phi_arr</span> <span style="color: #81A1C1; font-weight: bold">=</span> <span style="color: #ECEFF4">[</span><span style="color: #B48EAD">30</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">100</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">76</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">48</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">187</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">354</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">140</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">284</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">205</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">327</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">38</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">359</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">91</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">312</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">31</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">246</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">72</span><span style="color: #ECEFF4">,</span>  <span style="color: #B48EAD">59</span> <span style="color: #ECEFF4">]</span>
+
+<span style="color: #81A1C1; font-weight: bold">def</span><span style="color: #D8DEE9"> </span><span style="color: #88C0D0">p</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">phi</span><span style="color: #ECEFF4">,</span> <span style="color: #D8DEE9">T</span><span style="color: #ECEFF4">,</span> <span style="color: #D8DEE9">t</span><span style="color: #ECEFF4">):</span>
+    <span style="color: #81A1C1; font-weight: bold">return</span> <span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">phi</span> <span style="color: #81A1C1; font-weight: bold">+</span> <span style="color: #B48EAD">360</span> <span style="color: #81A1C1; font-weight: bold">*</span> <span style="color: #D8DEE9">t</span> <span style="color: #81A1C1; font-weight: bold">/</span> <span style="color: #D8DEE9">T</span><span style="color: #ECEFF4">)</span> <span style="color: #81A1C1; font-weight: bold">%</span> <span style="color: #B48EAD">360</span>
+
+<span style="color: #D8DEE9">count</span> <span style="color: #81A1C1; font-weight: bold">=</span> <span style="color: #B48EAD">0</span>
+<span style="color: #D8DEE9">pairs</span> <span style="color: #81A1C1; font-weight: bold">=</span> <span style="color: #ECEFF4">[]</span>
+
+<span style="color: #81A1C1; font-weight: bold">for</span> <span style="color: #D8DEE9">i</span> <span style="color: #81A1C1; font-weight: bold">in</span> <span style="color: #81A1C1">range</span><span style="color: #ECEFF4">(</span><span style="color: #B48EAD">0</span><span style="color: #ECEFF4">,</span> <span style="color: #B48EAD">10001</span><span style="color: #ECEFF4">):</span>
+    <span style="color: #D8DEE9">phases</span> <span style="color: #81A1C1; font-weight: bold">=</span> <span style="color: #ECEFF4">[]</span>
+    <span style="color: #81A1C1; font-weight: bold">for</span> <span style="color: #D8DEE9">x</span><span style="color: #ECEFF4">,</span> <span style="color: #D8DEE9">v</span> <span style="color: #81A1C1; font-weight: bold">in</span> <span style="color: #81A1C1">enumerate</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">T_arr</span><span style="color: #ECEFF4">):</span>
+        <span style="color: #D8DEE9">phases</span><span style="color: #81A1C1; font-weight: bold">.</span><span style="color: #D8DEE9">append</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">p</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">phi_arr</span><span style="color: #ECEFF4">[</span><span style="color: #D8DEE9">x</span><span style="color: #ECEFF4">],</span> <span style="color: #D8DEE9">v</span><span style="color: #ECEFF4">,</span> <span style="color: #D8DEE9">i</span><span style="color: #ECEFF4">))</span>
+
+    <span style="color: #81A1C1; font-weight: bold">for</span> <span style="color: #D8DEE9">x</span><span style="color: #ECEFF4">,</span> <span style="color: #D8DEE9">v</span> <span style="color: #81A1C1; font-weight: bold">in</span> <span style="color: #81A1C1">enumerate</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">phases</span><span style="color: #ECEFF4">):</span>
+        <span style="color: #81A1C1; font-weight: bold">for</span> <span style="color: #D8DEE9">j</span> <span style="color: #81A1C1; font-weight: bold">in</span> <span style="color: #81A1C1">range</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">x</span><span style="color: #81A1C1; font-weight: bold">+</span><span style="color: #B48EAD">1</span><span style="color: #ECEFF4">,</span> <span style="color: #81A1C1">len</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">phases</span><span style="color: #ECEFF4">)):</span>
+            <span style="color: #81A1C1; font-weight: bold">if</span> <span style="color: #ECEFF4">(</span><span style="color: #81A1C1">abs</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">v</span> <span style="color: #81A1C1; font-weight: bold">-</span> <span style="color: #D8DEE9">phases</span><span style="color: #ECEFF4">[</span><span style="color: #D8DEE9">j</span><span style="color: #ECEFF4">]</span> <span style="color: #81A1C1; font-weight: bold">&lt;</span> <span style="color: #B48EAD">1</span><span style="color: #ECEFF4">)):</span>
+                <span style="color: #D8DEE9">pairs</span><span style="color: #81A1C1; font-weight: bold">.</span><span style="color: #D8DEE9">append</span><span style="color: #ECEFF4">((</span><span style="color: #D8DEE9">x</span><span style="color: #ECEFF4">,</span><span style="color: #D8DEE9">j</span><span style="color: #ECEFF4">))</span>
+    
+<span style="color: #81A1C1">print</span><span style="color: #ECEFF4">(</span><span style="color: #81A1C1">len</span><span style="color: #ECEFF4">(</span><span style="color: #81A1C1">set</span><span style="color: #ECEFF4">(</span><span style="color: #D8DEE9">pairs</span><span style="color: #ECEFF4">)))</span>
+</pre></td></tr></table></div>
+        </div>
+
+        <br>
+        <p>
+            Ok, all together now. The nested loop starting in line 12 calculates the p(t) values 
+            for each satellite, and adds it into the <code>phases</code> list. Then we (na&iuml;vely) check for 
+            pairs in resonance (lines 15-18), and add it to the <code>pairs</code> list if so &mdash; stored as a tuple. 
+            This is repeated 10,000 times. 
+        </p>
+        <p>
+            I was initially tempted to first check if a pair exists already in the <code>pairs</code> list before
+            adding it, but since we just need the end value, what we do in line 20 by casting the
+            list into a set to remove duplicates is easier and quicker to write.
+        </p>
+        <p>
+            Running the program prints the final value of <code>153</code>. After running it through MD5, 
+            we obtain the final flag <code>RTARF{b3e3e393c77e35a4a3f3cbd1e429b5dc}</code>.
+        </p>
+    </div>
+
+    <div class="content-block in-more">
+        <p class="text-center">More writeups soon! Stay tuned...</p>
+        <div class="lessspacer"></div>
+    </div>
+
+    <div class="content-block dark less-vertical-padding smaller color-two" id="footer">
+        <div>
+            cirrostrat <i>on</i> neocities.org &mdash; &copy 2024-2026 Sebastian Rugas &mdash; est 23 march 2024 &mdash; no generative AI was used <br>
+            This website, and all work contained herein is licensed openly via <a class="under" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY-NC-SA 4.0</a>.
+        </div>
+    </div>
+    <!-- - - - - - - - - - - -->
+    </div>
+    </div>
+
+</body>
+</html>
